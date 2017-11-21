@@ -1,0 +1,16 @@
+How to compile
+We have included an example makefile (called Makefile) in the source code tarball. Our program requires two C++ libraries to be included in path: Eigen and Boost. To compile the program, follow these steps:
+•  Download Eigen (http://eigen.tuxfamily.org/index.php?title=Main_Page#Download ) and Boost (http://www.boost.org/users/download/). 
+•  Modify their path in the Makefile (the libraries themselves do not need to be compiled).
+•  Execute make command. 
+A XCode (v7.3.1) project file is also included to facilitate the compilation, execution and debugging of the program on Mac.
+
+The MPI version requires an implementation of MPI libraries (e.g. openMPI, intelMPI, MPICH2, etc). Most implementations have a compiler wrapper, mpicxx, as used in the example makefile. For an optimal configuration on a supercomputing cluster, it is best to consult with the system administrator. To compile on a Mac using XCode 4 or a higher version, follow these steps:
+•   Click on the project in Xcode and then click on Build Settings and change the following:
+add “/usr/local/include” to “Search Paths – Header Search Paths”
+add”/usr/local/lib” to “Search Paths – Library Search Paths”
+add “-lmpi -lm” to “Linking – Other Linker Flags”
+•   Edit the “schemes” of the project:
+change the “Executable” to mpiexec, which is located at “/usr/local/bin”, an alias of “orterun”. Note that “/usr/local/bin” is by default hidden in the Finder. To choose “orterun”, press “command + shift + G” then type in “/usr/local/bin” and press “Go”.
+•      Click on “Arguments” in the “schemes” of the project, for running with two processors, add “-n 2” and “$BUILT_PRODUCTS_DIR/$EXECUTABLE_PATH” to “Arguments Passed On Launch”
+

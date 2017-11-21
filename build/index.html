@@ -1,0 +1,167 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>GCTB</title>
+    <link type="text/css" rel="stylesheet" href="./static/css/jquery.tocify.css">
+    <link type="text/css" rel="stylesheet" href="./static/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="./static/css/solarized-light.css">
+    <link type="text/css" rel="stylesheet" href="./static/css/main.css">
+    <script src="./static/js/jquery-1.12.4.min.js"></script>
+    <script src="./static/js/jquery-ui.min.js"></script>
+    <script src="./static/js/jquery.tocify.js"></script>
+    <script src="./static/js/hljs.js"></script>   
+</head>
+
+<body>
+    <div class="page-header">
+        <div class="container-fluid">
+            <p class="TOP_head">&nbsp;</p>
+            <div class="span6">
+                <h1>GCTB</h1>
+                <p class="TOP_head">A tool for Genome-wide Complex Trait Bayesian analysis</p>
+            </div>
+            <div class="span6">
+                <ul class="nav nav-pills">
+                <li role="presentation"><a href="http://cnsgenomics.com/software/gcta/">GCTA</a></li>
+                 <li role="presentation"><a href="http://cnsgenomics.com/software/smr/">SMR</a></li>
+                  <li role="presentation"><a href="http://cnsgenomics.com/software/gsmr/">GSMR</a></li>
+                  <li role="presentation"><a href="http://cnsgenomics.com/software/osca/">OSCA</a></li>
+                   <li role="presentation" class="active"><a href="#">GCTB</a></li>
+                    <li role="presentation"><a href="http://gcta.freeforums.net/">CTG forum</a></li>
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <div id="toc"></div>
+               
+            </div>
+           <div id="show" class="span9">
+                <p> Loading...</p>
+                <p> If it not work properly, you may need update your Internet browser and enable javascript</p>
+                <p> or downlad offline <a href="./static/gctb_doc_latest.pdf">PDF document</a>, <a href="./static/gctb_latest.zip">executable Files</a></p>
+            </div>
+<div id="content" class="span9" style="display: none;"><body><h2 id="overviewexpand" class="expand">Overview </h2>
+<hr><h3 id="about">About</h3>
+<p>GCTB is a software tool that comprises Bayesian mixed linear models for complex trait analyses using genome-wide SNPs. It was developed to simultaneously estimate the joint effects of all SNPs and the genetic architecture parameters for a complex trait, including SNP-based heritability, polygenicity and the joint distribution of effect sizes and minor allele frequencies. </p>
+<hr><h3 id="credits">Credits</h3>
+<p><a href="http://researchers.uq.edu.au/researcher/14033">Jian Zeng</a> developed
+the software tool with supports from <a href="https://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a>.</p>
+<hr><h3 id="questionsandhelprequests">Questions and Help Requests</h3>
+<p>If you have any bug reports or questions, please send an email to Jian Zeng (<a href="mailto:j.zeng@uq.edu.au">j.zeng@uq.edu.au</a>) or Jian Yang (<a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>).</p>
+<hr><h3 id="citations">Citations</h3>
+<p>Zeng, J. et al. Widespread signatures of negative selection in the genetic architecture of human complex traits 
+<a href="https://doi.org/10.1101/145755"><em>bioRxiv</em></a> (2017)</p>
+<h2 id="downloadexpand" class="expand">Download </h2>
+<hr><h3 id="executablefiles">Executable Files</h3>
+<p><a href="download/gctb_Linux.zip">gctb_Linux.zip</a></p>
+<p><a href="download/gctb_Mac.zip">gctb_Mac.zip</a></p>
+<hr><h3 id="sourcecode">Source code</h3>
+<p><a href="download/gctb_1.0.zip">Standard version</a></p>
+<p><a href="download/gctb_mpi_1.0.zip">MPI version</a></p>
+<p>The MPI version implements a distributed computing strategy that allow the analysis to be scalable to very large sample sizes. A significant improvement in computing time is expected for a sample size &gt; 10,000. The MPI version needs to be compiled on user’s machine. See <a href="download/HowToCompile.txt">HowToCompile.txt</a> in the tarball for instructions of compilation.</p>
+<hr><h3 id="updatelog">Update log</h3>
+<p><strong>1.</strong>  1 Dec, 2017: first release.</p>
+<h2 id="basicoptions">Basic options</h2>
+<hr><h3 id="inputandoutput">Input and output</h3>
+<p><strong><span class="kwd">--bfile</span></strong> test</p>
+<p>Input PLINK binary PED files, e.g. test.fam, test.bim and test.bed (see PLINK user manual for details).</p>
+<p><strong><span class="kwd">--pheno</span></strong> test.phen</p>
+<p>Input phenotype data from a plain text file, e.g. test.phen.</p>
+<p><strong><span class="kwd">--out</span></strong> test</p>
+<p>Specify output root filename.</p>
+<hr><h3 id="datamanagement">Data management</h3>
+<p><strong><span class="kwd">--keep</span></strong> test.indi.list</p>
+<p>Specify a list of individuals to be included in the analysis.</p>
+<p><strong><span class="kwd">--chr</span></strong> 1</p>
+<p>Include SNPs on a specific chromosome in the analysis, e.g. chromosome 1.</p>
+<p><strong><span class="kwd">--extract</span></strong> test.snplist</p>
+<p>Specify a list of SNPs to be included in the analysis.</p>
+<p><strong><span class="kwd">--exclude</span></strong> test.snplist</p>
+<p>Specify a list of SNPs to be excluded from the analysis.</p>
+<p><strong><span class="kwd">--mpheno</span></strong> 2</p>
+<p>If the phenotype file contains more than one trait, by default, GCTB takes the first trait for analysis (the third column of the file) unless this option is specified. For example, <strong><span class="kwd">--mpheno</span></strong> 2 tells GCTB to take the second trait for analysis (the fourth column of the file).</p>
+<p><strong><span class="kwd">--covar</span></strong> test.qcovar</p>
+<p>Input quantitative covariates from a plain text file, e.g. test.qcovar. Each quantitative covariate is recognized as a continuous variable.</p>
+<hr><h3 id="mcmcsettings">MCMC settings</h3>
+<p><strong><span class="kwd">--seed</span></strong> 123</p>
+<p>Specify the seed for random number generation, e.g. 123. Note that giving the same seed value would result in exactly the same results between two runs.</p>
+<p><strong><span class="kwd">--chain-length</span></strong> 21000</p>
+<p>Specify the total number of iterations in MCMC, e.g. 21000 (default).</p>
+<p><strong><span class="kwd">--burn-in</span></strong> 1000</p>
+<p>Specify the number of iterations to be discarded, e.g. 1000 (default).</p>
+<p><strong><span class="kwd">--out-freq</span></strong> 100</p>
+<p>Display the intermediate results for every 100 iterations (default). </p>
+<p><strong><span class="kwd">--thin</span></strong> 10</p>
+<p>Output the sampled values for SNP effects and genetic architecture parameters for every 10 iterations (default). Only non-zero sampled values of SNP effects are written into a binary file.</p>
+<p><strong><span class="kwd">--no-mcmc-bin</span></strong></p>
+<p>Suppress the output of MCMC samples of SNP effects.</p>
+<h2 id="bayesalphabet">Bayes alphabet</h2>
+<p><strong><span class="kwd">--bayes</span></strong> S</p>
+<p>Specify the Bayes alphabet for the analysis, e.g. S. Different alphabet launch different models, which principally differ in the prior specification for the SNP effects. The available alphabet include
+C: Each SNP effect is assumed to have an i.i.d mixture prior of a normal distribution N(0, σ2) with a probability π and a point mass at zero with a probability 1-π. 
+S: Similar to C but the variance of SNP effects is related to minor allele frequency (p) through a parameter S, i.e. σj2 = [2p(1-p)]Sσ2.
+N: nested BayesC. SNPs within a 0.2 Mb non-overlapping genomic region are collectively considered as a window (specify the distance by <strong><span class="kwd">--wind</span></strong> 0.2). This nested approach speeds up the analysis by fast “jumping” over windows with zero effect.
+NS: nested BayesS.</p>
+<p><strong><span class="kwd">--fix-pi</span></strong></p>
+<p>An option to fix the π to a constant (the value is specified by the option <span class="kwd">--pi</span> below). The default setting is to treat π as random and estimated from the data.</p>
+<p><strong><span class="kwd">--pi</span></strong> 0.05</p>
+<p>A starting value for the sampling of π when it is estimated from the data, or a given value for π when it is fixed. The default value is 0.05.</p>
+<p><strong><span class="kwd">--hsq</span></strong> 0.5</p>
+<p>A starting value for the sampling of SNP-based heritability, which may improve the mixing of MCMC algorithm if it starts with a good estimate. The default value is 0.5.</p>
+<p><strong><span class="kwd">--S</span></strong> 0</p>
+<p>A starting value for the sampling of the parameter S (relationship between MAF and variance of SNP effects) in BayesS, which may improve the mixing of MCMC algorithm if it starts with a good estimate. The default value is 0.</p>
+<hr><h3 id="examples">Examples</h3>
+<p>Standard version of gctb:</p>
+<pre><code>gctb --bfile test --phen test.phen --bayes S --pi 0.1 --hsq 0.5 --chain-length 25000 --burn-in 5000 --out test &gt; test.log 2&gt;&amp;1
+</code></pre>
+<p>MPI version of gctb (when using intelMPI libraries and two nodes):</p>
+<pre><code>mpirun -f $PBS_NODEFILE -np 2 gctb_mpi --bfile test --phen test.phen --bayes S --pi 0.1 --hsq 0.5 --chain-length 25000 --burn-in 5000 --out test &gt; test.log 2&gt;&amp;1
+</code></pre>
+<p>The output files include:</p>
+<p><strong>test.log</strong>: a text file of running status, intermediate results, posterior mean and standard deviation of key parameters</p>
+<p><strong>test.snpRes</strong>: a text file of posterior means of SNP effects</p>
+<p><strong>test.mcmcsamples.hsq</strong>: a text file of MCMC samples for SNP-based heritability</p>
+<p><strong>test.mcmcsamples.pi</strong>: a text file of MCMC samples for π</p>
+<p><strong>test.mcmcsamples.S</strong>: a text file of MCMC samples for S</p>
+<p><strong>test.mcmcsamples.NNZsnp</strong>: a text file of MCMC samples for the number of non-zero SNP effects</p>
+<p><strong>test.mcmcsamples.NNZwind</strong>: a text file of MCMC samples for the number of non-zero window effects (if BayesN or BayesNS is used)</p>
+<p><strong>test.mcmcsamples.FixedEffects</strong>: a text file of MCMC samples for the covariates fitted in the model</p>
+<p><strong>test.mcmcsamples.SnpEffects</strong>: a binary file of MCMC samples for the SNP effects</p></body></div>
+       </div>
+
+        <script>
+            $(function() {
+                var toc = $("#toc").tocify({
+                    selectors: "h2, h3",
+                    ignoreSelector: ".notoc",
+                    expand: ".expand",
+                    showEffect: "fadeIn",
+                    scrollHistory: false,
+                    extendPage: false,
+                    scrollTo: 80,
+                    showDIV: "#show",
+                    tocID: "#toc"
+                }).data("toc-tocify");
+                toc.setOptions({
+                    appendContents: '<div style="text-align: center;font-size: 14px">Number of visits: <img src="http://hitwebcounter.com/counter/counter.php?page=6809806&style=0011&nbdigits=6&type=page&initCount=0" title="Home Remedies For Wrinkles" Alt="Home Remedies For Wrinkles"   border="0", width=78 > </div>'
+                });
+                hljs.initHighlightingOnLoad();
+
+            });
+    </script>
+       <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-101733990-7', 'auto');
+  ga('send', 'pageview');
+
+</script>
+   </div>
+</body></html>
