@@ -50,7 +50,7 @@ npm run build
 
 3. Put the PDF into build/download folder with the name GCTB.pdf
 
-4. Put the latest GCTB into build/download with the name GCTB_$platform.zip
+4. Put the latest GCTB into build/download with the name gctb_$platform.zip
 
 *Note: this offline documents are for some users that have very old browsers, it is not prefered thus invisible to ordinary users*
 
@@ -65,6 +65,6 @@ Send the zip file to the web administrator.
 
 ## Help
 
-If you have addtional problems, email futao.zhang@imb.uq.edu.au for help.
+If you have addtional problems, email j.zeng@imb.uq.edu.au for help.
 
 If we want to change the style of the web site, we need change the **template**, don't revise the builded web page directly.
