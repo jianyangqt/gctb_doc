@@ -1,16 +1,41 @@
-How to compile
-We have included an example makefile (called Makefile) in the source code tarball. Our program requires two C++ libraries to be included in path: Eigen and Boost. To compile the program, follow these steps:
-•  Download Eigen (http://eigen.tuxfamily.org/index.php?title=Main_Page#Download ) and Boost (http://www.boost.org/users/download/). 
-•  Modify their path in the Makefile (the libraries themselves do not need to be compiled).
-•  Execute make command. 
-A XCode (v7.3.1) project file is also included to facilitate the compilation, execution and debugging of the program on Mac.
+Instruction to compile GCTB 1.0 MPI version
 
-The MPI version requires an implementation of MPI libraries (e.g. openMPI, intelMPI, MPICH2, etc). Most implementations have a compiler wrapper, mpicxx, as used in the example makefile. For an optimal configuration on a supercomputing cluster, it is best to consult with the system administrator. To compile on a Mac using XCode 4 or a higher version, follow these steps:
-•   Click on the project in Xcode and then click on Build Settings and change the following:
-add “/usr/local/include” to “Search Paths – Header Search Paths”
-add”/usr/local/lib” to “Search Paths – Library Search Paths”
-add “-lmpi -lm” to “Linking – Other Linker Flags”
-•   Edit the “schemes” of the project:
-change the “Executable” to mpiexec, which is located at “/usr/local/bin”, an alias of “orterun”. Note that “/usr/local/bin” is by default hidden in the Finder. To choose “orterun”, press “command + shift + G” then type in “/usr/local/bin” and press “Go”.
-•      Click on “Arguments” in the “schemes” of the project, for running with two processors, add “-n 2” and “$BUILT_PRODUCTS_DIR/$EXECUTABLE_PATH” to “Arguments Passed On Launch”
+GCTB 1.0 MPI version has dependencies on MPI and two C++ libraries i.e. Eigen and Boost.
+
+----
+To compile GCTB 1.0 MPI version on a Linux/Mac system, follow below steps:
+
+1. Download Eigen and Boost;
+2. Edit their path in the enclosed Makefile (these two libraries themselves do not need to be compiled);
+3. Load an appropriate implementation of MPI library (e.g. openMPI, intelMPI, MPICH2, etc) library (it is best to consult with the system administrator);
+4. Switch "SYS" to "LINUX” or “MAC” in the Makefile;
+5. Execute make command.
+
+----
+We have also included a Xcode (v7.3.1) project file for Mac system. To compile in the Xcode, follow below steps:
+
+1. Click on the project in Xcode and then click on Build Settings;
+2. Add “/usr/local/include” to “Search Paths – Header Search Paths”;
+3. Add the paths of Eigen and Boost libraries to “Search Paths – Header Search Paths”;
+4. Add”/usr/local/lib” to “Search Paths – Library Search Paths”;
+5. Add “-lmpi -lm” to “Linking – Other Linker Flags”;
+6. Add "/usr/local/lib/libmpi_cxx.1.dylib" to Link Binary With Libraries;
+7. Use Command+B to compile.
+
+----
+To run GCTB 1.0 MPI version in the Mac terminal (with the test dataset), use: 
+
+mpirun -np 2 scr/gctb --bfile test/data/uk10k_chr1_1mb --pheno test/data/test.phen --bayes S --chain-length 1100 --burn-in 100 --out test/res/test
+
+An alternative way to run the program with the parameter settings is to use a input parameter file: 
+
+mpirun -np 2 scr/gctb —inp-file test/res/test.inp
+
+
+To run in the Xcode, follow these steps:
+
+1. Edit the “schemes” of the project: change the “Executable” to mpiexec, which is located at “/usr/local/bin”, an alias of “orterun”. 
+   Note that “/usr/local/bin” is by default hidden in the Finder. To choose “orterun”, press “command + shift + G” then type in “/usr/local/bin” and press “Go”.
+2. Click on “Arguments” in the “schemes” of the project, for running with two processors, add “-n 2” and “$BUILT_PRODUCTS_DIR/$EXECUTABLE_PATH” to “Arguments Passed On Launch”.
+
 
