@@ -27,6 +27,7 @@
                   <li role="presentation"><a href="http://cnsgenomics.com/software/osca/">OSCA</a></li>
                    <li role="presentation" class="active"><a href="#">GCTB</a></li>
                     <li role="presentation"><a href="http://gcta.freeforums.net/">CTG forum</a></li>
+                    <li role="presentation"><a href="http://cnsgenomics.com/">Program in CTG</a></li>
                 </ul>
 
             </div>
@@ -42,7 +43,7 @@
            <div id="show" class="span9">
                 <p> Loading...</p>
                 <p> If it not work properly, you may need update your Internet browser and enable javascript</p>
-                <p> or downlad offline <a href="./static/gctb_doc_latest.pdf">PDF document</a>, <a href="./static/gctb_latest.zip">executable Files</a></p>
+                <p> or downlad offline <a href="./download/GCTB.pdf">PDF document</a>, <a href="./download/gctb_1.0_Linux.zip">executable Files</a></p>
             </div>
 <div id="content" class="span9" style="display: none;"><body><h2 id="overviewexpand" class="expand">Overview </h2>
 <hr><h3 id="about">About</h3>
@@ -62,7 +63,7 @@ the software tool with supports from <a href="https://scholar.google.com.au/cita
 <hr><h3 id="sourcecode">Source code</h3>
 <p><a href="download/gctb_1.0_scr.zip">Standard version</a></p>
 <p><a href="download/gctb_1.0_mpi_scr.zip">MPI version</a></p>
-<p>The MPI version implements a distributed computing strategy that allow the analysis to be scalable to very large sample sizes. A significant improvement in computing time is expected for a sample size &gt; 10,000. The MPI version needs to be compiled on user’s machine. See <a href="download/HowToCompile.txt">HowToCompile.txt</a> in the tarball for instructions of compilation.</p>
+<p>The MPI version implements a distributed computing strategy that allow the analysis to be scalable to very large sample sizes. A significant improvement in computing time is expected for a sample size &gt; 10,000. The MPI version needs to be compiled on user’s machine. See <a href="download/README.html">README.html</a> in the tarball for instructions of compilation and usage.</p>
 <hr><h3 id="updatelog">Update log</h3>
 <p><strong>1.</strong>  1 Dec, 2017: first release.</p>
 <h2 id="basicoptions">Basic options</h2>
@@ -101,11 +102,13 @@ the software tool with supports from <a href="https://scholar.google.com.au/cita
 <p>Suppress the output of MCMC samples of SNP effects.</p>
 <h2 id="bayesalphabet">Bayes alphabet</h2>
 <p><strong><span class="kwd">--bayes</span></strong> S</p>
-<p>Specify the Bayes alphabet for the analysis, e.g. S. Different alphabet launch different models, which principally differ in the prior specification for the SNP effects. The available alphabet include
-C: Each SNP effect is assumed to have an i.i.d mixture prior of a normal distribution N(0, σ2) with a probability π and a point mass at zero with a probability 1-π. 
-S: Similar to C but the variance of SNP effects is related to minor allele frequency (p) through a parameter S, i.e. σj2 = [2p(1-p)]Sσ2.
-N: nested BayesC. SNPs within a 0.2 Mb non-overlapping genomic region are collectively considered as a window (specify the distance by <strong><span class="kwd">--wind</span></strong> 0.2). This nested approach speeds up the analysis by fast “jumping” over windows with zero effect.
-NS: nested BayesS.</p>
+<p>Specify the Bayes alphabet for the analysis, e.g. S. Different alphabet launch different models, which principally differ in the prior specification for the SNP effects. The available alphabet include</p>
+<ul>
+<li><p>C: Each SNP effect is assumed to have an i.i.d mixture prior of a normal distribution N(0, σ2) with a probability π and a point mass at zero with a probability 1-π. </p></li>
+<li><p>S: Similar to C but the variance of SNP effects is related to minor allele frequency (p) through a parameter S, i.e. σj2 = [2p(1-p)]Sσ2.</p></li>
+<li><p>N: nested BayesC. SNPs within a 0.2 Mb non-overlapping genomic region are collectively considered as a window (specify the distance by <strong><span class="kwd">--wind</span></strong> 0.2). This nested approach speeds up the analysis by fast “jumping” over windows with zero effect.</p></li>
+<li><p>NS: nested BayesS.</p></li>
+</ul>
 <p><strong><span class="kwd">--fix-pi</span></strong></p>
 <p>An option to fix the π to a constant (the value is specified by the option <span class="kwd">--pi</span> below). The default setting is to treat π as random and estimated from the data.</p>
 <p><strong><span class="kwd">--pi</span></strong> 0.05</p>
@@ -114,6 +117,8 @@ NS: nested BayesS.</p>
 <p>A starting value for the sampling of SNP-based heritability, which may improve the mixing of MCMC algorithm if it starts with a good estimate. The default value is 0.5.</p>
 <p><strong><span class="kwd">--S</span></strong> 0</p>
 <p>A starting value for the sampling of the parameter S (relationship between MAF and variance of SNP effects) in BayesS, which may improve the mixing of MCMC algorithm if it starts with a good estimate. The default value is 0.</p>
+<p><strong><span class="kwd">--wind</span></strong> 0.2</p>
+<p>Specify the window width in Mb for the non-overlapping windows in the nested models, e.g. 0.2-Mb. The default value is 1-Mb.</p>
 <hr><h3 id="examples">Examples</h3>
 <p>Standard version of gctb:</p>
 <pre><code>gctb --bfile test --phen test.phen --bayes S --pi 0.1 --hsq 0.5 --chain-length 25000 --burn-in 5000 --out test &gt; test.log 2&gt;&amp;1
@@ -122,15 +127,13 @@ NS: nested BayesS.</p>
 <pre><code>mpirun -f $PBS_NODEFILE -np 2 gctb_mpi --bfile test --phen test.phen --bayes S --pi 0.1 --hsq 0.5 --chain-length 25000 --burn-in 5000 --out test &gt; test.log 2&gt;&amp;1
 </code></pre>
 <p>The output files include:</p>
-<p><strong>test.log</strong>: a text file of running status, intermediate results, posterior mean and standard deviation of key parameters</p>
-<p><strong>test.snpRes</strong>: a text file of posterior means of SNP effects</p>
-<p><strong>test.mcmcsamples.hsq</strong>: a text file of MCMC samples for SNP-based heritability</p>
-<p><strong>test.mcmcsamples.pi</strong>: a text file of MCMC samples for π</p>
-<p><strong>test.mcmcsamples.S</strong>: a text file of MCMC samples for S</p>
-<p><strong>test.mcmcsamples.NNZsnp</strong>: a text file of MCMC samples for the number of non-zero SNP effects</p>
-<p><strong>test.mcmcsamples.NNZwind</strong>: a text file of MCMC samples for the number of non-zero window effects (if BayesN or BayesNS is used)</p>
-<p><strong>test.mcmcsamples.FixedEffects</strong>: a text file of MCMC samples for the covariates fitted in the model</p>
-<p><strong>test.mcmcsamples.SnpEffects</strong>: a binary file of MCMC samples for the SNP effects</p></body></div>
+<p><strong>test.log</strong>: a text file of running status and intermediate and final results;</p>
+<p><strong>test.snpRes</strong>: a text file of posterior statistics of SNP effects;</p>
+<p><strong>test.covRes</strong>: a text file of posterior statistics of covariates;</p>
+<p><strong>test.parRes</strong>: a text file of posterior statistics of key model parameters;</p>
+<p><strong>test.mcmcsamples.CovEffects</strong>: a text file of MCMC samples for the covariates fitted in the model;</p>
+<p><strong>test.mcmcsamples.SnpEffects</strong>: a binary file of MCMC samples for the SNP effects;</p>
+<p><strong>test.mcmcsamples.Par</strong>: a text file of MCMC samples for the key model parameters;</p></body></div>
        </div>
 
         <script>
