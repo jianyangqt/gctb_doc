@@ -11,7 +11,7 @@
 
 [MPI version](download/gctb_1.0_mpi_scr.zip)
 
-The MPI version implements a distributed computing strategy that allow the analysis to be scalable to very large sample sizes. A significant improvement in computing time is expected for a sample size > 10,000. The MPI version needs to be compiled on user’s machine. See [HowToCompile.txt](download/HowToCompile.txt) in the tarball for instructions of compilation.
+The MPI version implements a distributed computing strategy that allow the analysis to be scalable to very large sample sizes. A significant improvement in computing time is expected for a sample size > 10,000. The MPI version needs to be compiled on user’s machine. See [README.html](download/README.html) in the tarball for instructions of compilation and usage.
 
 
 ### Update log 
