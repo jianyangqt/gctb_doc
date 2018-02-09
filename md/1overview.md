@@ -7,7 +7,7 @@ GCTB is a software tool that comprises Bayesian mixed linear models for complex 
 ### Credits 
 
 [Jian Zeng](http://researchers.uq.edu.au/researcher/14033) developed
-the software tool with supports from [Jian Yang](https://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) and [Futao Zhang](http://researchers.uq.edu.au/researcher/12709).
+the software tool with supports from [Jian Yang](https://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) and [Futao Zhang](http://researchers.uq.edu.au/researcher/12709). [Luke Lloyd-Jones](https://scholar.google.com.au/citations?user=WQ0UXOcAAAAJ&hl=en&oi=ao) contributed the BayesR module.
 
 ### Questions and Help Requests 
 
