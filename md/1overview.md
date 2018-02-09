@@ -2,12 +2,12 @@
 
 ### About
 
-GCTB is a software tool that comprises Bayesian mixed linear models for complex trait analyses using genome-wide SNPs. It was developed to simultaneously estimate the joint effects of all SNPs and the genetic architecture parameters for a complex trait, including SNP-based heritability, polygenicity and the joint distribution of effect sizes and minor allele frequencies. 
+GCTB is a software tool that comprises a family of Bayesian linear mixed models for complex trait analyses using genome-wide SNPs. It was developed to simultaneously estimate the joint effects of all SNPs and the genetic architecture parameters for a complex trait, including SNP-based heritability, polygenicity and the joint distribution of effect sizes and minor allele frequencies. 
 
 ### Credits 
 
 [Jian Zeng](http://researchers.uq.edu.au/researcher/14033) developed
-the software tool with supports from [Jian Yang](https://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) and [Futao Zhang](http://researchers.uq.edu.au/researcher/12709). [Luke Lloyd-Jones](https://scholar.google.com.au/citations?user=WQ0UXOcAAAAJ&hl=en&oi=ao) contributed the BayesR module with supports from Jian Zeng and [Mike Goddard](https://en.wikipedia.org/wiki/Michael_Goddard).
+the software tool with supports from [Jian Yang](https://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) and [Futao Zhang](http://researchers.uq.edu.au/researcher/12709). A part of the core code is inherited from [*GenSel*](https://static-content.springer.com/esm/art%3A10.1186%2F1471-2105-12-186/MediaObjects/12859_2010_4655_MOESM1_ESM.PDF) written by [Rohan Fernando](https://www.ans.iastate.edu/people/rohan-fernando) and [Dorian Garrick](http://www.massey.ac.nz/massey/learning/colleges/college-of-sciences/staff-profile.cfm?stref=600130). [Luke Lloyd-Jones](https://scholar.google.com.au/citations?user=WQ0UXOcAAAAJ&hl=en&oi=ao) contributed the BayesR module with supports from Jian Zeng and [Mike Goddard](https://en.wikipedia.org/wiki/Michael_Goddard).
 
 ### Questions and Help Requests 
 
