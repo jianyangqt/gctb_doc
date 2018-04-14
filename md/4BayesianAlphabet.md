@@ -4,7 +4,7 @@
 
 **\--bayes** S
 
-Specify the Bayesian alphabet for the analysis, e.g. $S$. Different alphabet launch different models, which principally differ in the prior specification for the SNP effects. The available alphabet include
+Specify the Bayesian alphabet for the analysis, e.g. $S$. Different alphabet launch different models, which differ in the prior specification for the SNP effects. The available alphabet include
 
 * B: Each SNP effect is assumed to have an i.i.d. mixture prior of a t-distribution $t(0, \tau^2, \nu)$ with a probability $\pi$ and a point mass at zero with a probability $1-\pi$.
 
@@ -20,7 +20,7 @@ Specify the Bayesian alphabet for the analysis, e.g. $S$. Different alphabet lau
 
 **\--fix-pi**
 
-An option to fix the $\pi$ to a constant (the value is specified by the option --pi below). The default setting is to treat π as random and estimated from the data.
+An option to fix $\pi$ to a constant (the value is specified by the option --pi below). The default setting is to treat π as random and estimate it from the data.
 
 **\--pi** 0.05
 
@@ -28,7 +28,7 @@ A starting value for the sampling of π when it is estimated from the data, or a
 
 **\--gamma** 0,0.01,0.1,1
 
-When BayesR is used, this speficies the gamma values seperated by comma, each defines the scaling factor for the variance of a mixture component. Note that the number of values should match that in \--pi.
+When BayesR is used, this speficies the gamma values seperated by comma, each representing the scaling factor for the variance of a mixture component. Note that the number of values should match that in \--pi.
 
 **\--hsq** 0.5
 
@@ -42,7 +42,8 @@ A starting value for the sampling of the parameter S (relationship between MAF a
 
 Specify the window width in Mb for the non-overlapping windows in the nested models, e.g. 0.2 Mb. The default value is 1 Mb.
 
-### Examples
+<br>
+> **Examples**
 
 Standard version of gctb:
 ```
@@ -56,7 +57,7 @@ mpirun -f $PBS_NODEFILE -np 2 gctb_mpi --bfile test --pheno test.phen --bayes S 
 
 The output files include:
 
-**test.log**: a text file of running status and intermediate and final results;
+**test.log**: a text file of running status, intermediate output and final results;
 
 **test.snpRes**: a text file of posterior statistics of SNP effects;
 
@@ -70,7 +71,21 @@ The output files include:
 
 **test.mcmcsamples.Par**: a text file of MCMC samples for the key model parameters;
 
+<br>
+>**Citations** 
 
+**GCTB software and BayesS method**  
+Zeng et al. (2018) Signatures of negative selection in the genetic architecture of human complex traits. 
+*Nature Genetics*, doi: 10.1038/s41588-018-0101-4.
+
+**BayesR**  
+Moser et al. (2015) Simultaneous discovery, estimation and prediction analysis of complex traits using a Bayesian mixture model. [*PLoS Genetics*, 11: e1004969.](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004969)
+
+**BayesC$\pi$**  
+Habier et al. (2011) Extension of the Bayesian alphabet for genomic selection. [*BMC Bioinformatics*, 12: 186.](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-186)
+
+**BayesB**  
+Meuwissen et al. (2001) Prediction of total genetic value using genome-wide dense marker maps. [*Genetics*, 157: 1819-1829.](http://www.genetics.org/content/157/4/1819.short) 
 
 
 

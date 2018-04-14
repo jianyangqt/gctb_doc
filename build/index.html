@@ -51,19 +51,12 @@
 <p>GCTB is a software tool that comprises a family of Bayesian linear mixed models for complex trait analyses using genome-wide SNPs. It was developed to simultaneously estimate the joint effects of all SNPs and the genetic architecture parameters for a complex trait, including SNP-based heritability, polygenicity and the joint distribution of effect sizes and minor allele frequencies. </p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://researchers.uq.edu.au/researcher/14033">Jian Zeng</a> developed
-the software tool with supports from <a href="https://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a>, <a href="http://researchers.uq.edu.au/researcher/12709">Futao Zhang</a> and <a href="http://researchers.uq.edu.au/researcher/19885">Zhili Zheng</a>. Partial code are adapted from <a href="http://cnsgenomics.com/software/gcta"><em>GCTA</em></a> and <a href="https://static-content.springer.com/esm/art%3A10.1186%2F1471-2105-12-186/MediaObjects/12859_2010_4655_MOESM1_ESM.PDF"><em>GenSel</em></a>. <a href="https://scholar.google.com.au/citations?user=WQ0UXOcAAAAJ&amp;hl=en&amp;oi=ao">Luke Lloyd-Jones</a> contributed the BayesR module with supports from <a href="http://researchers.uq.edu.au/researcher/14033">Jian Zeng</a> and <a href="https://en.wikipedia.org/wiki/Michael_Goddard">Mike Goddard</a>.</p>
+the software with supports from <a href="https://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a>, <a href="http://researchers.uq.edu.au/researcher/12709">Futao Zhang</a> and <a href="http://researchers.uq.edu.au/researcher/19885">Zhili Zheng</a>. Part of the code are adopted from <a href="http://cnsgenomics.com/software/gcta"><em>GCTA</em></a> and <a href="https://static-content.springer.com/esm/art%3A10.1186%2F1471-2105-12-186/MediaObjects/12859_2010_4655_MOESM1_ESM.PDF"><em>GenSel</em></a>. <a href="https://scholar.google.com.au/citations?user=WQ0UXOcAAAAJ&amp;hl=en&amp;oi=ao">Luke Lloyd-Jones</a> contributed to the BayesR module with supports from <a href="http://researchers.uq.edu.au/researcher/14033">Jian Zeng</a> and <a href="https://en.wikipedia.org/wiki/Michael_Goddard">Mike Goddard</a>.</p>
 <hr><h3 id="questionsandhelprequests">Questions and Help Requests</h3>
 <p>If you have any bug reports or questions, please send an email to Jian Zeng (<a href="mailto:j.zeng@uq.edu.au">j.zeng@uq.edu.au</a>) or Jian Yang (<a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>).</p>
-<hr><h3 id="citations">Citations</h3>
-<p><strong>BayesS</strong><br>
-Zeng et al. Signatures of negative selection in the genetic architecture of human complex traits. 
-<em>Nature Genetics</em> (<em>in press</em>) doi: 10.1038/s41588-018-0101-4.</p>
-<p><strong>BayesR</strong><br>
-Moser et al. Simultaneous discovery, estimation and prediction analysis of complex traits using a Bayesian mixture model. <a href="http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004969"><em>PLoS Genetics</em> 11.4</a> (2015): e1004969.</p>
-<p><strong>BayesC$\pi$</strong><br>
-Habier et al. Extension of the Bayesian alphabet for genomic selection. <a href="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-186"><em>BMC Bioinformatics</em> 12.1</a> (2011): 186.</p>
-<p><strong>BayesB</strong><br>
-Meuwissen et al. Prediction of total genetic value using genome-wide dense marker maps. <a href="http://www.genetics.org/content/157/4/1819.short"><em>Genetics</em></a> (2001): 1819-1829. </p>
+<hr><h3 id="citation">Citation</h3>
+<p>Zeng et al. (2018) Signatures of negative selection in the genetic architecture of human complex traits. 
+<em>Nature Genetics</em>, doi: 10.1038/s41588-018-0101-4.</p>
 <h2 id="downloadexpand" class="expand">Download </h2>
 <hr><h3 id="executablefiles">Executable Files</h3>
 <p><a href="download/gctb_1.0_Linux.zip">gctb_1.0_Linux.zip</a></p>
@@ -110,7 +103,7 @@ Meuwissen et al. Prediction of total genetic value using genome-wide dense marke
 <p>Suppress the output of MCMC samples of SNP effects.</p>
 <h2 id="bayesianalphabet">Bayesian alphabet</h2>
 <p><strong><span class="kwd">--bayes</span></strong> S</p>
-<p>Specify the Bayesian alphabet for the analysis, e.g. $S$. Different alphabet launch different models, which principally differ in the prior specification for the SNP effects. The available alphabet include</p>
+<p>Specify the Bayesian alphabet for the analysis, e.g. $S$. Different alphabet launch different models, which differ in the prior specification for the SNP effects. The available alphabet include</p>
 <ul>
 <li><p>B: Each SNP effect is assumed to have an i.i.d. mixture prior of a t-distribution $t(0, \tau^2, \nu)$ with a probability $\pi$ and a point mass at zero with a probability $1-\pi$.</p></li>
 <li><p>C: Each SNP effect is assumed to have an i.i.d. mixture prior of a normal distribution $N(0, \sigma^2)$ with a probability $\pi$ and a point mass at zero with a probability $1-\pi$. </p></li>
@@ -120,18 +113,21 @@ Meuwissen et al. Prediction of total genetic value using genome-wide dense marke
 <li><p>R: BayesR. Each SNP effect is assumed to have an i.i.d. mixture prior of multiple normal distributions $N(0, \gamma<em>k \sigma</em>k^2)$ with a probability $\pi<em>k$ and a point mass at zero with a probability $1-\sum</em>k \pi<em>k$, where $\gamma</em>k$ is a given constant.</p></li>
 </ul>
 <p><strong><span class="kwd">--fix-pi</span></strong></p>
-<p>An option to fix the $\pi$ to a constant (the value is specified by the option <span class="kwd">--pi</span> below). The default setting is to treat π as random and estimated from the data.</p>
+<p>An option to fix $\pi$ to a constant (the value is specified by the option <span class="kwd">--pi</span> below). The default setting is to treat π as random and estimate it from the data.</p>
 <p><strong><span class="kwd">--pi</span></strong> 0.05</p>
 <p>A starting value for the sampling of π when it is estimated from the data, or a given value for π when it is fixed. The default value is 0.05. When BayesR is used, it is a string seperated by comma where the number of values defines the number of mixture components and each value defines the starting value for each component (the first value is reserved for the zero component); the default values are 0.95,0.03,0.01,0.01. </p>
 <p><strong><span class="kwd">--gamma</span></strong> 0,0.01,0.1,1</p>
-<p>When BayesR is used, this speficies the gamma values seperated by comma, each defines the scaling factor for the variance of a mixture component. Note that the number of values should match that in <span class="kwd">--pi</span>.</p>
+<p>When BayesR is used, this speficies the gamma values seperated by comma, each representing the scaling factor for the variance of a mixture component. Note that the number of values should match that in <span class="kwd">--pi</span>.</p>
 <p><strong><span class="kwd">--hsq</span></strong> 0.5</p>
 <p>A starting value for the sampling of SNP-based heritability, which may improve the mixing of MCMC algorithm if it starts with a good estimate. The default value is 0.5.</p>
 <p><strong><span class="kwd">--S</span></strong> 0</p>
 <p>A starting value for the sampling of the parameter S (relationship between MAF and variance of SNP effects) in BayesS, which may improve the mixing of MCMC algorithm if it starts with a good estimate. The default value is 0.</p>
 <p><strong><span class="kwd">--wind</span></strong> 0.2</p>
 <p>Specify the window width in Mb for the non-overlapping windows in the nested models, e.g. 0.2 Mb. The default value is 1 Mb.</p>
-<hr><h3 id="examples">Examples</h3>
+<p><br></p>
+<blockquote>
+  <p><strong>Examples</strong></p>
+</blockquote>
 <p>Standard version of gctb:</p>
 <pre><code>gctb --bfile test --pheno test.phen --bayes S --pi 0.1 --hsq 0.5 --chain-length 25000 --burn-in 5000 --out test &gt; test.log 2&gt;&amp;1
 </code></pre>
@@ -139,13 +135,26 @@ Meuwissen et al. Prediction of total genetic value using genome-wide dense marke
 <pre><code>mpirun -f $PBS_NODEFILE -np 2 gctb_mpi --bfile test --pheno test.phen --bayes S --pi 0.1 --hsq 0.5 --chain-length 25000 --burn-in 5000 --out test &gt; test.log 2&gt;&amp;1
 </code></pre>
 <p>The output files include:</p>
-<p><strong>test.log</strong>: a text file of running status and intermediate and final results;</p>
+<p><strong>test.log</strong>: a text file of running status, intermediate output and final results;</p>
 <p><strong>test.snpRes</strong>: a text file of posterior statistics of SNP effects;</p>
 <p><strong>test.covRes</strong>: a text file of posterior statistics of covariates;</p>
 <p><strong>test.parRes</strong>: a text file of posterior statistics of key model parameters;</p>
 <p><strong>test.mcmcsamples.CovEffects</strong>: a text file of MCMC samples for the covariates fitted in the model;</p>
 <p><strong>test.mcmcsamples.SnpEffects</strong>: a binary file of MCMC samples for the SNP effects;</p>
-<p><strong>test.mcmcsamples.Par</strong>: a text file of MCMC samples for the key model parameters;</p></body></div>
+<p><strong>test.mcmcsamples.Par</strong>: a text file of MCMC samples for the key model parameters;</p>
+<p><br></p>
+<blockquote>
+  <p><strong>Citations</strong> </p>
+</blockquote>
+<p><strong>GCTB software and BayesS method</strong><br>
+Zeng et al. (2018) Signatures of negative selection in the genetic architecture of human complex traits. 
+<em>Nature Genetics</em>, doi: 10.1038/s41588-018-0101-4.</p>
+<p><strong>BayesR</strong><br>
+Moser et al. (2015) Simultaneous discovery, estimation and prediction analysis of complex traits using a Bayesian mixture model. <a href="http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004969"><em>PLoS Genetics</em>, 11: e1004969.</a></p>
+<p><strong>BayesC$\pi$</strong><br>
+Habier et al. (2011) Extension of the Bayesian alphabet for genomic selection. <a href="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-186"><em>BMC Bioinformatics</em>, 12: 186.</a></p>
+<p><strong>BayesB</strong><br>
+Meuwissen et al. (2001) Prediction of total genetic value using genome-wide dense marker maps. <a href="http://www.genetics.org/content/157/4/1819.short"><em>Genetics</em>, 157: 1819-1829.</a> </p></body></div>
         </div>
 
         <script>
