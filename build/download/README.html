@@ -153,9 +153,9 @@ $(document).ready(function () {
 <div id="how-to-run-gctb-1.0-mpi-version" class="section level3">
 <h3>How to run GCTB 1.0 MPI version</h3>
 <p>Use the command below in the Mac terminal (with the test dataset):</p>
-<p><code>mpirun -np 2 scr/gctb --bfile test/data/uk10k_chr1_1mb --pheno test/data/test.phen --bayes S --chain-length 1100 --burn-in 100 --out test/res/test</code></p>
+<p><code>mpirun -np 2 gctb --bfile data/uk10k_chr1_1mb --pheno data/test.phen --bayes S --chain-length 1100 --burn-in 100 --out test</code></p>
 <p>An alternative way to run the program with the parameter settings is to use a input parameter file:</p>
-<p><code>mpirun -np 2 scr/gctb --inp-file test/res/test.inp</code></p>
+<p><code>mpirun -np 2 gctb --inp-file test.inp</code></p>
 <p>To run in the Xcode, follow these steps:</p>
 <ol style="list-style-type: decimal">
 <li>Edit the “schemes” of the project: change the “Executable” to mpiexec, which is located at “/usr/local/bin”, an alias of “orterun”. Note that “/usr/local/bin” is by default hidden in the Finder. To choose “orterun”, press “command + shift + G” then type in “/usr/local/bin” and press “Go”.</li>

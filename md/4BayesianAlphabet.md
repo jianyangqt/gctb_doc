@@ -4,7 +4,7 @@
 
 **\--bayes** S
 
-Specify the Bayesian alphabet for the analysis, e.g. S. Different alphabet launch different models, which principally differ in the prior specification for the SNP effects. The available alphabet include
+Specify the Bayesian alphabet for the analysis, e.g. $S$. Different alphabet launch different models, which principally differ in the prior specification for the SNP effects. The available alphabet include
 
 * B: Each SNP effect is assumed to have an i.i.d. mixture prior of a t-distribution $t(0, \tau^2, \nu)$ with a probability $\pi$ and a point mass at zero with a probability $1-\pi$.
 
@@ -12,7 +12,7 @@ Specify the Bayesian alphabet for the analysis, e.g. S. Different alphabet launc
 
 * S: Similar to C but the variance of SNP effects is related to minor allele frequency ($p$) through a parameter $S$, i.e. $\sigma_j^2 = [2p(1-p)]^S \sigma_2$.
 
-* N: nested BayesC. SNPs within a 0.2 Mb non-overlapping genomic region are collectively considered as a window (specify the distance by **\--wind** 0.2). This nested approach speeds up the analysis by fast “jumping” over windows with zero effect.
+* N: nested BayesC. SNPs within a 0.2 Mb non-overlapping genomic region are collectively considered as a window (specify the distance by **\--wind** 0.2). This nested approach speeds up the analysis by skipping over windows with zero effect.
 
 * NS: nested BayesS.
 
@@ -46,12 +46,12 @@ Specify the window width in Mb for the non-overlapping windows in the nested mod
 
 Standard version of gctb:
 ```
-gctb --bfile test --phen test.phen --bayes S --pi 0.1 --hsq 0.5 --chain-length 25000 --burn-in 5000 --out test > test.log 2>&1
+gctb --bfile test --pheno test.phen --bayes S --pi 0.1 --hsq 0.5 --chain-length 25000 --burn-in 5000 --out test > test.log 2>&1
 ```
 
 MPI version of gctb (when using intelMPI libraries and two nodes):
 ```
-mpirun -f $PBS_NODEFILE -np 2 gctb_mpi --bfile test --phen test.phen --bayes S --pi 0.1 --hsq 0.5 --chain-length 25000 --burn-in 5000 --out test > test.log 2>&1
+mpirun -f $PBS_NODEFILE -np 2 gctb_mpi --bfile test --pheno test.phen --bayes S --pi 0.1 --hsq 0.5 --chain-length 25000 --burn-in 5000 --out test > test.log 2>&1
 ```
 
 The output files include:

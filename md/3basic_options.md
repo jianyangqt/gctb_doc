@@ -66,4 +66,3 @@ Output the sampled values for SNP effects and genetic architecture parameters fo
 **\--no-mcmc-bin**
 
 Suppress the output of MCMC samples of SNP effects.
-

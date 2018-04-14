@@ -25,11 +25,11 @@ We have also included a Xcode (v7.3.1) project file for Mac system. To compile i
 ----
 To run GCTB 1.0 MPI version in the Mac terminal (with the test dataset), use: 
 
-mpirun -np 2 scr/gctb --bfile test/data/uk10k_chr1_1mb --pheno test/data/test.phen --bayes S --chain-length 1100 --burn-in 100 --out test/res/test
+mpirun -np 2 gctb --bfile data/uk10k_chr1_1mb --pheno data/test.phen --bayes S --chain-length 1100 --burn-in 100 --out test
 
 An alternative way to run the program with the parameter settings is to use a input parameter file: 
 
-mpirun -np 2 scr/gctb —inp-file test/res/test.inp
+mpirun -np 2 gctb —inp-file test.inp
 
 
 To run in the Xcode, follow these steps:
