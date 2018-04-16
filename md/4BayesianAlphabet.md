@@ -10,7 +10,7 @@ Specify the Bayesian alphabet for the analysis, e.g. \`S\`. Different alphabet l
 
 * C: Each SNP effect is assumed to have an i.i.d. mixture prior of a normal distribution \`N(0, \sigma^2)\` with a probability \`\pi\` and a point mass at zero with a probability \`1-\pi\`. 
 
-* S: Similar to C but the variance of SNP effects is related to minor allele frequency (\`p\`) through a parameter \`S\`, i.e. \`\sigma\_j^2 = [2p(1-p)]^S \sigma\_2\`.
+* S: Similar to C but the variance of SNP effects is related to minor allele frequency (\`p\`) through a parameter \`S\`, i.e. \`\sigma\_j^2 = [2p\_j(1-p\_j)]^S \sigma^2\`.
 
 * N: nested BayesC. SNPs within a 0.2 Mb non-overlapping genomic region are collectively considered as a window (specify the distance by **\--wind** 0.2). This nested approach speeds up the analysis by skipping over windows with zero effect.
 
@@ -80,6 +80,9 @@ Zeng et al. (2018) Signatures of negative selection in the genetic architecture 
 
 **BayesR**  
 Moser et al. (2015) Simultaneous discovery, estimation and prediction analysis of complex traits using a Bayesian mixture model. [*PLoS Genetics*, 11: e1004969.](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004969)
+
+**BayesN**  
+Zeng et al. (2018) A nested mixture model for genomic prediction using whole-genome SNP genotypes. [*PLoS One*, 13: e0194683.](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0194683)
 
 **BayesC\`\pi\`**  
 Habier et al. (2011) Extension of the Bayesian alphabet for genomic selection. [*BMC Bioinformatics*, 12: 186.](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-186)
