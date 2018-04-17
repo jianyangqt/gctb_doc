@@ -76,7 +76,7 @@ The output files include:
 
 **GCTB software and BayesS method**  
 Zeng et al. (2018) Signatures of negative selection in the genetic architecture of human complex traits. 
-*Nature Genetics*, doi: 10.1038/s41588-018-0101-4.
+[*Nature Genetics*, doi: 10.1038/s41588-018-0101-4.](https://www.nature.com/articles/s41588-018-0101-4)
 
 **BayesR**  
 Moser et al. (2015) Simultaneous discovery, estimation and prediction analysis of complex traits using a Bayesian mixture model. [*PLoS Genetics*, 11: e1004969.](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004969)

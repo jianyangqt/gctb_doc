@@ -16,4 +16,4 @@ If you have any bug reports or questions, please send an email to Jian Zeng (<j.
 ### Citation 
 
 Zeng et al. (2018) Signatures of negative selection in the genetic architecture of human complex traits. 
-*Nature Genetics*, doi: 10.1038/s41588-018-0101-4.
+[*Nature Genetics*, doi: 10.1038/s41588-018-0101-4.](https://www.nature.com/articles/s41588-018-0101-4)
