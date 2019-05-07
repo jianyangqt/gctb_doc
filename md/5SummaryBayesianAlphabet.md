@@ -34,22 +34,22 @@ These data include a subset of 378 individuals of European ancestry from the CEU
 
 N.B. The results generated from this example tutorial using data from the 1000G are designed to be lightweight and should be only used
 to explore how to run summary data based analyses using GCTB. The results do not make the best use of GCTB capabilities given the small sample 
-size $(N=378)$ in the example. 
+size \\$(N=378)\\$ in the example. 
 
 
 #### Phenotype simulation and GWAS
 
-Using these genotypes, phenotypes were generated under the multiple regression model $y_i = \sum_{j=1}^pw_{ij}\beta_j + \epsilon_i$, where $w_{ij} = (x_{ij} − 2q_j)/ \sqrt{2q_j(1 − q_j)}$
-with $x_{ij}$ being the reference allele count for the $i$th individual at the $j$th SNP, $q_j$ the allele
-frequency of the $j$th SNP and $\epsilon_i$ was sampled from a normal distribution with mean 0 and variance 
-$\text{Var}({\bf W}\boldsymbol\beta)(1/h^2_{SNP} − 1)$ such that $h^2_{SNP} = 0.1$ for each of 20 simulation replicates, 
-which is much larger than the contribution to the genome-wide SNP-based heritability ($h^2_{SNP}$) estimate for chromosome 22 
+Using these genotypes, phenotypes were generated under the multiple regression model \\$y\_i = \sum\_{j=1}^pw\_{ij}\beta\_j + \epsilon\_i\\$, where \\$w\_{ij} = (x\_{ij} − 2q\_j)/ \sqrt{2q\_j(1 − q\_j)}\\$
+with \\$x\_{ij}\\$ being the reference allele count for the \\$i\\$th individual at the \\$j\\$th SNP, \\$q\_j\\$ the allele
+frequency of the \\$j\\$th SNP and \\$\epsilon\_i\\$ was sampled from a normal distribution with mean 0 and variance 
+\\$\text{Var}({\bf W}\boldsymbol\beta)(1/h\_{SNP}^2 − 1)\\$ such that \\$h\_{SNP}^2 = 0.1\\$ for each of 20 simulation replicates, 
+which is much larger than the contribution to the genome-wide SNP-based heritability (\\$h^2\_{SNP}\\$) estimate for chromosome 22 
 for most quantitative traits. All phenotypes were generated using the R programming language with scripts used available in the
-`/pheno_generation` subdirectory.
+`pheno_generation` subdirectory.
 
 For each scenario replicate, we randomly sampled a new set of 1,500 causal variants. The genetic architecture simulated contained two causal variants of large effect explaining 3% and 2% of the phenotypic variance respectively and a polygenic tail of 1,498 causal variants sampled from a N(0, 0.05/1, 498) distribution such that the expected total genetic variance explained by all variants was 0.1.
 
-For each of the 20 simulation replicates, simple linear regression for each variant was run using the PLINK 2 software to generate summary statistics. Code for running the GWAS and the output is available in the `/gwas` subdirectory.
+For each of the 20 simulation replicates, simple linear regression for each variant was run using the PLINK 2 software to generate summary statistics. Code for running the GWAS and the output is available in the `gwas` subdirectory.
 
 #### GCTB summary statistics input format
 
@@ -67,7 +67,7 @@ and sample size. The headers are not keywords and will be omitted by the program
 "A2" being the other allele and "freq" should be the frequency of "A1".
 
 The transformation of your summary statistics file to the `.ma` format will depend on the software used to analyse your data. The
- `/ma` subdirectory contains a simple R script for constructing `.ma` files from PLINK 2 `--linear` output. There is no need to filter
+ `ma` subdirectory contains a simple R script for constructing `.ma` files from PLINK 2 `--linear` output. There is no need to filter
  you summary statistics to match the LD reference as GCTB will perform this data management for you.
 
 #### GCTB linkage disequilibrium (LD) correlation matrix 
@@ -87,7 +87,7 @@ and comparison with individual-data method estimates.
 
 Although possible to create genome-wide LD matrices in GCTB, we recommend to only 
 calculate matrices for each chromosome. The following is the basic execution of
-GCTB LD matrix calculation. The `/ldm` subdirectory has example BASH scripts to
+GCTB LD matrix calculation. The `ldm` subdirectory has example BASH scripts to
 perform this on a HPC system. N.B. the HPC commands may not be compatible with your HPC scheduler 
 and will require alteration.
 
@@ -193,7 +193,7 @@ In this tutorial, the calculation of the shrunk LD matrix requires the effective
 sample size, which we set to be 11,400 (as in [Zhu and Stephens (2017)](https://projecteuclid.org/euclid.aoas/1507168840)), 
 the sample size of the genetic map reference, which corresponds to the 183 individuals from the CEU 
 cohort of the 1000G used to create the genetic map, and the hard threshold on the shrinkage value, 
-which we set to $10^{−5}$ and is the default value. These three parameters can be changed with 
+which we set to \\$10^{−5}\\$ and is the default value. These three parameters can be changed with 
 
 ```
 --ne            # Effective population size. Default is 11,400
@@ -234,9 +234,9 @@ a population. It therefore contains a mix of true LD and those values that diffe
 ignore. By default we ignore interchromsomal LD between markers. Within chromosome, we set elements to zero if their chi-squared statistic 
 under the sampling distribution of the correlation coefficient does not exceed a user-chosen threshold.
 
-Specifically, from \citet{lynch1998genetics} the sampling variation of the correlation coefficient $r = \frac{\text{cov}(x, y)}{[\text{var}(x)\text{var}(y)]^{1/2}}$ is 
-$\sigma^2(r) \approx \frac{(1-\rho^2)^2}{n}$, which under the null hypothesis that $\rho = 0$ is just $\frac{1}{n}$. Given this we can
-generate a chi-squared statistic for each element of the LD matrix by $(\frac{r}{\sqrt{1/n}})^2$. These statistics should be $\chi^2_1$ distributed
+Specifically, from \citet{lynch1998genetics} the sampling variation of the correlation coefficient \\$r = \frac{\text{cov}(x, y)}{[\text{var}(x)\text{var}(y)]^{1/2}}\\$ is 
+\\$\sigma^2(r) \approx \frac{(1-\rho^2)^2}{n}\\$, which under the null hypothesis that \\$\rho = 0\\$ is just \\$\frac{1}{n}\\$. Given this we can
+generate a chi-squared statistic for each element of the LD matrix by \\$(\frac{r}{\sqrt{1/n}})^2\\$. These statistics should be \\$\chi\_1^2\\$ distributed
 and thus for each LD matrix element we set it to zero if the statistic does not exceed a user-specified arbitrary value. The chi-squared
 statistic can be altered with `--chisq`. The default value is 10, which we have found empirically to be a good balance balance between
 matrix sparsity and retaining true positive LD values.
@@ -305,15 +305,15 @@ different models, which differ in the prior specification for the SNP effects. `
 
 Specific to the `R` model. A comma seperated string where the number of values defines the number of mixture components and each value defines the starting value for each component (the first value is reserved for the zero component). 
 These must sum to 1.
-The length of the $\pi$ and $\gamma$ vectors stipulates how many components are included in the finite mixture of normals distribution prior 
+The length of the \\$\pi\\$ and \\$\gamma\\$ vectors stipulates how many components are included in the finite mixture of normals distribution prior 
 for the genetic effects. The default values are as specified in the example.
 
 `--gamma 0,0.01,0.1,1`
 
 Specific to the `R` model. Speficies the gamma values seperated by comma, each representing the scaling factor for the 
-the variance of the distribution of genetic effects $\sigma^2_{\beta}$ for each distribution. Note that the vector length should match 
+the variance of the distribution of genetic effects \\$\sigma\_{\beta}^2\\$ for each distribution. Note that the vector length should match 
 that in `--pi`. The default values are as specified in the example. These differ from the original BayesR model as the
-weights are for the variance of the distribution of genetic effects $\sigma^2_{\beta}$ rather than the genetic variance $\sigma^2_g$. 
+weights are for the variance of the distribution of genetic effects \\$\sigma\_{\beta}^2\\$ rather than the genetic variance \\$\sigma\_g^2\\$. 
 
 `--gwas-summary`
 
@@ -343,9 +343,9 @@ Data summary:
 These statistics can be used to diagnose errors between individual runs of the program. 
 For each row the mean and standard deviation (sd) of the parameter distribution are displayed. The
 acronym MME represents mixed model equations. The left-hand-side diagonals
-are the elements of ${\bf D}=\text{diag}({\bf X'}{\bf X})$, where $D_j=2p_jq_jn_j$ 
-under Hardy-Weinberg equilibrium and $n_j$ is the sample
-size of variant $j$. The right-hand-side is equal to ${\bf Db}$ where ${\bf b}$ is the $p\times 1$ vector of marginal 
+are the elements of \\${\bf D}=\text{diag}({\bf X'}{\bf X})\\$, where \\$D\_j=2p\_jq\_jn\_j\\$ 
+under Hardy-Weinberg equilibrium and \\$n\_j\\$ is the sample
+size of variant \\$j\\$. The right-hand-side is equal to \\${\bf Db}\\$ where \\${\bf b}\\$ is the \\$p\times 1\\$ vector of marginal 
 effect estimates from GWAS. LD sampling variance and LD score are 
 as described in the `.info` file.
 
@@ -364,10 +364,10 @@ Iter Pi1    Pi2    Pi3    Pi4    NnzSnp SigmaSq ResVar GenVar hsq    Rounding Ti
 ```   
 
 The parameters printed are iteration number, which can be altered with `--out-freq`, proportion
-of variants in distribution one (zero component) to four (can be altered by changing the $\pi$
-and $\gamma$ vector lengths), number of non-zero effects in the model at iteration $i$,
-the variance of the distribution of genetic effects $\sigma^2_{\beta}$, the residual variance
-$\sigma^2_{\epsilon}$, the genetic variance $\sigma^2_{g}$ SNP-based heritability, rounding accumulation (a value
+of variants in distribution one (zero component) to four (can be altered by changing the \\$\pi\\$
+and \\$\gamma\\$ vector lengths), number of non-zero effects in the model at iteration \\$i\\$,
+the variance of the distribution of genetic effects \\$\sigma\_{\beta}^2\\$, the residual variance
+\\$\sigma\_{\epsilon}^2\\$, the genetic variance \\$\sigma\_{g}^2\\$ SNP-based heritability, rounding accumulation (a value
 substantially greater than zero indicates insufficent machine precision and the user should consider terminating the
 program), and an estimate of
 the time left to complete the analysis. Upon completion of the analysis a summary of the 
@@ -424,7 +424,7 @@ high accuracy. We found that the simple filtering of SNPs with sample sizes that
 from the mean across all variants from an analysis, when using summary statistics from the public domain substantially improved 
 model convergence. However, even the reported sample size cannot be trusted in some summary data sets.
 
-We explored LD pruning of variants to remove variants in very high LD ($R^2>0.99$) but found that this did not substantially improve model 
+We explored LD pruning of variants to remove variants in very high LD (\\$R^2>0.99\\$) but found that this did not substantially improve model 
 convergence or parameter estimates although this was not formally assessed. However, removal of high LD regions, such as the MHC region 
 improved model convergence for real traits. High LD regions are expected to have the potential to
 be extreme sources of model misspecification with the model expecting summary data in to be very similar for 
