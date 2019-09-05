@@ -9,10 +9,12 @@
     <script src="./static/js/jquery-ui.min.js"></script>
     <script src="./static/js/jquery.tocify.js"></script>
     <script src="./static/js/hljs.js"></script>
-    <script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['\\$','\\$'], ['\\(','\\)']]}});
+      </script>
+    <script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
 </head>
-
 <body>
     <div class="page-header" id="PAGE-header" style="height:auto;padding:0">
         <div class="container-fluid">
@@ -60,12 +62,14 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <p><a href="https://scholar.google.com.au/citations?user=WQ0UXOcAAAAJ&amp;hl=en&amp;oi=ao">Luke Lloyd-Jones</a> contributed to the BayesR module with supports from <a href="http://researchers.uq.edu.au/researcher/14033">Jian Zeng</a> and <a href="https://en.wikipedia.org/wiki/Michael_Goddard">Mike Goddard</a>.</p>
 <p>Version 2.0 of the software was developed by Jian Zeng with contributions from Luke Lloyd-Jones.</p>
 <hr><h3 id="questionsandhelprequests">Questions and Help Requests</h3>
-<p>If you have any bug reports or questions, please send an email to Jian Zeng (<a href="mailto:j.zeng@uq.edu.au">j.zeng@uq.edu.au</a>), Luke Lloyd-Jones (<a href="mailto:luke.lloydjones@uq.connect.edu.au">luke.lloydjones@uq.connect.edu.au</a>) or Jian Yang (<a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>).</p>
+<p>If you have any bug reports or questions, please send an email to Jian Zeng (<a href="mailto:j.zeng@uq.edu.au">j.zeng@uq.edu.au</a>), Luke Lloyd-Jones (<a href="mailto:luke.lloydjones@uqconnect.edu.au">luke.lloydjones@uqconnect.edu.au</a>) or Jian Yang (<a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>).</p>
 <hr><h3 id="citation">Citation</h3>
 <p>Zeng et al. (2018) Signatures of negative selection in the genetic architecture of human complex traits. 
 <a href="https://www.nature.com/articles/s41588-018-0101-4"><em>Nature Genetics</em>, doi: 10.1038/s41588-018-0101-4.</a></p>
 <h4 id="sbayesr">SBayesR</h4>
-<p>Lloyd-Jones, Zeng et al. (2019) Improved polygenic prediction by Bayesian multiple regression on summary statistics. <a href="https://www.biorxiv.org/content/10.1101/522961v3"><em>bioRxiv</em>, doi: 10.1101/522961.</a></p>
+<p>Lloyd-Jones, Zeng et al. (2019) Improved polygenic prediction by Bayesian multiple regression on summary statistics. <em>Nature Communications</em> (in press) or <a href="https://www.biorxiv.org/content/10.1101/522961v3"><em>bioRxiv</em>, doi: 10.1101/522961.</a></p>
+<h4 id="sbayess">SBayesS</h4>
+<p>Zeng et al. (2019) Bayesian analysis of GWAS summary data reveals differential signatures of natural selection across human complex traits and functional genomic categories. <a href="https://www.biorxiv.org/content/10.1101/752527v1"><em>bioRxiv</em>, dio: 10.1101/752527.</a></p>
 <h2 id="downloadexpand" class="expand">Download </h2>
 <hr><h3 id="executablefiles">Executable files</h3>
 <p><a href="download/gctb_2.0_Linux.zip">gctb_2.0_Linux.zip</a></p>
@@ -80,8 +84,8 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <p><a href="download/gctb_1.0_mpi_scr.zip">GCTB 1.0 MPI version</a></p>
 <p>The MPI version implements a distributed computing strategy that scales the analysis to very large sample sizes. A significant improvement in computing time is expected for a sample size &gt; 10,000. The MPI version needs to be compiled on user’s machine. See <a href="download/README.html">README.html</a> in the tarball for instructions of compilation and usage. A testing dataset is also included in each tarball.</p>
 <hr><h3 id="updatelog">Update log</h3>
-<p><strong>1.</strong>  1 Dec, 2017: first release.
-<strong>2.</strong>  8 Feb, 2019: version 2.0 includes summary-data-based Bayesian methods.</p>
+<p><strong>1.</strong> &nbsp;1 Dec, 2017: first release.</p>
+<p><strong>2.</strong>  8 Feb, 2019: version 2.0 includes summary-data-based Bayesian methods.</p>
 <h2 id="basicoptions">Basic options</h2>
 <hr><h3 id="inputandoutput">Input and output</h3>
 <p><strong><span class="kwd">--bfile</span></strong> test</p>
@@ -200,17 +204,17 @@ data have been filtered to exclude variants with minor allele frequency (MAF) &l
 These data include a subset of 378 individuals of European ancestry from the CEU, TSI, GBR and FIN populations. </p>
 <p>N.B. The results generated from this example tutorial using data from the 1000G are designed to be lightweight and should be only used
 to explore how to run summary data based analyses using GCTB. The results do not make the best use of GCTB capabilities given the small sample 
-size $(N=378)$ in the example. </p>
+size \$(N=378)\$ in the example. </p>
 <h4 id="phenotypesimulationandgwas">Phenotype simulation and GWAS</h4>
-<p>Using these genotypes, phenotypes were generated under the multiple regression model $y<em>i = \sum</em>{j=1}^pw<em>{ij}\beta</em>j + \epsilon<em>i$, where $w</em>{ij} = (x<em>{ij} − 2q</em>j)/ \sqrt{2q<em>j(1 − q</em>j)}$
-with $x<em>{ij}$ being the reference allele count for the $i$th individual at the $j$th SNP, $q</em>j$ the allele
-frequency of the $j$th SNP and $\epsilon<em>i$ was sampled from a normal distribution with mean 0 and variance 
-$\text{Var}({\bf W}\boldsymbol\beta)(1/h^2</em>{SNP} − 1)$ such that $h^2<em>{SNP} = 0.1$ for each of 20 simulation replicates, 
-which is much larger than the contribution to the genome-wide SNP-based heritability ($h^2</em>{SNP}$) estimate for chromosome 22 
+<p>Using these genotypes, phenotypes were generated under the multiple regression model \$y_i = \sum_{j=1}^pw_{ij}\beta_j + \epsilon_i\$, where \$w_{ij} = (x_{ij} − 2q_j)/ \sqrt{2q_j(1 − q_j)}\$
+with \$x_{ij}\$ being the reference allele count for the \$i\$th individual at the \$j\$th SNP, \$q_j\$ the allele
+frequency of the \$j\$th SNP and \$\epsilon_i\$ was sampled from a normal distribution with mean 0 and variance 
+\$\text{Var}({\bf W}\boldsymbol\beta)(1/h_{SNP}^2 − 1)\$ such that \$h_{SNP}^2 = 0.1\$ for each of 20 simulation replicates, 
+which is much larger than the contribution to the genome-wide SNP-based heritability (\$h^2_{SNP}\$) estimate for chromosome 22 
 for most quantitative traits. All phenotypes were generated using the R programming language with scripts used available in the
-<code>/pheno_generation</code> subdirectory.</p>
+<code>pheno_generation</code> subdirectory.</p>
 <p>For each scenario replicate, we randomly sampled a new set of 1,500 causal variants. The genetic architecture simulated contained two causal variants of large effect explaining 3% and 2% of the phenotypic variance respectively and a polygenic tail of 1,498 causal variants sampled from a N(0, 0.05/1, 498) distribution such that the expected total genetic variance explained by all variants was 0.1.</p>
-<p>For each of the 20 simulation replicates, simple linear regression for each variant was run using the PLINK 2 software to generate summary statistics. Code for running the GWAS and the output is available in the <code>/gwas</code> subdirectory.</p>
+<p>For each of the 20 simulation replicates, simple linear regression for each variant was run using the PLINK 2 software to generate summary statistics. Code for running the GWAS and the output is available in the <code>gwas</code> subdirectory.</p>
 <h4 id="gctbsummarystatisticsinputformat">GCTB summary statistics input format</h4>
 <p>The GCTB summary-based methods have inherited the <a href="https://cnsgenomics.com/software/gcta/#COJO">GCTA-COJO</a> <code>.ma</code> format.</p>
 <pre><code>SNP A1 A2 freq b se p N 
@@ -222,7 +226,7 @@ rs1003 A C 0.5128 0.0045 0.0038 0.2319 129830
 and sample size. The headers are not keywords and will be omitted by the program. Important: "A1" needs to be the effect allele with 
 "A2" being the other allele and "freq" should be the frequency of "A1".</p>
 <p>The transformation of your summary statistics file to the <code>.ma</code> format will depend on the software used to analyse your data. The
- <code>/ma</code> subdirectory contains a simple R script for constructing <code>.ma</code> files from PLINK 2 <code><span class="kwd">--linear</span></code> output. There is no need to filter
+ <code>ma</code> subdirectory contains a simple R script for constructing <code>.ma</code> files from PLINK 2 <code><span class="kwd">--linear</span></code> output. There is no need to filter
  you summary statistics to match the LD reference as GCTB will perform this data management for you.</p>
 <h4 id="gctblinkagedisequilibriumldcorrelationmatrix">GCTB linkage disequilibrium (LD) correlation matrix</h4>
 <p>The construction of an LD correlation matrix is a key component of the summary-data based methods in GCTB. Theoretically, 
@@ -238,7 +242,7 @@ and comparison with individual-data method estimates.</p>
 <h4 id="fullchromosomewiseldmatrices"><em>Full chromosome-wise LD matrices</em></h4>
 <p>Although possible to create genome-wide LD matrices in GCTB, we recommend to only 
 calculate matrices for each chromosome. The following is the basic execution of
-GCTB LD matrix calculation. The <code>/ldm</code> subdirectory has example BASH scripts to
+GCTB LD matrix calculation. The <code>ldm</code> subdirectory has example BASH scripts to
 perform this on a HPC system. N.B. the HPC commands may not be compatible with your HPC scheduler 
 and will require alteration.</p>
 <pre><code># Build full LD matrix for chromosome 22
@@ -318,7 +322,7 @@ GCTB can use any genetic map provided it adheres to this format.</p>
 sample size, which we set to be 11,400 (as in <a href="https://projecteuclid.org/euclid.aoas/1507168840">Zhu and Stephens (2017)</a>), 
 the sample size of the genetic map reference, which corresponds to the 183 individuals from the CEU 
 cohort of the 1000G used to create the genetic map, and the hard threshold on the shrinkage value, 
-which we set to $10^{−5}$ and is the default value. These three parameters can be changed with </p>
+which we set to \$10^{−5}\$ and is the default value. These three parameters can be changed with </p>
 <pre><code>--ne            # Effective population size. Default is 11,400
 --genmap-n      # Genetic map sample size. Default is 183
 --shrunk-cutoff # Shrinkage hard threshold. Default is 10^-5
@@ -347,9 +351,9 @@ LD correlation to zero. The calculation of an LD correlation matrix from genotyp
 a population. It therefore contains a mix of true LD and those values that differ from zero due to sampling variation, which we wish to 
 ignore. By default we ignore interchromsomal LD between markers. Within chromosome, we set elements to zero if their chi-squared statistic 
 under the sampling distribution of the correlation coefficient does not exceed a user-chosen threshold.</p>
-<p>Specifically, from \citet{lynch1998genetics} the sampling variation of the correlation coefficient $r = \frac{\text{cov}(x, y)}{[\text{var}(x)\text{var}(y)]^{1/2}}$ is 
-$\sigma^2(r) \approx \frac{(1-\rho^2)^2}{n}$, which under the null hypothesis that $\rho = 0$ is just $\frac{1}{n}$. Given this we can
-generate a chi-squared statistic for each element of the LD matrix by $(\frac{r}{\sqrt{1/n}})^2$. These statistics should be $\chi^2_1$ distributed
+<p>Specifically, from \citet{lynch1998genetics} the sampling variation of the correlation coefficient \$r = \frac{\text{cov}(x, y)}{[\text{var}(x)\text{var}(y)]^{1/2}}\$ is 
+\$\sigma^2(r) \approx \frac{(1-\rho^2)^2}{n}\$, which under the null hypothesis that \$\rho = 0\$ is just \$\frac{1}{n}\$. Given this we can
+generate a chi-squared statistic for each element of the LD matrix by \$(\frac{r}{\sqrt{1/n}})^2\$. These statistics should be \$\chi_1^2\$ distributed
 and thus for each LD matrix element we set it to zero if the statistic does not exceed a user-specified arbitrary value. The chi-squared
 statistic can be altered with <code><span class="kwd">--chisq</span></code>. The default value is 10, which we have found empirically to be a good balance balance between
 matrix sparsity and retaining true positive LD values.</p>
@@ -399,13 +403,13 @@ different models, which differ in the prior specification for the SNP effects. <
 <p><code><span class="kwd">--pi</span> 0.95,0.02,0.02,0.01</code></p>
 <p>Specific to the <code>R</code> model. A comma seperated string where the number of values defines the number of mixture components and each value defines the starting value for each component (the first value is reserved for the zero component). 
 These must sum to 1.
-The length of the $\pi$ and $\gamma$ vectors stipulates how many components are included in the finite mixture of normals distribution prior 
+The length of the \$\pi\$ and \$\gamma\$ vectors stipulates how many components are included in the finite mixture of normals distribution prior 
 for the genetic effects. The default values are as specified in the example.</p>
 <p><code><span class="kwd">--gamma</span> 0,0.01,0.1,1</code></p>
 <p>Specific to the <code>R</code> model. Speficies the gamma values seperated by comma, each representing the scaling factor for the 
-the variance of the distribution of genetic effects $\sigma^2<em>{\beta}$ for each distribution. Note that the vector length should match 
+the variance of the distribution of genetic effects \$\sigma_{\beta}^2\$ for each distribution. Note that the vector length should match 
 that in <code><span class="kwd">--pi</span></code>. The default values are as specified in the example. These differ from the original BayesR model as the
-weights are for the variance of the distribution of genetic effects $\sigma^2</em>{\beta}$ rather than the genetic variance $\sigma^2_g$. </p>
+weights are for the variance of the distribution of genetic effects \$\sigma_{\beta}^2\$ rather than the genetic variance \$\sigma_g^2\$. </p>
 <p><code><span class="kwd">--gwas-summary</span></code></p>
 <p>Path to the GWAS summary statistics in <code>.ma</code> format.</p>
 <p>The other options are inherited from the individual-data GCTB models.</p>
@@ -429,9 +433,9 @@ displayed, for example, </p>
 <p>These statistics can be used to diagnose errors between individual runs of the program. 
 For each row the mean and standard deviation (sd) of the parameter distribution are displayed. The
 acronym MME represents mixed model equations. The left-hand-side diagonals
-are the elements of ${\bf D}=\text{diag}({\bf X'}{\bf X})$, where $D<em>j=2p</em>jq<em>jn</em>j$ 
-under Hardy-Weinberg equilibrium and $n_j$ is the sample
-size of variant $j$. The right-hand-side is equal to ${\bf Db}$ where ${\bf b}$ is the $p\times 1$ vector of marginal 
+are the elements of \${\bf D}=\text{diag}({\bf X'}{\bf X})\$, where \$D_j=2p_jq_jn_j\$ 
+under Hardy-Weinberg equilibrium and \$n_j\$ is the sample
+size of variant \$j\$. The right-hand-side is equal to \${\bf Db}\$ where \${\bf b}\$ is the \$p\times 1\$ vector of marginal 
 effect estimates from GWAS. LD sampling variance and LD score are 
 as described in the <code>.info</code> file.</p>
 <p>Post launch of a summary data model the sampled values of key model parameters are printed
@@ -446,10 +450,10 @@ shows what is being printed</p>
 60   0.9409 0.0019 0.0223 0.0349 930    0.0000  1.0481 0.0265 0.0247 0.0000   0:5:31 
 </code></pre>
 <p>The parameters printed are iteration number, which can be altered with <code><span class="kwd">--out-freq</span></code>, proportion
-of variants in distribution one (zero component) to four (can be altered by changing the $\pi$
-and $\gamma$ vector lengths), number of non-zero effects in the model at iteration $i$,
-the variance of the distribution of genetic effects $\sigma^2<em>{\beta}$, the residual variance
-$\sigma^2</em>{\epsilon}$, the genetic variance $\sigma^2_{g}$ SNP-based heritability, rounding accumulation (a value
+of variants in distribution one (zero component) to four (can be altered by changing the \$\pi\$
+and \$\gamma\$ vector lengths), number of non-zero effects in the model at iteration \$i\$,
+the variance of the distribution of genetic effects \$\sigma_{\beta}^2\$, the residual variance
+\$\sigma_{\epsilon}^2\$, the genetic variance \$\sigma_{g}^2\$ SNP-based heritability, rounding accumulation (a value
 substantially greater than zero indicates insufficent machine precision and the user should consider terminating the
 program), and an estimate of
 the time left to complete the analysis. Upon completion of the analysis a summary of the 
@@ -494,7 +498,7 @@ solutions to these ideal data deviations include the use of data that are impute
 high accuracy. We found that the simple filtering of SNPs with sample sizes that deviate substantially 
 from the mean across all variants from an analysis, when using summary statistics from the public domain substantially improved 
 model convergence. However, even the reported sample size cannot be trusted in some summary data sets.</p>
-<p>We explored LD pruning of variants to remove variants in very high LD ($R^2&gt;0.99$) but found that this did not substantially improve model 
+<p>We explored LD pruning of variants to remove variants in very high LD (\$R^2&gt;0.99\$) but found that this did not substantially improve model 
 convergence or parameter estimates although this was not formally assessed. However, removal of high LD regions, such as the MHC region 
 improved model convergence for real traits. High LD regions are expected to have the potential to
 be extreme sources of model misspecification with the model expecting summary data in to be very similar for 
@@ -543,6 +547,7 @@ running the summary data based methods in GCTB.</p></body></div>
             });
         </script>
     </div>
+
 
 
 
