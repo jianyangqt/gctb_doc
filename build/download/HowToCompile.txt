@@ -1,9 +1,9 @@
-Instruction to compile GCTB 1.0 MPI version
+Instruction to compile GCTB MPI version
 
-GCTB 1.0 MPI version has dependencies on MPI and two C++ libraries i.e. Eigen and Boost.
+GCTB MPI version has dependencies on MPI and two C++ libraries i.e. Eigen and Boost.
 
 ----
-To compile GCTB 1.0 MPI version on a Linux/Mac system, follow below steps:
+To compile GCTB MPI version on a Linux/Mac system, follow below steps:
 
 1. Download Eigen and Boost;
 2. Edit their path in the enclosed Makefile (these two libraries themselves do not need to be compiled);
@@ -23,7 +23,7 @@ We have also included a Xcode (v7.3.1) project file for Mac system. To compile i
 7. Use Command+B to compile.
 
 ----
-To run GCTB 1.0 MPI version in the Mac terminal (with the test dataset), use: 
+To run GCTB MPI version in the Mac terminal (with the test dataset), use: 
 
 mpirun -np 2 gctb --bfile data/1000G_eur_chr22 --pheno data/test.phen --bayes S --chain-length 1100 --burn-in 100 --out test
 
