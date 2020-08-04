@@ -1,5 +1,5 @@
 
-## Basic options
+## Basic options {: .expand}
 
 ### Input and output
 
