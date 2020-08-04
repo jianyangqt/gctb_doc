@@ -25,7 +25,7 @@ Compute a sparse LD matrix from the genotype data provided by **--bfile** option
 
 **\--make-shrunk-ldm**
 
-Compute a shrunk LD matrix from the genotype data provided by **--bfile** option or from the full LD matrix provided by **--ldm test.ldm.full** option. It will use the method proposed by [Wen and Stephens (2010)](https://projecteuclid.org/euclid.aoas/1287409368) to shrunk the off-diagonal entries of the sample LD matrix toward zero based on a genetic map provided by **--gen-map** option (see [Tutorial](http://cnsgenomics.com/software/gctb/#Tutorial) for the format of the genetic map). Other parameters required by the shrinkage method include the effective population size provided by **--ne** option (default value is 11400), the genetic map sample size provided by **--genmap-n** option (default value is 183) and the shrinkage cutoff threshold provided by **--shrunk-cutoff** option (default value is 1e-5). The output format of the shrunk LD matrix is ".shrunk", which contains all the zero elements, so it will take a similar storage space as the full LD matrix. We recommend to further make the shrunk LD matrix parse by eliminating elements equal to zero for efficient storage and computation, which can be done by reading the generated shrunk matrix and making it sparse using **--make-sparse-ldm --chisq 0** options. The memory usage is the same as computing a full LD matrix.
+Compute a shrunk LD matrix from the genotype data provided by **--bfile** option or from the full LD matrix provided by **--ldm test.ldm.full** option. It will use the method proposed by [Wen and Stephens (2010)](https://projecteuclid.org/euclid.aoas/1287409368) to shrunk the off-diagonal entries of the sample LD matrix toward zero based on a genetic map provided by **--gen-map** option (see [Tutorial](https://cnsgenomics.com/software/gctb/#Tutorial) for the format of the genetic map). Other parameters required by the shrinkage method include the effective population size provided by **--ne** option (default value is 11400), the genetic map sample size provided by **--genmap-n** option (default value is 183) and the shrinkage cutoff threshold provided by **--shrunk-cutoff** option (default value is 1e-5). The output format of the shrunk LD matrix is ".shrunk", which contains all the zero elements, so it will take a similar storage space as the full LD matrix. We recommend to further make the shrunk LD matrix parse by eliminating elements equal to zero for efficient storage and computation, which can be done by reading the generated shrunk matrix and making it sparse using **--make-sparse-ldm --chisq 0** options. The memory usage is the same as computing a full LD matrix.
 
 **\--make-band-ldm**
 
@@ -48,7 +48,7 @@ rs1003 A C 0.5128 0.0045 0.0038 0.2319 129830
 
 Columns are SNP identifier, the effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value 
 and sample size. The headers are not keywords and will be omitted by the program. Important: "A1" needs to be the effect allele with 
-"A2" being the other allele and "freq" should be the frequency of "A1". See [Tutorial](http://cnsgenomics.com/software/gctb/#Tutorial) for more information. 
+"A2" being the other allele and "freq" should be the frequency of "A1". See [Tutorial](https://cnsgenomics.com/software/gctb/#Tutorial) for more information. 
 
 **\--chisq** 10
 
@@ -134,7 +134,7 @@ accessible from public databases.
 
 This tutorial will outline how to use the summary data based methods and accompanies the manuscript 
 [Improved polygenic prediction by Bayesian multiple regression on summary statistics](https://www.biorxiv.org/content/10.1101/522961v3?rss=1). To recreate the tutorial you will need the [PLINK 2](https://www.cog-genomics.org/plink/2.0/) software and 
-the updated version of the [GCTB](http://cnsgenomics.com/software/gctb/) software [compiled](http://cnsgenomics.com/software/gctb/download/README.html) from source or the binary executable in your path. The data for the tutorial are available at [Download](http://cnsgenomics.com/software/gctb/#Download). The tutorial is designed so that each part can be reconstructed or picked up at any point with the
+the updated version of the [GCTB](https://cnsgenomics.com/software/gctb/) software [compiled](https://cnsgenomics.com/software/gctb/download/README.html) from source or the binary executable in your path. The data for the tutorial are available at [Download](https://cnsgenomics.com/software/gctb/#Download). The tutorial is designed so that each part can be reconstructed or picked up at any point with the
 following directory structure. 
 
 ```
@@ -592,11 +592,11 @@ Error: Residual variance is negative. This may indicate that effect sizes are "b
 
 Sometimes, even though the MCMC appears to be completed, the posterior means of SNP effects can still be severely biased due to the convergence problem. It is highly recommeded to visualise the scatter plot of the SBayesR estimated SNP effects versus the GWAS marginal effects if you suspect poor convergence. The figure on the left-hand side shows such a scatter plot when MCMC has converged normally. The figure on the right-hand side shows the case when the convergence problem occurred, where some of the SBayesR effect estimates are orders of magnitude larger than the corresponding GWAS marginal effect estimates.
 
-![sbayesr_vs_gwas](fig/sbayesr_vs_gwas.pdf)
+![sbayesr_vs_gwas](fig/sbayesr_vs_gwas.png)
 
 Further plotting the SBayesR effect estimates against the physical positions reveals that some SNPs that are in proximity tend to have their effects "blown up" in opposite directions:
 
-![sbayesr_snp_effects](fig/sbayesr_snp_effects.pdf)
+![sbayesr_snp_effects](fig/sbayesr_snp_effects.png)
 
 The fundamental cause of the failure in convergence is not exactly clear, but it is most likely because of the inconsistency between the LD reference data and GWAS summary statistics or/and errors in these datasets. **We suggest to try the following steps to avoid the convergence problem. Please also see [this doc](https://www.dropbox.com/sh/9aougeoxw4ygo8k/AAD6PT3a3ggv1-KYHytbeUNha?dl=0) for a detailed description of processing and running of SBayesR for Locke et al. 2015 and Wood et al. 2014.**
 
@@ -604,7 +604,7 @@ The fundamental cause of the failure in convergence is not exactly clear, but it
 
 It is implicitly assumed in SBayesR that all SNPs have the same GWAS sample size; otherwise, the residual covariance stucture is misspecified. This assumption is often violated when some SNPs have large genotype missing rates or when the GWAS summary statistics are from a meta-analysis where not all SNPs are genotyped in all cohorts. Below is an example of a highly skewed distribution of per-SNP sample size from a meta-analysis.
 
-![yengo_etal_height_snp_n](fig/yengo_etal_height_snp_n.pdf)
+![yengo_etal_height_snp_n](fig/yengo_etal_height_snp_n.png =400x300)
 
 In this case, removing the SNPs in the lowest 10% quantile led to a converged result. It is highly recommended to examine the distribution of per-SNP sample size prior to the analysis and remove the outliers with extreme sample sizes. Sometimes, the average sample size is given for all the SNPs. In such a case, one can use the **--impute-n** option in GCTB when running SBayesR, which will impute the per-SNP sample size based on the beta values, SE and allele frquenes and exclude SNPs that have the imputed sample sizes 3 standard deviations apart from the median value.
 
@@ -620,7 +620,7 @@ While in principle any type of LD matrix can be used in SBayesR, using the shurn
 
 It can be seen from the above plot of SBayesR effect against GWAS effect estimates that the "blowing up" occures more frequently to the SNPs with GWAS effects close to zero. We have also observed a significant improvement in SNP-based heritability estimation and prediction accuracy when removing the null SNPs based on the GWAS P-values for some traits. For example, as shown in the figure below, removing SNPs with GWAS P-value greater than 0.4 (or lower) in the [Wood et al. (2014 Nat Genet)](https://www.nature.com/articles/ng.3097) summary statistics data (after a quality control step on the per-SNP sample size) appeared to fix the convergence problem and led to a substantially improved SNP-based heritability estimates and a higher prediction accuracy. In GCTB, one can use **--p-value** option to specify the upper bound of the P-values of the SNPs to be included in the analysis.
 
-![Height_BMI_SBayesR_pt](fig/Height_BMI_SBayesR_pt.pdf)
+![Height_BMI_SBayesR_pt](fig/Height_BMI_SBayesR_pt.png =600x450)
 
 *5. Filter SNPs based on the LD R-squared.*
 
