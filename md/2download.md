@@ -15,7 +15,7 @@
 ### LD matrices
 * [Shrunk sparse LD matrix with 1.1 million HapMap3 common SNPs](https://zenodo.org/record/3350914#.XyFfnC17G8o) (Lloyd-Jones et al 2019)
 * [Shrunk sparse LD matrix with 2.8 million common SNPs](https://zenodo.org/record/3375373#.XyFgOS17G8o) (Lloyd-Jones et al 2019)
-* [Sparse LD matrix with 1.1 million HapMap3 common SNPs](https://plot.cnsgenomics.com/data/share/JianZ_2021_nc/ukbEURu_imp_v3_HM3_n50k.chisq10.zip) (Zeng et al 2021)
+* [Sparse LD matrix with 1.1 million HapMap3 common SNPs](https://swift.rc.nectar.org.au/v1/AUTH_4dbb3c851266426d9aa75bcefcda5de1/data/share/JianZ_2021_nc/ukbEURu_imp_v3_HM3_n50k.chisq10.zip) (Zeng et al 2021)
 
 The shrunk sparse LD matrices described in [Lloyd-Jones et al. (2019)](https://www.nature.com/articles/s41467-019-12653-0) are computed based a random sample of 50K individuals of European ancestry in UK Biobank data and a [genetic map](https://github.com/joepickrell/1000-genomes-genetic-maps) in the public domain, following the algorithm in [Wen and Stephens (2010)](https://projecteuclid.org/euclid.aoas/1287409368). The sparse LD matrix described in Zeng et al. (2021) is computed by setting the chance LD to zero based on a chi-squared test.
 
