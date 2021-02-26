@@ -69,7 +69,7 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <h4 id="sbayesr">SBayesR</h4>
 <p>Lloyd-Jones, Zeng et al. (2019) Improved polygenic prediction by Bayesian multiple regression on summary statistics. <a href="https://www.nature.com/articles/s41467-019-12653-0"><em>Nature Communications</em>, doi: 10.1038/s41467-019-12653-0.</a></p>
 <h4 id="sbayess">SBayesS</h4>
-<p>Zeng et al. (2019) Bayesian analysis of GWAS summary data reveals differential signatures of natural selection across human complex traits and functional genomic categories. <a href="https://www.biorxiv.org/content/10.1101/752527v1"><em>bioRxiv</em>, dio: 10.1101/752527.</a></p>
+<p>Zeng et al. (2021) Bayesian analysis of GWAS summary data reveals differential signatures of natural selection across human complex traits and functional genomic categories. <a href="https://www.nature.com/articles/s41467-021-21446-3"><em>Nature Communications</em>, dio: 10.1038/s41467-021-21446-3.</a></p>
 <h2 id="downloadexpand" class="expand">Download </h2>
 <hr><h3 id="executablefiles">Executable files</h3>
 <p><a href="download/gctb_2.02_Linux.zip">gctb_2.02_Linux.zip</a> (<em>Lastest version</em>)</p>
@@ -79,12 +79,22 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <hr><h3 id="tutorialdata">Tutorial data</h3>
 <p><a href="download/gctb_2.0_tutorial.zip">GCTB tutorial data</a></p>
 <hr><h3 id="ldmatrices">LD matrices</h3>
+<p>The following LD matrices were computed based on 1.1 million common SNPs in a random sample of 50K unrelated individuals of European ancestry in UK Biobank dataset unless otherwise noted.</p>
 <ul>
-<li><a href="https://zenodo.org/record/3350914#.XyFfnC17G8o">Shrunk sparse LD matrix with 1.1 million HapMap3 common SNPs</a> (Lloyd-Jones et al 2019)</li>
-<li><a href="https://zenodo.org/record/3375373#.XyFgOS17G8o">Shrunk sparse LD matrix with 2.8 million common SNPs</a> (Lloyd-Jones et al 2019)</li>
-<li><a href="https://swift.rc.nectar.org.au/v1/AUTH_4dbb3c851266426d9aa75bcefcda5de1/data/share/JianZ_2021_nc/ukbEURu_imp_v3_HM3_n50k.chisq10.zip">Sparse LD matrix with 1.1 million HapMap3 common SNPs</a> (Zeng et al 2021)</li>
+<li><a href="https://zenodo.org/record/3350914#.XyFfnC17G8o">Shrunk sparse matrix</a></li>
+<li><a href="https://zenodo.org/record/3375373#.XyFgOS17G8o">Shrunk sparse LD matrix (2.8 million common SNPs)</a></li>
 </ul>
-<p>The shrunk sparse LD matrices described in <a href="https://www.nature.com/articles/s41467-019-12653-0">Lloyd-Jones et al. (2019)</a> are computed based a random sample of 50K individuals of European ancestry in UK Biobank data and a <a href="https://github.com/joepickrell/1000-genomes-genetic-maps">genetic map</a> in the public domain, following the algorithm in <a href="https://projecteuclid.org/euclid.aoas/1287409368">Wen and Stephens (2010)</a>. The sparse LD matrix described in Zeng et al. (2021) is computed by setting the chance LD to zero based on a chi-squared test.</p>
+<p>In the shrunk sparse matrices, described in <a href="https://www.nature.com/articles/s41467-019-12653-0">Lloyd-Jones et al. (2019)</a>, the observed LD correlations computed from a reference sample were shrunk toward the expected values defined by a <a href="https://github.com/joepickrell/1000-genomes-genetic-maps">genetic map</a>, following the algorithm in <a href="https://projecteuclid.org/euclid.aoas/1287409368">Wen and Stephens (2010)</a>. After shrinkage, LD correlations smaller than a threshold (default 1e-5) were set to be zero to give a sparse format, which is more efficient in storage and computation. </p>
+<ul>
+<li><a href="https://cnsgenomics.com/data/GCTB/ukbEURu_imp_v3_HM3_n50k.chisq10.zip">Sparse matrix</a></li>
+<li><a href="https://cnsgenomics.com/data/GCTB/gera_hm3_maf01_wg.chisq10.zip">Sparse matrix</a> (using GERA dataset)</li>
+</ul>
+<p>The sparse matrices described in <a href="https://www.nature.com/articles/s41467-021-21446-3">Zeng et al. (2021)</a> were computed by setting the likely chance LD to zero based on a chi-squared test (default threshold at chi-squared test statistic of 10).</p>
+<ul>
+<li><a href="https://cnsgenomics.com/data/GCTB/block_ukb_10k_hm3.zip">Block-wise full matrix</a></li>
+<li><a href="https://cnsgenomics.com/data/GCTB/band_ukb_10k_hm3.zip">Banded matrix</a></li>
+</ul>
+<p>While the shrunk sparse matrices were used in our original SBayesR paper, we found that using a block-wise full matrix defined by the approximately independent LD blocks (<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4731402/">Berisa and Pickrell; 2016</a>) can improve the robustness, and using a banded matrix as suggested by LDpred2 (<a href="https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btaa1029/6039173">Prive et al; 2021</a>) can improve the prediction accuracy. Therefore, we have created these LD matrices in GCTB format for SBayesR analysis.</p>
 <hr><h3 id="sourcecode">Source code</h3>
 <p><a href="download/gctb_2.0_scr.zip">GCTB 2.0 standard version</a></p>
 <p><a href="download/gctb_2.0_mpi_scr.zip">GCTB 2.0 MPI version</a></p>
