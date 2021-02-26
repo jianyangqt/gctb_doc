@@ -32,4 +32,4 @@ Zeng et al. (2018) Signatures of negative selection in the genetic architecture 
 Lloyd-Jones, Zeng et al. (2019) Improved polygenic prediction by Bayesian multiple regression on summary statistics. [*Nature Communications*, doi: 10.1038/s41467-019-12653-0.](https://www.nature.com/articles/s41467-019-12653-0)
 
 #### SBayesS
-Zeng et al. (2019) Bayesian analysis of GWAS summary data reveals differential signatures of natural selection across human complex traits and functional genomic categories. [*bioRxiv*, dio: 10.1101/752527.](https://www.biorxiv.org/content/10.1101/752527v1)
+Zeng et al. (2021) Bayesian analysis of GWAS summary data reveals differential signatures of natural selection across human complex traits and functional genomic categories. [*Nature Communications*, dio: 10.1038/s41467-021-21446-3.](https://www.nature.com/articles/s41467-021-21446-3)

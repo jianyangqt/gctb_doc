@@ -13,11 +13,22 @@
 [GCTB tutorial data](download/gctb_2.0_tutorial.zip)
 
 ### LD matrices
-* [Shrunk sparse LD matrix with 1.1 million HapMap3 common SNPs](https://zenodo.org/record/3350914#.XyFfnC17G8o) (Lloyd-Jones et al 2019)
-* [Shrunk sparse LD matrix with 2.8 million common SNPs](https://zenodo.org/record/3375373#.XyFgOS17G8o) (Lloyd-Jones et al 2019)
-* [Sparse LD matrix with 1.1 million HapMap3 common SNPs](https://swift.rc.nectar.org.au/v1/AUTH_4dbb3c851266426d9aa75bcefcda5de1/data/share/JianZ_2021_nc/ukbEURu_imp_v3_HM3_n50k.chisq10.zip) (Zeng et al 2021)
+The following LD matrices were computed based on 1.1 million common SNPs in a random sample of 50K unrelated individuals of European ancestry in UK Biobank dataset unless otherwise noted.
 
-The shrunk sparse LD matrices described in [Lloyd-Jones et al. (2019)](https://www.nature.com/articles/s41467-019-12653-0) are computed based a random sample of 50K individuals of European ancestry in UK Biobank data and a [genetic map](https://github.com/joepickrell/1000-genomes-genetic-maps) in the public domain, following the algorithm in [Wen and Stephens (2010)](https://projecteuclid.org/euclid.aoas/1287409368). The sparse LD matrix described in Zeng et al. (2021) is computed by setting the chance LD to zero based on a chi-squared test.
+* [Shrunk sparse matrix](https://zenodo.org/record/3350914#.XyFfnC17G8o)
+* [Shrunk sparse LD matrix (2.8 million common SNPs)](https://zenodo.org/record/3375373#.XyFgOS17G8o)
+
+In the shrunk sparse matrices, described in [Lloyd-Jones et al. (2019)](https://www.nature.com/articles/s41467-019-12653-0), the observed LD correlations computed from a reference sample were shrunk toward the expected values defined by a [genetic map](https://github.com/joepickrell/1000-genomes-genetic-maps), following the algorithm in [Wen and Stephens (2010)](https://projecteuclid.org/euclid.aoas/1287409368). After shrinkage, LD correlations smaller than a threshold (default 1e-5) were set to be zero to give a sparse format, which is more efficient in storage and computation. 
+
+* [Sparse matrix](https://swift.rc.nectar.org.au/v1/AUTH_4dbb3c851266426d9aa75bcefcda5de1/data/share/JianZ_2021_nc/ukbEURu_imp_v3_HM3_n50k.chisq10.zip)
+* Sparse matrix (using GERA dataset)
+
+The sparse matrices described in [Zeng et al. (2021)](https://www.nature.com/articles/s41467-021-21446-3) were computed by setting the likely chance LD to zero based on a chi-squared test (default threshold at chi-squared test statistic of 10).
+
+* Block-wise full matrix
+* Banded matrix
+
+While the shrunk sparse matrices were used in our original SBayesR paper, we found that using a block-wise full matrix defined by the approximately independent LD blocks ([Berisa and Pickrell; 2016](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4731402/)) can improve the robustness, and using a banded matrix as suggested by LDpred2 ([Prive et al; 2021](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btaa1029/6039173)) can improve the prediction accuracy. Therefore, we have created these LD matrices in GCTB format for SBayesR analysis.
 
 ### Source code
 [GCTB 2.0 standard version](download/gctb_2.0_scr.zip)
