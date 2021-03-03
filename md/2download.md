@@ -20,15 +20,13 @@ The following LD matrices were computed based on 1.1 million common SNPs in a ra
 
 In the shrunk sparse matrices, described in [Lloyd-Jones et al. (2019)](https://www.nature.com/articles/s41467-019-12653-0), the observed LD correlations computed from a reference sample were shrunk toward the expected values defined by a [genetic map](https://github.com/joepickrell/1000-genomes-genetic-maps), following the algorithm in [Wen and Stephens (2010)](https://projecteuclid.org/euclid.aoas/1287409368). After shrinkage, LD correlations smaller than a threshold (default 1e-5) were set to be zero to give a sparse format, which is more efficient in storage and computation. 
 
-* [Sparse matrix](https://cnsgenomics.com/data/GCTB/ukbEURu_imp_v3_HM3_n50k.chisq10.zip)
-* [Sparse matrix](https://cnsgenomics.com/data/GCTB/gera_hm3_maf01_wg.chisq10.zip) (using GERA dataset)
+* [Sparse matrix (including MHC regions)](https://cnsgenomics.com/data/GCTB/ukbEURu_imp_v3_HM3_n50k.chisq10.zip)
 
 The sparse matrices described in [Zeng et al. (2021)](https://www.nature.com/articles/s41467-021-21446-3) were computed by setting the likely chance LD to zero based on a chi-squared test (default threshold at chi-squared test statistic of 10).
 
-* [Block-wise full matrix](https://cnsgenomics.com/data/GCTB/block_ukb_10k_hm3.zip)
-* [Banded matrix](https://cnsgenomics.com/data/GCTB/band_ukb_10k_hm3.zip)
+* [Banded matrix (including MHC regions)](https://cnsgenomics.com/data/GCTB/band_ukb_10k_hm3.zip)
 
-While the shrunk sparse matrices were used in our original SBayesR paper, we found that using a block-wise full matrix defined by the approximately independent LD blocks ([Berisa and Pickrell; 2016](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4731402/)) can improve the robustness, and using a banded matrix as suggested by LDpred2 ([Prive et al; 2021](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btaa1029/6039173)) can improve the prediction accuracy. Therefore, we have created these LD matrices in GCTB format for SBayesR analysis.
+While the shrunk sparse matrices were used in our original SBayesR paper, [Prive et al. (2021)](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btaa1029/6039173) found that using a banded matrix with a window size of 3 cM per SNP can improve prediction accuracy. Therefore, we have created such a LD matrix in GCTB format for SBayesR analysis.
 
 ### Source code
 [GCTB 2.0 standard version](download/gctb_2.0_scr.zip)
