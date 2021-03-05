@@ -1,7 +1,10 @@
 
 ## Download {: .expand}
 ### Executable files
-[gctb\_2.02\_Linux.zip](download/gctb_2.02_Linux.zip) (*Lastest version*)
+[gctb\_2.03beta\_Linux.zip](download/gctb_2.03beta_Linux.zip) (*Lastest version*)
+*In this version, we introduced a more robust parameterisation for SBayesR and SBayesS to address the convergence issue which sometimes occurs when the GWAS summary statistics are from a meta-analysis. With the same command line code, the program will start with the original model but if a convergence issue is detected (indicated by a negative sampled value of residual variance) it will restart the MCMC process with a more robust parameterisation. The robust model can also be directed invoked by --robust. The robust parameterisation for SBayesR and SBayesS is inspired by the parameterisation in LDpred ([Vilhjálmsson et al. 2015](https://www.sciencedirect.com/user/identity/landing?code=Ulj9Myn2m9Aa3R2j-wGhgPbv1WF9l5lxSIgHJR3u&state=retryCounter%3D0%26csrfToken%3D325c98ae-e6b3-43c0-b6ea-b6eba8ea096c%26idpPolicy%3Durn%253Acom%253Aelsevier%253Aidp%253Apolicy%253Aproduct%253Ainst_assoc%26returnUrl%3D%252Fscience%252Farticle%252Fpii%252FS0002929715003651%253Fvia%25253Dihub%26prompt%3Dnone%26cid%3Darp-d6cf6a05-621c-472f-b381-5809b9d8a27a)). Details will soon be available on our website.*
+
+[gctb\_2.02\_Linux.zip](download/gctb_2.02_Linux.zip)
 
 [gctb\_2.0\_Linux.zip](download/gctb_2.0_Linux.zip)
 
