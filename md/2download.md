@@ -32,6 +32,8 @@ The sparse matrices described in [Zeng et al. (2021)](https://www.nature.com/art
 While the shrunk sparse matrices were used in our original SBayesR paper, [Prive et al. (2021)](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btaa1029/6039173) found that using a banded matrix with a window size of 3 cM per SNP can improve prediction accuracy. Therefore, we have created such a LD matrix in GCTB format for SBayesR analysis.
 
 ### Source code
+[GCTB 2.03 standard version](download/gctb_2.03.zip)
+
 [GCTB 2.0 standard version](download/gctb_2.0_scr.zip)
 
 [GCTB 2.0 MPI version](download/gctb_2.0_mpi_scr.zip)

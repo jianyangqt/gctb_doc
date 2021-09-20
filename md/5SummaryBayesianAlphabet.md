@@ -19,6 +19,10 @@ Input a list of LD matrices, e.g. from chromosome 1 to 22. The LD matrices need 
 
 Compute a full LD matrix from the genotype data provided by **--bfile** option. This option will generate two files: a text file that contains SNP information (test.ldm.full.info) and a binary file that contains the full LD matrix data (test.ldm.full.bin). The full LD matrix contains all pairwise LD correlations between SNPs. The memory required is approximately the size of the n-by-m genotype matrix (4 * n * m)/1e9 GB + the size of the m-by-m LD matrix (4 * m^2)/1e9 GB (n is the number of individuals and m is the number of SNPs). For a more efficient computation, it is recommended to use **--snp** option to compute the matrix by parts. 
 
+**\--part** 5,1
+
+Work only with --make-full-ldm. Compute a full LD matrix part by part to save memory. The first number before comma indicates the total parts to divide, the second number indicates the current part to calculate. Run gctb with the --mldm output.mldm to merge, after all parts are calculated successfully. 
+
 **\--make-sparse-ldm**
 
 Compute a sparse LD matrix from the genotype data provided by **--bfile** option or from the dense type LD matrix, such as full or shrunk LD matrix provided by **--ldm test.ldm.full** or **--ldm test.ldm.shrunk** option. If the genotype data is provided, GCTB will first compute the chromosome-wide full LD matrix, then set the chance LD (small LD correlations due to sampling) to be zero and output the sparse matrix. The chance LD is detected by a chi-squared test with the threshold defined by **--chisq**. The chi-squared threshold value is 10 by default. The memory usage is the same as computing a full LD matrix.
