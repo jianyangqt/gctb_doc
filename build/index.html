@@ -96,13 +96,14 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 </ul>
 <p>While the shrunk sparse matrices were used in our original SBayesR paper, <a href="https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btaa1029/6039173">Prive et al. (2021)</a> found that using a banded matrix with a window size of 3 cM per SNP can improve prediction accuracy. Therefore, we have created such a LD matrix in GCTB format for SBayesR analysis.</p>
 <hr><h3 id="sourcecode">Source code</h3>
+<p><a href="download/gctb_2.03.zip">GCTB 2.03 standard version</a></p>
 <p><a href="download/gctb_2.0_scr.zip">GCTB 2.0 standard version</a></p>
 <p><a href="download/gctb_2.0_mpi_scr.zip">GCTB 2.0 MPI version</a></p>
 <p><a href="download/gctb_1.0_scr.zip">GCTB 1.0 standard version</a></p>
 <p><a href="download/gctb_1.0_mpi_scr.zip">GCTB 1.0 MPI version</a></p>
 <p>The MPI version implements a distributed computing strategy that scales the analysis to very large sample sizes. A significant improvement in computing time is expected for a sample size &gt; 10,000. The MPI version needs to be compiled on user’s machine. See <a href="download/README.html">README.html</a> in the tarball for instructions of compilation and usage. A testing dataset is also included in each tarball.</p>
 <hr><h3 id="updatelog">Update log</h3>
-<p><strong>1.</strong> &nbsp;1 Dec, 2017: first release.</p>
+<p><strong>1.</strong>  1 Dec, 2017: first release.</p>
 <p><strong>2.</strong>  8 Feb, 2019: version 2.0 includes summary-data-based Bayesian methods.</p>
 <p><strong>3.</strong> 31 Jul, 2020: version 2.02 reports a message for convergence issue.</p>
 <h2 id="basicoptionsexpand" class="expand">Basic options </h2>
@@ -205,6 +206,8 @@ Meuwissen et al. (2001) Prediction of total genetic value using genome-wide dens
 <p>Input a list of LD matrices, e.g. from chromosome 1 to 22. The LD matrices need to be in the correct order in mldm.list.</p>
 <p><strong><span class="kwd">--make-full-ldm</span></strong></p>
 <p>Compute a full LD matrix from the genotype data provided by <strong><span class="kwd">--bfile</span></strong> option. This option will generate two files: a text file that contains SNP information (test.ldm.full.info) and a binary file that contains the full LD matrix data (test.ldm.full.bin). The full LD matrix contains all pairwise LD correlations between SNPs. The memory required is approximately the size of the n-by-m genotype matrix (4 * n * m)/1e9 GB + the size of the m-by-m LD matrix (4 * m^2)/1e9 GB (n is the number of individuals and m is the number of SNPs). For a more efficient computation, it is recommended to use <strong><span class="kwd">--snp</span></strong> option to compute the matrix by parts. </p>
+<p><strong><span class="kwd">--part</span></strong> 5,1</p>
+<p>Work only with <span class="kwd">--make-full-ldm</span>. Compute a full LD matrix part by part to save memory. The first number before comma indicates the total parts to divide, the second number indicates the current part to calculate. Run gctb with the <span class="kwd">--mldm</span> output.mldm to merge, after all parts are calculated successfully. </p>
 <p><strong><span class="kwd">--make-sparse-ldm</span></strong></p>
 <p>Compute a sparse LD matrix from the genotype data provided by <strong><span class="kwd">--bfile</span></strong> option or from the dense type LD matrix, such as full or shrunk LD matrix provided by <strong><span class="kwd">--ldm</span> test.ldm.full</strong> or <strong><span class="kwd">--ldm</span> test.ldm.shrunk</strong> option. If the genotype data is provided, GCTB will first compute the chromosome-wide full LD matrix, then set the chance LD (small LD correlations due to sampling) to be zero and output the sparse matrix. The chance LD is detected by a chi-squared test with the threshold defined by <strong><span class="kwd">--chisq</span></strong>. The chi-squared threshold value is 10 by default. The memory usage is the same as computing a full LD matrix.</p>
 <p><strong><span class="kwd">--make-shrunk-ldm</span></strong></p>
