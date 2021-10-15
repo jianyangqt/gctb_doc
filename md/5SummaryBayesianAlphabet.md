@@ -127,6 +127,10 @@ For a pair of SNPs with the squared LD correlation greater than the specified va
 
 This option will remove SNPs with GWAS P value greater than the specified value, e.g. 0.4, from the analysis.
 
+**\--robust**
+
+This option will invoke the following parameterisation for the common factor of SNP effect variance in SBayesR, i.e., \\$\sigma\_{\beta}^2 = \frac{\sigma\_g^2 }{ m {\boldsymbol \gamma}'{\boldsymbol \pi} }\\$ where \\$\sigma\_g^2 = {\boldsymbol \beta} ' {\bf R} {\boldsymbol \beta}\\$ is the sampled total genetic variance in each MCMC iteration. Comparing to the original model that assumes \\$\sigma\_{\beta}^2\\$ following a scaled-inverse chi-square distribution, this parameterisation is observed to be more robust to the potential convergence issue which sometimes occurs when the GWAS summary statistics are from a meta-analysis. In GCTB 2.03 beta version, the program will start with the original model but if a convergence issue is detected (indicated by a negative sampled value of residual variance) it will restart the MCMC process with this more robust parameterisation. Note that this parameterisation is identical to LDpred ([Vilhjálmsson et al. 2015](https://www.sciencedirect.com/user/identity/landing?code=Ulj9Myn2m9Aa3R2j-wGhgPbv1WF9l5lxSIgHJR3u&state=retryCounter%3D0%26csrfToken%3D325c98ae-e6b3-43c0-b6ea-b6eba8ea096c%26idpPolicy%3Durn%253Acom%253Aelsevier%253Aidp%253Apolicy%253Aproduct%253Ainst_assoc%26returnUrl%3D%252Fscience%252Farticle%252Fpii%252FS0002929715003651%253Fvia%25253Dihub%26prompt%3Dnone%26cid%3Darp-d6cf6a05-621c-472f-b381-5809b9d8a27a)) when using a point-normal prior (i.e., two-component SBayesR or SBayesC).
+
 
 ### Tutorial
 

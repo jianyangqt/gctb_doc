@@ -2,7 +2,6 @@
 ## Download {: .expand}
 ### Executable files
 [gctb\_2.03beta\_Linux.zip](download/gctb_2.03beta_Linux.zip) (*Lastest version*)
-*In this version, we introduced a more robust parameterisation for SBayesR and SBayesS to address the convergence issue which sometimes occurs when the GWAS summary statistics are from a meta-analysis. With the same command line code, the program will start with the original model but if a convergence issue is detected (indicated by a negative sampled value of residual variance) it will restart the MCMC process with a more robust parameterisation. The robust model can also be directed invoked by --robust. The robust parameterisation for SBayesR and SBayesS is inspired by the parameterisation in LDpred ([Vilhjálmsson et al. 2015](https://www.sciencedirect.com/user/identity/landing?code=Ulj9Myn2m9Aa3R2j-wGhgPbv1WF9l5lxSIgHJR3u&state=retryCounter%3D0%26csrfToken%3D325c98ae-e6b3-43c0-b6ea-b6eba8ea096c%26idpPolicy%3Durn%253Acom%253Aelsevier%253Aidp%253Apolicy%253Aproduct%253Ainst_assoc%26returnUrl%3D%252Fscience%252Farticle%252Fpii%252FS0002929715003651%253Fvia%25253Dihub%26prompt%3Dnone%26cid%3Darp-d6cf6a05-621c-472f-b381-5809b9d8a27a)). Details will soon be available on our website.*
 
 [gctb\_2.02\_Linux.zip](download/gctb_2.02_Linux.zip)
 
@@ -32,7 +31,7 @@ The sparse matrices described in [Zeng et al. (2021)](https://www.nature.com/art
 While the shrunk sparse matrices were used in our original SBayesR paper, [Prive et al. (2021)](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btaa1029/6039173) found that using a banded matrix with a window size of 3 cM per SNP can improve prediction accuracy. Therefore, we have created such a LD matrix in GCTB format for SBayesR analysis.
 
 ### Source code
-[GCTB 2.03 standard version](download/gctb_2.03.zip)
+[GCTB 2.03beta standard version](download/gctb_2.03beta.zip)
 
 [GCTB 2.0 standard version](download/gctb_2.0_scr.zip)
 
@@ -52,3 +51,5 @@ The MPI version implements a distributed computing strategy that scales the anal
 **2.**  8 Feb, 2019: version 2.0 includes summary-data-based Bayesian methods.
 
 **3.** 31 Jul, 2020: version 2.02 reports a message for convergence issue.
+
+**4.** 15 Oct, 2021: version 2.03beta includes a robust parameterisation that attempts to address convergence issue.

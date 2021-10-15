@@ -72,8 +72,7 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <p>Zeng et al. (2021) Bayesian analysis of GWAS summary data reveals differential signatures of natural selection across human complex traits and functional genomic categories. <a href="https://www.nature.com/articles/s41467-021-21446-3"><em>Nature Communications</em>, dio: 10.1038/s41467-021-21446-3.</a></p>
 <h2 id="downloadexpand" class="expand">Download </h2>
 <hr><h3 id="executablefiles">Executable files</h3>
-<p><a href="download/gctb_2.03beta_Linux.zip">gctb_2.03beta_Linux.zip</a> (<em>Lastest version</em>)
-<em>In this version, we introduced a more robust parameterisation for SBayesR and SBayesS to address the convergence issue which sometimes occurs when the GWAS summary statistics are from a meta-analysis. With the same command line code, the program will start with the original model but if a convergence issue is detected (indicated by a negative sampled value of residual variance) it will restart the MCMC process with a more robust parameterisation. The robust model can also be directed invoked by <span class="kwd">--robust</span>. The robust parameterisation for SBayesR and SBayesS is inspired by the parameterisation in LDpred (<a href="https://www.sciencedirect.com/user/identity/landing?code=Ulj9Myn2m9Aa3R2j-wGhgPbv1WF9l5lxSIgHJR3u&amp;state=retryCounter%3D0%26csrfToken%3D325c98ae-e6b3-43c0-b6ea-b6eba8ea096c%26idpPolicy%3Durn%253Acom%253Aelsevier%253Aidp%253Apolicy%253Aproduct%253Ainst_assoc%26returnUrl%3D%252Fscience%252Farticle%252Fpii%252FS0002929715003651%253Fvia%25253Dihub%26prompt%3Dnone%26cid%3Darp-d6cf6a05-621c-472f-b381-5809b9d8a27a">Vilhjálmsson et al. 2015</a>). Details will soon be available on our website.</em></p>
+<p><a href="download/gctb_2.03beta_Linux.zip">gctb_2.03beta_Linux.zip</a> (<em>Lastest version</em>)</p>
 <p><a href="download/gctb_2.02_Linux.zip">gctb_2.02_Linux.zip</a></p>
 <p><a href="download/gctb_2.0_Linux.zip">gctb_2.0_Linux.zip</a></p>
 <p><a href="download/gctb_1.0_Linux.zip">gctb_1.0_Linux.zip</a></p>
@@ -96,16 +95,17 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 </ul>
 <p>While the shrunk sparse matrices were used in our original SBayesR paper, <a href="https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btaa1029/6039173">Prive et al. (2021)</a> found that using a banded matrix with a window size of 3 cM per SNP can improve prediction accuracy. Therefore, we have created such a LD matrix in GCTB format for SBayesR analysis.</p>
 <hr><h3 id="sourcecode">Source code</h3>
-<p><a href="download/gctb_2.03.zip">GCTB 2.03 standard version</a></p>
+<p><a href="download/gctb_2.03beta.zip">GCTB 2.03beta standard version</a></p>
 <p><a href="download/gctb_2.0_scr.zip">GCTB 2.0 standard version</a></p>
 <p><a href="download/gctb_2.0_mpi_scr.zip">GCTB 2.0 MPI version</a></p>
 <p><a href="download/gctb_1.0_scr.zip">GCTB 1.0 standard version</a></p>
 <p><a href="download/gctb_1.0_mpi_scr.zip">GCTB 1.0 MPI version</a></p>
 <p>The MPI version implements a distributed computing strategy that scales the analysis to very large sample sizes. A significant improvement in computing time is expected for a sample size &gt; 10,000. The MPI version needs to be compiled on user’s machine. See <a href="download/README.html">README.html</a> in the tarball for instructions of compilation and usage. A testing dataset is also included in each tarball.</p>
 <hr><h3 id="updatelog">Update log</h3>
-<p><strong>1.</strong>  1 Dec, 2017: first release.</p>
+<p><strong>1.</strong> &nbsp;1 Dec, 2017: first release.</p>
 <p><strong>2.</strong>  8 Feb, 2019: version 2.0 includes summary-data-based Bayesian methods.</p>
 <p><strong>3.</strong> 31 Jul, 2020: version 2.02 reports a message for convergence issue.</p>
+<p><strong>4.</strong> 15 Oct, 2021: version 2.03beta includes a robust parameterisation that attempts to address convergence issue.</p>
 <h2 id="basicoptionsexpand" class="expand">Basic options </h2>
 <hr><h3 id="inputandoutput">Input and output</h3>
 <p><strong><span class="kwd">--bfile</span></strong> test</p>
@@ -269,6 +269,8 @@ SigmaSqG    0.258967        0.003865        1.000
 <p>For a pair of SNPs with the squared LD correlation greater than the specified value, e.g. 0.9, based on the provided LD matrix, this option will remove the SNP with the higher GWAS P value and keep the other SNP in the analysis.  </p>
 <p><strong><span class="kwd">--p-value</span></strong> 0.4</p>
 <p>This option will remove SNPs with GWAS P value greater than the specified value, e.g. 0.4, from the analysis.</p>
+<p><strong><span class="kwd">--robust</span></strong></p>
+<p>This option will invoke the following parameterisation for the common factor of SNP effect variance in SBayesR, i.e., \$\sigma_{\beta}^2 = \frac{\sigma_g^2 }{ m {\boldsymbol \gamma}'{\boldsymbol \pi} }\$ where \$\sigma_g^2 = {\boldsymbol \beta} ' {\bf R} {\boldsymbol \beta}\$ is the sampled total genetic variance in each MCMC iteration. Comparing to the original model that assumes \$\sigma_{\beta}^2\$ following a scaled-inverse chi-square distribution, this parameterisation is observed to be more robust to the potential convergence issue which sometimes occurs when the GWAS summary statistics are from a meta-analysis. In GCTB 2.03 beta version, the program will start with the original model but if a convergence issue is detected (indicated by a negative sampled value of residual variance) it will restart the MCMC process with this more robust parameterisation. Note that this parameterisation is identical to LDpred (<a href="https://www.sciencedirect.com/user/identity/landing?code=Ulj9Myn2m9Aa3R2j-wGhgPbv1WF9l5lxSIgHJR3u&amp;state=retryCounter%3D0%26csrfToken%3D325c98ae-e6b3-43c0-b6ea-b6eba8ea096c%26idpPolicy%3Durn%253Acom%253Aelsevier%253Aidp%253Apolicy%253Aproduct%253Ainst_assoc%26returnUrl%3D%252Fscience%252Farticle%252Fpii%252FS0002929715003651%253Fvia%25253Dihub%26prompt%3Dnone%26cid%3Darp-d6cf6a05-621c-472f-b381-5809b9d8a27a">Vilhjálmsson et al. 2015</a>) when using a point-normal prior (i.e., two-component SBayesR or SBayesC).</p>
 <hr><h3 id="tutorial">Tutorial</h3>
 <p>This updated version of the GCTB software (version 2.0) includes summary-data based versions of the individual-data Bayesian linear mixed models 
 previously implemented. These methods require summary statistics from genome-wide association studies, which typically 
