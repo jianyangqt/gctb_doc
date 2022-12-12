@@ -41,6 +41,10 @@ If the phenotype file contains more than one trait, by default, GCTB takes the f
 
 Input quantitative covariates from a plain text file, e.g. test.qcovar. Each quantitative covariate is recognized as a continuous variable.
 
+**\--random-covar** test.randcovar
+
+Input quantitative covariates from a plain text file which will be fitted as random effects in the model. For a categorical variable with k levels, create a matrix of 0/1 with k columns to indicate the presence of each level in a column.
+
 ### MCMC settings
 
 **\--seed** 123

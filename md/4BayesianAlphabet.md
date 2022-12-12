@@ -42,6 +42,10 @@ A starting value for the sampling of the parameter S (relationship between MAF a
 
 Specify the window width in Mb for the non-overlapping windows in the nested models, e.g. 0.2 Mb. The default value is 1 Mb.
 
+**\--var-random** 0.05
+
+Specify the prior knowledge on the proportion of variance explained by the non-SNP random effects. This value will be used to specify the prior distribution for the non-SNP random effect variance variable. 
+
 <br>
 > **Examples**
 
