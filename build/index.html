@@ -77,7 +77,7 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <hr><h3 id="executable">Executable</h3>
 <p><a href="download/gctb_2.05beta_Linux.zip">gctb_2.05beta_Linux.zip</a> (<em>Lastest version</em>)</p>
 <hr><h3 id="sourcecode">Source code</h3>
-<p><a href="download/gctb_2.05beta.zip">GCTB 2.05beta</a></p>
+<p><a href="download/gctb_2.05beta_scr.zip">GCTB 2.05beta</a></p>
 <hr><h3 id="tutorialdata">Tutorial data</h3>
 <p><a href="download/gctb_2.0_tutorial.zip">GCTB tutorial data</a></p>
 <hr><h3 id="eigendecompositiondataofldmatrices">Eigen-decomposition data of LD matrices</h3>
@@ -616,10 +616,10 @@ divergence (see Zhu and Stephens\citep{zhu2017bayesian} for further discussion).
 <a href="https://www.biorxiv.org/content/10.1101/522961v3?rss=1">current manuscript</a> and that of <a href="https://projecteuclid.org/euclid.aoas/1507168840">Zhu and Stephens (2017)</a> as a preliminary to 
 running the summary data based methods in GCTB.</p>
 <hr><h3 id="sbayesrctutorial">SBayesRC Tutorial</h3>
-<p>SBayesRC is a method that incorporates functional genomic annotations with high-density SNPs (&gt; 7 millions) for polygenic prediction. Our manuscript is available <a href="https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1">here</a>.</p>
+<p>SBayesRC is a method that incorporates functional genomic annotations with high-density SNPs (&gt; 7 millions) for polygenic prediction. Our manuscript is available at <a href="https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1">here</a>.</p>
 <p>This method is based on a low-rank approximation which utilises the eigenvalues and eigenvectors of block-wise LD correlation matrices. It requires SNPs that are included in the LD reference to be also present in the GWAS samples. Thus, the first step is to impute the GWAS summary statistics for any missing SNPs that are only present in the LD reference. If there are more than 30% of missing SNPs, we recommend to recompute the eigen-decomposition based on a matched LD reference sample (see below).</p>
 <h4 id="inputfiles">Input files</h4>
-<p><code>ldm</code> is a folder comprising the eigen-decomposition data for each block. We have provided the data from a random sample of 20K unrelated UKB individuals of European ancestry using either ~1 million HapMap3 SNPs or 7 million imputed SNPs, which can be downloaded from [here]().</p>
+<p><code>ldm</code> is a folder comprising the eigen-decomposition data for each block. We have provided the data from a random sample of 20K unrelated UKB individuals of European ancestry using either ~1 million HapMap3 SNPs or 7 million imputed SNPs, which are available at <a href="https://cnsgenomics.com/software/gctb/#Download">Download</a>.</p>
 <p><code>test.ma</code> is the file of GWAS summary statistics with the following format</p>
 <pre><code>SNP A1 A2 freq b se p N 
 rs1001 A G 0.8493 0.0024 0.0055 0.6653 129850 

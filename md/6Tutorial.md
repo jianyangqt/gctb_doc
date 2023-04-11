@@ -442,12 +442,12 @@ running the summary data based methods in GCTB.
 
 ### SBayesRC Tutorial
 
-SBayesRC is a method that incorporates functional genomic annotations with high-density SNPs (> 7 millions) for polygenic prediction. Our manuscript is available [here](https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1).
+SBayesRC is a method that incorporates functional genomic annotations with high-density SNPs (> 7 millions) for polygenic prediction. Our manuscript is available at [here](https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1).
 
 This method is based on a low-rank approximation which utilises the eigenvalues and eigenvectors of block-wise LD correlation matrices. It requires SNPs that are included in the LD reference to be also present in the GWAS samples. Thus, the first step is to impute the GWAS summary statistics for any missing SNPs that are only present in the LD reference. If there are more than 30% of missing SNPs, we recommend to recompute the eigen-decomposition based on a matched LD reference sample (see below).
 
 #### Input files
-`ldm` is a folder comprising the eigen-decomposition data for each block. We have provided the data from a random sample of 20K unrelated UKB individuals of European ancestry using either ~1 million HapMap3 SNPs or 7 million imputed SNPs, which can be downloaded from [here]().
+`ldm` is a folder comprising the eigen-decomposition data for each block. We have provided the data from a random sample of 20K unrelated UKB individuals of European ancestry using either ~1 million HapMap3 SNPs or 7 million imputed SNPs, which are available at [Download](https://cnsgenomics.com/software/gctb/#Download).
 
 `test.ma` is the file of GWAS summary statistics with the following format
 ```

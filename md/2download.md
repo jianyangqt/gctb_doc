@@ -4,7 +4,7 @@
 [gctb\_2.05beta\_Linux.zip](download/gctb_2.05beta_Linux.zip) (*Lastest version*)
 
 ### Source code
-[GCTB 2.05beta](download/gctb_2.05beta.zip)
+[GCTB 2.05beta](download/gctb_2.05beta_scr.zip)
 
 ### Tutorial data
 [GCTB tutorial data](download/gctb_2.0_tutorial.zip)
