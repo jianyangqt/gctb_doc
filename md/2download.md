@@ -1,20 +1,22 @@
 
 ## Download {: .expand}
-### Executable files
-[gctb\_2.04.3\_Linux.zip](download/gctb_2.04.3_Linux.zip) (*Lastest version*)
+### Executable
+[gctb\_2.05beta\_Linux.zip](download/gctb_2.05beta_Linux.zip) (*Lastest version*)
 
-[gctb\_2.03beta\_Linux.zip](download/gctb_2.03beta_Linux.zip)
-
-[gctb\_2.02\_Linux.zip](download/gctb_2.02_Linux.zip)
-
-[gctb\_2.0\_Linux.zip](download/gctb_2.0_Linux.zip)
-
-[gctb\_1.0\_Linux.zip](download/gctb_1.0_Linux.zip)
-
-[gctb\_1.0\_Mac.zip](download/gctb_1.0_Mac.zip)
+### Source code
+[GCTB 2.05beta](download/gctb_2.05beta.zip)
 
 ### Tutorial data
 [GCTB tutorial data](download/gctb_2.0_tutorial.zip)
+
+### Eigen-decomposition data of LD matrices
+The eigen-decomposition data are for SBayesRC and SBayesR with the low-rank model. See our [manuscript](https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1) and [Tutorial](https://cnsgenomics.com/software/gctb/#Tutorial) for details.
+
+* [1M HapMap3 SNPs](https://drive.google.com/drive/folders/16YNhF_uHkOAuHgQjxOZ9JsprPPtDdYt3?usp=share_link)
+* [7M Imputed SNPs](https://drive.google.com/drive/folders/1qVw5S3nH0Q6uugp2Dr8izpeEWgS0FRSc?usp=sharing)
+
+### Functional genomic annotations
+Download the [formatted data](https://drive.google.com/drive/folders/1cq364c50vMw1inJBTkeW7ynwyf2W6WIP?usp=sharing) for per-SNP functional annotations derived from [S-LDSC BaselineLDv2.2](https://www.nature.com/articles/ng.3954). 
 
 ### LD matrices
 The following LD matrices were computed based on 1.1 million common SNPs in a random sample of 50K unrelated individuals of European ancestry in UK Biobank dataset unless otherwise noted.
@@ -32,18 +34,18 @@ The sparse matrices described in [Zeng et al. (2021)](https://www.nature.com/art
 
 While the shrunk sparse matrices were used in our original SBayesR paper, [Prive et al. (2021)](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btaa1029/6039173) found that using a banded matrix with a window size of 3 cM per SNP can improve prediction accuracy. Therefore, we have created such a LD matrix in GCTB format for SBayesR analysis.
 
-### Source code
-[GCTB 2.04.3 standard version](download/gctb_2.04.3.zip)
+### Older versions
 
-[GCTB 2.03beta standard version](download/gctb_2.03beta.zip)
+gctb_2.04.3: [[Linux executable](download/gctb_2.04.3_Linux.zip)] [[source code](download/gctb_2.04.3_scr.zip)]
 
-[GCTB 2.0 standard version](download/gctb_2.0_scr.zip)
+gctb_2.03beta: [[Linux executable](download/gctb_2.03beta_Linux.zip)]  [[source code](download/gctb_2.03beta_scr.zip)]
 
-[GCTB 2.0 MPI version](download/gctb_2.0_mpi_scr.zip)
+gctb_2.02: [[Linux executable](download/gctb_2.02_Linux.zip)]
 
-[GCTB 1.0 standard version](download/gctb_1.0_scr.zip)
+gctb_2.0: [[Linux executable](download/gctb_2.0_Linux.zip)]  [[source code](download/gctb_2.0_scr.zip)] [[MPI version source code](download/gctb_2.0_mpi_scr.zip)]
 
-[GCTB 1.0 MPI version](download/gctb_1.0_mpi_scr.zip)
+gctb_1.0: [[Linux executable](download/gctb_1.0_Linux.zip)] [[Mac executable](download/gctb_1.0_Mac.zip)] [[source code](download/gctb_1.0_scr.zip)] [[MPI version source code](download/gctb_1.0_mpi_scr.zip)]
+
 
 The MPI version implements a distributed computing strategy that scales the analysis to very large sample sizes. A significant improvement in computing time is expected for a sample size > 10,000. The MPI version needs to be compiled on user’s machine. See [README.html](download/README.html) in the tarball for instructions of compilation and usage. A testing dataset is also included in each tarball.
 
@@ -59,3 +61,5 @@ The MPI version implements a distributed computing strategy that scales the anal
 **4.** 15 Oct, 2021: version 2.03beta includes a robust parameterisation that attempts to address convergence issue.
 
 **5.** 12 Dec, 2022: version 2.04.3 includes additional random effect component in BayesC and BayesR models to capture non-SNP random effects.
+
+**6.** 11 April, 2023: version 2.05beta implements SBayesRC (SBayesR with the low-rank model) for polygenic prediction incorporating functional genomic annotations.

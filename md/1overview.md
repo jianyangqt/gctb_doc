@@ -15,7 +15,9 @@ Part of the code are adopted from [*GCTA*](http://cnsgenomics.com/software/gcta)
 
 [Luke Lloyd-Jones](https://scholar.google.com.au/citations?user=WQ0UXOcAAAAJ&hl=en&oi=ao) contributed to the BayesR module with supports from [Jian Zeng](http://researchers.uq.edu.au/researcher/14033) and [Mike Goddard](https://en.wikipedia.org/wiki/Michael_Goddard).
 
-Version 2.0 of the software was developed by Jian Zeng with contributions from Luke Lloyd-Jones.
+[Jian Zeng](http://researchers.uq.edu.au/researcher/14033), [Zhili Zheng](http://researchers.uq.edu.au/researcher/19885), and [Shouye Liu](https://scholar.google.com/citations?hl=en&user=ETCPafMAAAAJ) contributed to the SBayesRC module.
+
+Version 2.0 of the software was developed by Jian Zeng with contributions from Luke Lloyd-Jones, Zhili Zheng, and Shouye Liu.
 
 
 
@@ -27,6 +29,9 @@ If you have any bug reports or questions, please send an email to Jian Zeng (<j.
 
 Zeng et al. (2018) Signatures of negative selection in the genetic architecture of human complex traits. 
 [*Nature Genetics*, doi: 10.1038/s41588-018-0101-4.](https://www.nature.com/articles/s41588-018-0101-4)
+
+#### SBayesRC
+Zheng et al. (2022) Leveraging functional genomic annotations and genome coverage to improve polygenic prediction of complex traits within and between ancestries. [*bioRxiv* 2022.10.12.510418; doi: https://doi.org/10.1101/2022.10.12.510418](https://doi.org/10.1101/2022.10.12.510418)
 
 #### SBayesR
 Lloyd-Jones, Zeng et al. (2019) Improved polygenic prediction by Bayesian multiple regression on summary statistics. [*Nature Communications*, doi: 10.1038/s41467-019-12653-0.](https://www.nature.com/articles/s41467-019-12653-0)
