@@ -633,11 +633,11 @@ rs1002  1           0       1       -1.5
 rs1003  1           1       1       0.7
 </code></pre>
 <h4 id="step1imputesummarystatisticsforsnpsinldreferencebutnotingwasdata">Step 1: Impute summary statistics for SNPs in LD reference but not in GWAS data.</h4>
-<pre><code>gctb --ldm-eigen ldm --gwas-summary test.ma --impute-summary --out test
+<pre><code>gctb --ldm-eigen ldm --gwas-summary test.ma --impute-summary --out test --thread 4
 </code></pre>
-<p>This command will generate a text file <code>test.imputed.ma</code> which contains the summary statistics for all SNPs including those from the original GWAS file and those with imputed summary data. Use this file as input for the next step.  </p>
+<p>This command will generate a text file <code>test.imputed.ma</code> which contains the summary statistics for all SNPs including those from the original GWAS file and those with imputed summary data. Use this file as input for the next step. <code><span class="kwd">--thread</span> 4</code> enables multi-thread (e.g., 4 threads) computing and if it is ignored, a single thread will be used.</p>
 <h4 id="step2runsbayesrcwithannotationdata">Step 2: Run SBayesRC with annotation data.</h4>
-<pre><code>gctb --ldm-eigen ldm --gwas-summary test.imputed.ma --sbayes RC --annot annot.txt --out test
+<pre><code>gctb --ldm-eigen ldm --gwas-summary test.imputed.ma --sbayes RC --annot annot.txt --out test --thread 4
 </code></pre>
 <p>This command will generate a text file for SNP effect estimates <code>test.snpRes</code>, text files for model parameters <code>test.parRes</code> and <code>test.parSetRes</code>, and a folder that stores the MCMC samples for all model parameters <code>test.mcmcsamples</code>.</p>
 <h4 id="predictingpolygenicscores">Predicting polygenic scores.</h4>
@@ -647,8 +647,8 @@ rs1003  1           1       1       0.7
 <h4 id="recomputingeigendecompositionofblockwiseldmatrics">Recomputing eigen-decomposition of block-wise LD matrics</h4>
 <p>In the case where eigen-decomposition needs to be performed, e.g., the GWAS data is genetically different from our LD reference, or GWAS SNPs are substantially different from our LD reference SNPs, you can use the following steps to generate the eigen-decompostion data based on your own LD reference sample:</p>
 <h4 id="step1computeblockwiseldmatrices"><em>Step 1: compute block-wise LD matrices</em></h4>
-<p>Skip this step if you are using the eigen-decomposition data provided by us. This step requires individual-level genotype data from LD reference <code>ldRef</code> and an input file that defines the boundaries of each block. Here, we use file <code>LDblockInfo.txt</code> which partitions the human genome into 591 approximately independent LD blocks, each with a width of at least 4 cM, based on the results of <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4731402/">Berisa and Pickrell</a>.     </p>
-<pre><code>gctb --bfile ldRef --make-block-ldm --block-info ldBlockInfo.txt --out ldm
+<p>Skip this step if you are using the eigen-decomposition data provided by us. This step requires individual-level genotype data from LD reference <code>ldRef</code> and a text input file that defines the boundaries of each block. Here, we use text file <a href="download/ref4cM_v37.pos">ref4cM_v37.pos</a> which partitions the human genome into 591 approximately independent LD blocks, each with a width of at least 4 cM, based on the results of <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4731402/">Berisa and Pickrell</a>.     </p>
+<pre><code>gctb --bfile ldRef --make-block-ldm --block-info ref4cM_v37.pos --out ldm --thread 4
 </code></pre>
 <p>This command will generate a folder called <code>ldm</code> as specified by <code><span class="kwd">--out</span></code>. This folder will contain a serise of binary files for blocks <code>block*.ldm.bin</code>, a text file for genome-wide SNP information <code>snp.info</code>, and a text file for block information <code>ldm.info</code>. You can use <code><span class="kwd">--write-ldm-txt</span></code> to print the content in the binary file into text file for each block, which will generate another file called <code>block*.ldm.txt</code>.</p>
 <p>When resource for parallel computing is available, such as HPC cluters, we recommend to carry out this step by computing each block separately. This can be done by submitting the following commend as an array job (<code>i</code> is the job index).</p>
@@ -659,11 +659,12 @@ rs1003  1           1       1       0.7
 </code></pre>
 <h4 id="step2performeigendecompositionineachblock"><em>Step 2: perform eigen-decomposition in each block</em></h4>
 <p>Skip this step if you are using the eigen-decomposition data provided by us. The command below will perform eigen-decomposition for each block one by one and store the result in binary format <code>block*.eigen.bin</code> in folder <code>ldm</code>. Again, you can check the file content with <code><span class="kwd">--write-ldm-txt</span></code> which will produce a text file.</p>
-<pre><code>gctb --ldm ldm --make-ldm-eigen --out ldm
+<pre><code>gctb --ldm ldm --make-ldm-eigen --out ldm --thread 4
 </code></pre>
 <p>This step can also be done for each block in parallel by using array job submittion:</p>
 <pre><code>gctb --ldm ldm --make-ldm-eigen --block $i --out ldm
 </code></pre>
+<p>No merging is needed after completing all blocks.</p>
 <h2 id="faq">FAQ</h2>
 <h4 id="iobtainedapoorpredictionaccuracyusingsbayesrwhyisthatandcanitbeimprove">I obtained a poor prediction accuracy using SBayesR. Why is that and can it be improve?</h4>
 <p>If the prediction accuracy is unreasonably low using SBayesR, it is likely that a convergence problem has occurred for the trait analysed. Poor convergence will cause the SNP effect sizes to gradually "blow up" (keep increasing toward infinity) and eventually impair prediction accuracy. If you were using GCTB v2.01 or a lower version, you will usually find hsq (i.e., SNP-based heritability) increases to one and SigmaSq (i.e., the variance of SNP effects) keep increasing along with the MCMC iterations, as shown below for example. </p>

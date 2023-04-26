@@ -468,14 +468,14 @@ rs1003  1           1       1       0.7
 #### Step 1: Impute summary statistics for SNPs in LD reference but not in GWAS data.
 
 ```
-gctb --ldm-eigen ldm --gwas-summary test.ma --impute-summary --out test
+gctb --ldm-eigen ldm --gwas-summary test.ma --impute-summary --out test --thread 4
 ```
-This command will generate a text file `test.imputed.ma` which contains the summary statistics for all SNPs including those from the original GWAS file and those with imputed summary data. Use this file as input for the next step.  
+This command will generate a text file `test.imputed.ma` which contains the summary statistics for all SNPs including those from the original GWAS file and those with imputed summary data. Use this file as input for the next step. `--thread 4` enables multi-thread (e.g., 4 threads) computing and if it is ignored, a single thread will be used.
 
 #### Step 2: Run SBayesRC with annotation data.
 
 ```
-gctb --ldm-eigen ldm --gwas-summary test.imputed.ma --sbayes RC --annot annot.txt --out test
+gctb --ldm-eigen ldm --gwas-summary test.imputed.ma --sbayes RC --annot annot.txt --out test --thread 4
 ```
 This command will generate a text file for SNP effect estimates `test.snpRes`, text files for model parameters `test.parRes` and `test.parSetRes`, and a folder that stores the MCMC samples for all model parameters `test.mcmcsamples`.
 
@@ -491,10 +491,10 @@ In the case where eigen-decomposition needs to be performed, e.g., the GWAS data
 
 
 #### *Step 1: compute block-wise LD matrices*
-Skip this step if you are using the eigen-decomposition data provided by us. This step requires individual-level genotype data from LD reference `ldRef` and an input file that defines the boundaries of each block. Here, we use file `LDblockInfo.txt` which partitions the human genome into 591 approximately independent LD blocks, each with a width of at least 4 cM, based on the results of [Berisa and Pickrell](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4731402/).     
+Skip this step if you are using the eigen-decomposition data provided by us. This step requires individual-level genotype data from LD reference `ldRef` and a text input file that defines the boundaries of each block. Here, we use text file [ref4cM_v37.pos](download/ref4cM_v37.pos) which partitions the human genome into 591 approximately independent LD blocks, each with a width of at least 4 cM, based on the results of [Berisa and Pickrell](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4731402/).     
 
 ```
-gctb --bfile ldRef --make-block-ldm --block-info ldBlockInfo.txt --out ldm
+gctb --bfile ldRef --make-block-ldm --block-info ref4cM_v37.pos --out ldm --thread 4
 ```
 
 This command will generate a folder called `ldm` as specified by `--out`. This folder will contain a serise of binary files for blocks `block*.ldm.bin`, a text file for genome-wide SNP information `snp.info`, and a text file for block information `ldm.info`. You can use `--write-ldm-txt` to print the content in the binary file into text file for each block, which will generate another file called `block*.ldm.txt`.
@@ -515,7 +515,7 @@ gctb --ldm ldm --merge-block-ldm-info --out ldm
 Skip this step if you are using the eigen-decomposition data provided by us. The command below will perform eigen-decomposition for each block one by one and store the result in binary format `block*.eigen.bin` in folder `ldm`. Again, you can check the file content with `--write-ldm-txt` which will produce a text file.
 
 ```
-gctb --ldm ldm --make-ldm-eigen --out ldm
+gctb --ldm ldm --make-ldm-eigen --out ldm --thread 4
 ```
 
 This step can also be done for each block in parallel by using array job submittion:
@@ -524,4 +524,5 @@ This step can also be done for each block in parallel by using array job submitt
 gctb --ldm ldm --make-ldm-eigen --block $i --out ldm
 ```
 
+No merging is needed after completing all blocks.
 
