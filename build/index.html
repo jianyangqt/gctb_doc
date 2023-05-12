@@ -75,7 +75,7 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <p>Zeng et al. (2021) Bayesian analysis of GWAS summary data reveals differential signatures of natural selection across human complex traits and functional genomic categories. <a href="https://www.nature.com/articles/s41467-021-21446-3"><em>Nature Communications</em>, dio: 10.1038/s41467-021-21446-3.</a></p>
 <h2 id="downloadexpand" class="expand">Download </h2>
 <hr><h3 id="executable">Executable</h3>
-<p><a href="download/gctb_2.05beta_Linux.zip">gctb_2.05beta_Linux.zip</a> (<em>Lastest version</em>)</p>
+<p><a href="download/gctb_2.05beta_Linux.zip">gctb_2.05beta_Linux.zip</a> (<em>Lastest version updated at 10 May 2023</em>)</p>
 <hr><h3 id="sourcecode">Source code</h3>
 <p><a href="download/gctb_2.05beta_scr.zip">GCTB 2.05beta</a></p>
 <hr><h3 id="tutorialdata">Tutorial data</h3>
@@ -635,7 +635,7 @@ rs1003  1           1       1       0.7
 <h4 id="step1imputesummarystatisticsforsnpsinldreferencebutnotingwasdata">Step 1: Impute summary statistics for SNPs in LD reference but not in GWAS data.</h4>
 <pre><code>gctb --ldm-eigen ldm --gwas-summary test.ma --impute-summary --out test --thread 4
 </code></pre>
-<p>This command will generate a text file <code>test.imputed.ma</code> which contains the summary statistics for all SNPs including those from the original GWAS file and those with imputed summary data. Use this file as input for the next step. <code><span class="kwd">--thread</span> 4</code> enables multi-thread (e.g., 4 threads) computing and if it is ignored, a single thread will be used.</p>
+<p>This command will generate a text file <code>test.imputed.ma</code> which contains the summary statistics for all SNPs including those from the original GWAS file and those with imputed summary data. Use this file as input for the next step. <code><span class="kwd">--thread</span> 4</code> enables multi-thread (e.g., 4 threads) computing and if it is ignored, a single thread will be used. The imputation step is fully available for parallel computing across blocks and the runtime is expected to decrease linearly with the number of threads, so you can use as many cores as possible in your own computing platform for the best efficiency.</p>
 <h4 id="step2runsbayesrcwithannotationdata">Step 2: Run SBayesRC with annotation data.</h4>
 <pre><code>gctb --ldm-eigen ldm --gwas-summary test.imputed.ma --sbayes RC --annot annot.txt --out test --thread 4
 </code></pre>
@@ -651,17 +651,21 @@ rs1003  1           1       1       0.7
 <pre><code>gctb --bfile ldRef --make-block-ldm --block-info ref4cM_v37.pos --out ldm --thread 4
 </code></pre>
 <p>This command will generate a folder called <code>ldm</code> as specified by <code><span class="kwd">--out</span></code>. This folder will contain a serise of binary files for blocks <code>block*.ldm.bin</code>, a text file for genome-wide SNP information <code>snp.info</code>, and a text file for block information <code>ldm.info</code>. You can use <code><span class="kwd">--write-ldm-txt</span></code> to print the content in the binary file into text file for each block, which will generate another file called <code>block*.ldm.txt</code>.</p>
-<p>When resource for parallel computing is available, such as HPC cluters, we recommend to carry out this step by computing each block separately. This can be done by submitting the following commend as an array job (<code>i</code> is the job index).</p>
-<pre><code>gctb --bfile ldRef --make-block-ldm --block $i --block-info ldBlockInfo.txt --out ldm
+<p><strong>Tips for parallel computing:</strong> This step can be carried out by computing each chromosome or block separately. To compute chromosomes in parallel using array job submittion (<code>i</code> is the job index), you can do</p>
+<pre><code>gctb --bfile ldRef.chr$i --make-block-ldm --block-info ref4cM_v37.pos --out ldm --thread 4
 </code></pre>
-<p>After all blocks are done, run the command below to merge info files across blocks. Do not need to run this if you are not doing blocks separately.</p>
+<p>where <code>ldRef.chr$i</code> is the bed file that only contains data for the ith chromosome (while the ldBlockInfo file <code>ref4cM_v37.pos</code> is still genome-wide). To compute all blocks in parallel, you can do</p>
+<pre><code>gctb --bfile ldRef --make-block-ldm --block $i --block-info ref4cM_v37.pos --out ldm
+</code></pre>
+<p>where <code>ldRef</code> needs to be the genome-wide bed file. Here using a single thread is sufficient.</p>
+<p>After all chromosomes/blocks are done, run the command below to merge info files across blocks. Do not need to run this if you are NOT doing chromosomes/blocks separately.</p>
 <pre><code>gctb --ldm ldm --merge-block-ldm-info --out ldm
 </code></pre>
 <h4 id="step2performeigendecompositionineachblock"><em>Step 2: perform eigen-decomposition in each block</em></h4>
 <p>Skip this step if you are using the eigen-decomposition data provided by us. The command below will perform eigen-decomposition for each block one by one and store the result in binary format <code>block*.eigen.bin</code> in folder <code>ldm</code>. Again, you can check the file content with <code><span class="kwd">--write-ldm-txt</span></code> which will produce a text file.</p>
 <pre><code>gctb --ldm ldm --make-ldm-eigen --out ldm --thread 4
 </code></pre>
-<p>This step can also be done for each block in parallel by using array job submittion:</p>
+<p><strong>Tips for parallel computing:</strong> This step can also be done for each block in parallel by using array job submittion:</p>
 <pre><code>gctb --ldm ldm --make-ldm-eigen --block $i --out ldm
 </code></pre>
 <p>No merging is needed after completing all blocks.</p>

@@ -1,7 +1,7 @@
 
 ## Download {: .expand}
 ### Executable
-[gctb\_2.05beta\_Linux.zip](download/gctb_2.05beta_Linux.zip) (*Lastest version*)
+[gctb\_2.05beta\_Linux.zip](download/gctb_2.05beta_Linux.zip) (*Lastest version updated at 10 May 2023*)
 
 ### Source code
 [GCTB 2.05beta](download/gctb_2.05beta_scr.zip)
