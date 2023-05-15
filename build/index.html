@@ -75,7 +75,7 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <p>Zeng et al. (2021) Bayesian analysis of GWAS summary data reveals differential signatures of natural selection across human complex traits and functional genomic categories. <a href="https://www.nature.com/articles/s41467-021-21446-3"><em>Nature Communications</em>, dio: 10.1038/s41467-021-21446-3.</a></p>
 <h2 id="downloadexpand" class="expand">Download </h2>
 <hr><h3 id="executable">Executable</h3>
-<p><a href="download/gctb_2.05beta_Linux.zip">gctb_2.05beta_Linux.zip</a> (<em>Lastest version updated at 10 May 2023</em>)</p>
+<p><a href="download/gctb_2.05beta_Linux.zip">gctb_2.05beta_Linux.zip</a> (<em>Lastest version updated at 15 May 2023</em>)</p>
 <hr><h3 id="sourcecode">Source code</h3>
 <p><a href="download/gctb_2.05beta_scr.zip">GCTB 2.05beta</a></p>
 <hr><h3 id="tutorialdata">Tutorial data</h3>
@@ -632,10 +632,16 @@ rs1001  1           1       0       0.2
 rs1002  1           0       1       -1.5
 rs1003  1           1       1       0.7
 </code></pre>
-<h4 id="step1imputesummarystatisticsforsnpsinldreferencebutnotingwasdata">Step 1: Impute summary statistics for SNPs in LD reference but not in GWAS data.</h4>
+<h4 id="step1qcimputationofsummarystatisticsforsnpsinldreferencebutnotingwasdata">Step 1: QC &amp; imputation of summary statistics for SNPs in LD reference but not in GWAS data.</h4>
 <pre><code>gctb --ldm-eigen ldm --gwas-summary test.ma --impute-summary --out test --thread 4
 </code></pre>
-<p>This command will generate a text file <code>test.imputed.ma</code> which contains the summary statistics for all SNPs including those from the original GWAS file and those with imputed summary data. Use this file as input for the next step. <code><span class="kwd">--thread</span> 4</code> enables multi-thread (e.g., 4 threads) computing and if it is ignored, a single thread will be used. The imputation step is fully available for parallel computing across blocks and the runtime is expected to decrease linearly with the number of threads, so you can use as many cores as possible in your own computing platform for the best efficiency.</p>
+<p>This command will generate a text file <code>test.imputed.ma</code> which contains the summary statistics for all SNPs including those from the original GWAS file and those with imputed summary data. Use this file as input for the next step. <code><span class="kwd">--thread</span> 4</code> enables multi-thread (e.g., 4 threads) computing and if it is ignored, a single thread will be used. Before imputation, a QC step is carried out to match alleles between GWAS and reference samples and remove SNPs with per-SNP sample size beyond 3 standard deviation acround the median in GWAS.</p>
+<p><strong>Tips for parallel computing:</strong> The imputation step is fully available for parallel computing across blocks and the runtime is expected to decrease linearly with the number of threads, so you can use as many cores as possible in your own computing platform. Alternatively, for the best efficiency, you can impute each block separately by using <code><span class="kwd">--block</span> $i</code> where i starts from 1 to the total number of blocks:</p>
+<pre><code>gctb --ldm-eigen ldm --gwas-summary test.ma --impute-summary --block $i --out test
+</code></pre>
+<p>This command will generate a text file <code>test.block$i.imputed.ma</code> for each block. After all blocks are finished, use the following command to merge all <code>.ma</code> files across block into a single file with genome-wide SNPs:</p>
+<pre><code>gctb --gwas-summary test --merge-block-gwas-summary --out test.imputed
+</code></pre>
 <h4 id="step2runsbayesrcwithannotationdata">Step 2: Run SBayesRC with annotation data.</h4>
 <pre><code>gctb --ldm-eigen ldm --gwas-summary test.imputed.ma --sbayes RC --annot annot.txt --out test --thread 4
 </code></pre>

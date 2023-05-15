@@ -465,12 +465,21 @@ rs1002  1           0       1       -1.5
 rs1003  1           1       1       0.7
 ```
 
-#### Step 1: Impute summary statistics for SNPs in LD reference but not in GWAS data.
+#### Step 1: QC & imputation of summary statistics for SNPs in LD reference but not in GWAS data.
 
 ```
 gctb --ldm-eigen ldm --gwas-summary test.ma --impute-summary --out test --thread 4
 ```
-This command will generate a text file `test.imputed.ma` which contains the summary statistics for all SNPs including those from the original GWAS file and those with imputed summary data. Use this file as input for the next step. `--thread 4` enables multi-thread (e.g., 4 threads) computing and if it is ignored, a single thread will be used. The imputation step is fully available for parallel computing across blocks and the runtime is expected to decrease linearly with the number of threads, so you can use as many cores as possible in your own computing platform for the best efficiency.
+This command will generate a text file `test.imputed.ma` which contains the summary statistics for all SNPs including those from the original GWAS file and those with imputed summary data. Use this file as input for the next step. `--thread 4` enables multi-thread (e.g., 4 threads) computing and if it is ignored, a single thread will be used. Before imputation, a QC step is carried out to match alleles between GWAS and reference samples and remove SNPs with per-SNP sample size beyond 3 standard deviation acround the median in GWAS.
+
+**Tips for parallel computing:** The imputation step is fully available for parallel computing across blocks and the runtime is expected to decrease linearly with the number of threads, so you can use as many cores as possible in your own computing platform. Alternatively, for the best efficiency, you can impute each block separately by using `--block $i` where i starts from 1 to the total number of blocks:
+```
+gctb --ldm-eigen ldm --gwas-summary test.ma --impute-summary --block $i --out test
+```
+This command will generate a text file `test.block$i.imputed.ma` for each block. After all blocks are finished, use the following command to merge all `.ma` files across block into a single file with genome-wide SNPs:
+```
+gctb --gwas-summary test --merge-block-gwas-summary --out test.imputed
+```
 
 #### Step 2: Run SBayesRC with annotation data.
 
