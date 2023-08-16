@@ -34,6 +34,10 @@ The sparse matrices described in [Zeng et al. (2021)](https://www.nature.com/art
 
 While the shrunk sparse matrices were used in our original SBayesR paper, [Prive et al. (2021)](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btaa1029/6039173) found that using a banded matrix with a window size of 3 cM per SNP can improve prediction accuracy. Therefore, we have created such a LD matrix in GCTB format for SBayesR analysis.
 
+### Data share
+The summary data from [Zheng et al. 2022 on BioRxiv](https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1) can be downloaded here: [summary data](https://plot.cnsgenomics.com/summary/), and the corresponding PGS weights can be found here: [PGS weights](https://plot.cnsgenomics.com/PGS/). It's important to note that the PGS weights were estimated using UK Biobank data of the European ancestry, so they should be applied to individuals of the same ancestry. If you encounter missing SNPs in your genotype data, we recommend considering genotype imputation or rerunning SBayesRC with the matched set of SNPs.
+
+
 ### Older versions
 
 gctb_2.04.3: [[Linux executable](download/gctb_2.04.3_Linux.zip)] [[source code](download/gctb_2.04.3_scr.zip)]
