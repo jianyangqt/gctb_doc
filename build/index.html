@@ -75,9 +75,9 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <p>Zeng et al. (2021) Bayesian analysis of GWAS summary data reveals differential signatures of natural selection across human complex traits and functional genomic categories. <a href="https://www.nature.com/articles/s41467-021-21446-3"><em>Nature Communications</em>, dio: 10.1038/s41467-021-21446-3.</a></p>
 <h2 id="downloadexpand" class="expand">Download </h2>
 <hr><h3 id="executable">Executable</h3>
-<p><a href="download/gctb_2.05beta_Linux.zip">gctb_2.05beta_Linux.zip</a> (<em>Lastest version updated at 15 May 2023</em>)</p>
+<p><a href="download/gctb_2.5.1_Linux.zip">gctb_2.5.1_Linux.zip</a> (<em>Lastest version updated in 29 April 2024</em>)</p>
 <hr><h3 id="sourcecode">Source code</h3>
-<p><a href="download/gctb_2.05beta_scr.zip">GCTB 2.05beta</a></p>
+<p><a href="download/gctb_2.5.1_scr.zip">GCTB 2.5.1</a></p>
 <hr><h3 id="tutorialdata">Tutorial data</h3>
 <p><a href="download/gctb_2.0_tutorial.zip">GCTB tutorial data</a></p>
 <hr><h3 id="eigendecompositiondataofldmatrices">Eigen-decomposition data of LD matrices</h3>
@@ -106,6 +106,7 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <hr><h3 id="summarydataandpgsweights">Summary data and PGS weights</h3>
 <p>The summary data for the 28 approximately independent UKB traits analysed in <a href="https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1">Zheng et al. 2022</a> can be downloaded here: <a href="https://plot.cnsgenomics.com/summary/">summary data</a>, and the corresponding PGS weights can be found here: <a href="https://plot.cnsgenomics.com/PGS/">PGS weights</a>. The PGS weights are joint effect estimates derived from ~7 million genome-wide SNPs, therefore it’s important to have matched SNP set between training and validation datasets. This is because if some important SNPs present in the training are missing in the validation, the genetic effects captured by these SNPs will be lost. To maximise the utility of the joint SNP weights, we recommend considering genotype imputation or rerunning SBayesRC with the matched set of SNPs. In addition, note that the PGS weights were estimated using samples of the European ancestry, so they will perform best when applying to individuals of the European ancestry.</p>
 <hr><h3 id="olderversions">Older versions</h3>
+<p>gctb_2.05beta: [<a href="download/gctb_2.05beta_Linux.zip">Linux executable</a>] [<a href="download/gctb_2.05beta_scr.zip">source code</a>]</p>
 <p>gctb_2.04.3: [<a href="download/gctb_2.04.3_Linux.zip">Linux executable</a>] [<a href="download/gctb_2.04.3_scr.zip">source code</a>]</p>
 <p>gctb_2.03beta: [<a href="download/gctb_2.03beta_Linux.zip">Linux executable</a>]  [<a href="download/gctb_2.03beta_scr.zip">source code</a>]</p>
 <p>gctb_2.02: [<a href="download/gctb_2.02_Linux.zip">Linux executable</a>]</p>
@@ -119,6 +120,7 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <p><strong>4.</strong> 15 Oct, 2021: version 2.03beta includes a robust parameterisation that attempts to address convergence issue.</p>
 <p><strong>5.</strong> 12 Dec, 2022: version 2.04.3 includes additional random effect component in BayesC and BayesR models to capture non-SNP random effects.</p>
 <p><strong>6.</strong> 11 April, 2023: version 2.05beta implements SBayesRC (SBayesR with the low-rank model) for polygenic prediction incorporating functional genomic annotations.</p>
+<p><strong>7.</strong> 29 April, 2024: version 2.5.1 adds functions for fine-mapping and to remove problematic SNPs during MCMC in SBayesRC.</p>
 <h2 id="basicoptionsexpand" class="expand">Basic options </h2>
 <hr><h3 id="inputandoutput">Input and output</h3>
 <p><strong><span class="kwd">--bfile</span></strong> test</p>

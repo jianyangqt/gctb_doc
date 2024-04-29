@@ -1,10 +1,10 @@
 
 ## Download {: .expand}
 ### Executable
-[gctb\_2.05beta\_Linux.zip](download/gctb_2.05beta_Linux.zip) (*Lastest version updated at 15 May 2023*)
+[gctb\_2.5.1\_Linux.zip](download/gctb_2.5.1_Linux.zip) (*Lastest version updated in 29 April 2024*)
 
 ### Source code
-[GCTB 2.05beta](download/gctb_2.05beta_scr.zip)
+[GCTB 2.5.1](download/gctb_2.5.1_scr.zip)
 
 ### Tutorial data
 [GCTB tutorial data](download/gctb_2.0_tutorial.zip)
@@ -39,6 +39,8 @@ The summary data for the 28 approximately independent UKB traits analysed in [Zh
 
 ### Older versions
 
+gctb_2.05beta: [[Linux executable](download/gctb_2.05beta_Linux.zip)] [[source code](download/gctb_2.05beta_scr.zip)]
+
 gctb_2.04.3: [[Linux executable](download/gctb_2.04.3_Linux.zip)] [[source code](download/gctb_2.04.3_scr.zip)]
 
 gctb_2.03beta: [[Linux executable](download/gctb_2.03beta_Linux.zip)]  [[source code](download/gctb_2.03beta_scr.zip)]
@@ -66,3 +68,5 @@ The MPI version implements a distributed computing strategy that scales the anal
 **5.** 12 Dec, 2022: version 2.04.3 includes additional random effect component in BayesC and BayesR models to capture non-SNP random effects.
 
 **6.** 11 April, 2023: version 2.05beta implements SBayesRC (SBayesR with the low-rank model) for polygenic prediction incorporating functional genomic annotations.
+
+**7.** 29 April, 2024: version 2.5.1 adds functions for fine-mapping and to remove problematic SNPs during MCMC in SBayesRC.
