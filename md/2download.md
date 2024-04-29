@@ -12,11 +12,11 @@
 ### Eigen-decomposition data of LD matrices
 The eigen-decomposition data are for SBayesRC and SBayesR with the low-rank model. In the follwoing link, we provide data derived from unrelated UKB individuals of Europan (EUR), East Asian (EAS), and African (AFR) ancestires. See our [manuscript](https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1) and [Tutorial](https://cnsgenomics.com/software/gctb/#Tutorial) for details.
 
-* [1M HapMap3 SNPs](https://plot.cnsgenomics.com/SBayesRC/LD/HapMap3/)
-* [7M Imputed SNPs](https://plot.cnsgenomics.com/SBayesRC/LD/Imputed/)
+* [1M HapMap3 SNPs](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/v2.0/LD/HapMap3/)
+* [7M Imputed SNPs](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/v2.0/LD/Imputed/)
 
 ### Functional genomic annotations
-Download the [formatted data](https://plot.cnsgenomics.com/SBayesRC/Annotation/annot_baseline2.2.zip) for per-SNP functional annotations derived from [S-LDSC BaselineLDv2.2](https://www.nature.com/articles/ng.3954). 
+Download the [formatted data](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/v2.0/Annotation/annot_baseline2.2.zip) for per-SNP functional annotations derived from [S-LDSC BaselineLDv2.2](https://www.nature.com/articles/ng.3954). 
 
 ### LD matrices
 The following LD matrices were computed based on 1.1 million common SNPs in a random sample of 50K unrelated individuals of European ancestry in UK Biobank dataset unless otherwise noted.
@@ -35,7 +35,7 @@ The sparse matrices described in [Zeng et al. (2021)](https://www.nature.com/art
 While the shrunk sparse matrices were used in our original SBayesR paper, [Prive et al. (2021)](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btaa1029/6039173) found that using a banded matrix with a window size of 3 cM per SNP can improve prediction accuracy. Therefore, we have created such a LD matrix in GCTB format for SBayesR analysis.
 
 ### Summary data and PGS weights
-The summary data for the 28 approximately independent UKB traits analysed in [Zheng et al. 2022](https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1) can be downloaded here: [summary data](https://plot.cnsgenomics.com/summary/), and the corresponding PGS weights can be found here: [PGS weights]( https://plot.cnsgenomics.com/PGS/). The PGS weights are joint effect estimates derived from ~7 million genome-wide SNPs, therefore it’s important to have matched SNP set between training and validation datasets. This is because if some important SNPs present in the training are missing in the validation, the genetic effects captured by these SNPs will be lost. To maximise the utility of the joint SNP weights, we recommend considering genotype imputation or rerunning SBayesRC with the matched set of SNPs. In addition, note that the PGS weights were estimated using samples of the European ancestry, so they will perform best when applying to individuals of the European ancestry.
+The summary data for the 28 approximately independent UKB traits analysed in [Zheng et al. 2022](https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1) can be downloaded here: [summary data](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/share/v1.0/summary/), and the corresponding PGS weights can be found here: [PGS weights](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/share/v1.0/PGS/). The PGS weights are joint effect estimates derived from ~7 million genome-wide SNPs, therefore it’s important to have matched SNP set between training and validation datasets. This is because if some important SNPs present in the training are missing in the validation, the genetic effects captured by these SNPs will be lost. To maximise the utility of the joint SNP weights, we recommend considering genotype imputation or rerunning SBayesRC with the matched set of SNPs. In addition, note that the PGS weights were estimated using samples of the European ancestry, so they will perform best when applying to individuals of the European ancestry.
 
 ### Older versions
 
