@@ -1,10 +1,10 @@
 
 ## Download {: .expand}
 ### Executable
-[gctb\_2.5.1\_Linux.zip](download/gctb_2.5.1_Linux.zip) (*Lastest version updated in 29 April 2024*)
+[gctb\_2.5.2\_Linux.zip](download/gctb_2.5.2_Linux.zip) (*Lastest version updated in 20 June 2024*)
 
 ### Source code
-[GCTB 2.5.1](download/gctb_2.5.1_scr.zip)
+[GCTB 2.5.2](download/gctb_2.5.2_scr.zip)
 
 ### Tutorial data
 [GCTB tutorial data](download/gctb_2.0_tutorial.zip)
@@ -35,9 +35,11 @@ The sparse matrices described in [Zeng et al. (2021)](https://www.nature.com/art
 While the shrunk sparse matrices were used in our original SBayesR paper, [Prive et al. (2021)](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btaa1029/6039173) found that using a banded matrix with a window size of 3 cM per SNP can improve prediction accuracy. Therefore, we have created such a LD matrix in GCTB format for SBayesR analysis.
 
 ### Summary data and PGS weights
-The summary data for the 28 approximately independent UKB traits analysed in [Zheng et al. 2022](https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1) can be downloaded here: [summary data](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/share/v1.0/summary/), and the corresponding PGS weights can be found here: [PGS weights](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/share/v1.0/PGS/). The PGS weights are joint effect estimates derived from ~7 million genome-wide SNPs, therefore it’s important to have matched SNP set between training and validation datasets. This is because if some important SNPs present in the training are missing in the validation, the genetic effects captured by these SNPs will be lost. To maximise the utility of the joint SNP weights, we recommend considering genotype imputation or rerunning SBayesRC with the matched set of SNPs. In addition, note that the PGS weights were estimated using samples of the European ancestry, so they will perform best when applying to individuals of the European ancestry.
+The summary data for the 50 (including 28 approximately independent) UKB traits analysed in [Zheng et al. 2022](https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1) can be downloaded here: [summary data](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/share/v1.0/summary/), and the corresponding PGS weights can be found here: [PGS weights](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/share/v1.0/PGS/). The PGS weights are joint effect estimates derived from ~7 million genome-wide SNPs, therefore it’s important to have matched SNP set between training and validation datasets. This is because if some important SNPs present in the training are missing in the validation, the genetic effects captured by these SNPs will be lost. To maximise the utility of the joint SNP weights, we recommend considering genotype imputation or rerunning SBayesRC with the matched set of SNPs. In addition, note that the PGS weights were estimated using samples of the European ancestry, so they will perform best when applying to individuals of the European ancestry.
 
 ### Older versions
+
+gctb_2.5.1: [[Linux executable](download/gctb_2.5.1_Linux.zip)] [[source code](download/gctb_2.5.1_scr.zip)]
 
 gctb_2.05beta: [[Linux executable](download/gctb_2.05beta_Linux.zip)] [[source code](download/gctb_2.05beta_scr.zip)]
 
@@ -70,3 +72,5 @@ The MPI version implements a distributed computing strategy that scales the anal
 **6.** 11 April, 2023: version 2.05beta implements SBayesRC (SBayesR with the low-rank model) for polygenic prediction incorporating functional genomic annotations.
 
 **7.** 29 April, 2024: version 2.5.1 adds functions for fine-mapping and to remove problematic SNPs during MCMC in SBayesRC.
+
+**8.** 20 June, 2024: version 2.5.2 fixed bugs regarding -nan SigmaSq results and adds LD-based approach for computing credible sets.

@@ -9,7 +9,7 @@ used to estimate the effect for each SNP, the allele frequency of an allele, and
 accessible from public databases.
 
 This tutorial will outline how to use the summary data based methods and accompanies the manuscript 
-[Improved polygenic prediction by Bayesian multiple regression on summary statistics](https://www.biorxiv.org/content/10.1101/522961v3?rss=1). To recreate the tutorial you will need the [PLINK 2](https://www.cog-genomics.org/plink/2.0/) software and 
+[Improved polygenic prediction by Bayesian multiple regression on summary statistics](https://www.nature.com/articles/s41467-019-12653-0). To recreate the tutorial you will need the [PLINK 2](https://www.cog-genomics.org/plink/2.0/) software and 
 the updated version of the [GCTB](https://cnsgenomics.com/software/gctb/) software [compiled](https://cnsgenomics.com/software/gctb/download/README.html) from source or the binary executable in your path. The data for the tutorial are available at [Download](https://cnsgenomics.com/software/gctb/#Download). The tutorial is designed so that each part can be reconstructed or picked up at any point with the
 following directory structure. 
 
@@ -442,7 +442,7 @@ running the summary data based methods in GCTB.
 
 ### SBayesRC Tutorial
 
-SBayesRC is a method that incorporates functional genomic annotations with high-density SNPs (> 7 millions) for polygenic prediction. Our manuscript is available at [here](https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1).
+SBayesRC is a method that incorporates functional genomic annotations with high-density SNPs (> 7 millions) for polygenic prediction. Our manuscript is available at [here](https://www.nature.com/articles/s41588-024-01704-y).
 
 This method is based on a low-rank approximation which utilises the eigenvalues and eigenvectors of block-wise LD correlation matrices. It requires SNPs that are included in the LD reference to be also present in the GWAS samples. Thus, the first step is to impute the GWAS summary statistics for any missing SNPs that are only present in the LD reference. If there are more than 30% of missing SNPs, we recommend to recompute the eigen-decomposition based on a matched LD reference sample (see below).
 
@@ -540,4 +540,67 @@ gctb --ldm ldm --make-ldm-eigen --block $i --out ldm
 ```
 
 No merging is needed after completing all blocks.
+
+
+
+
+### Genome-wide Fine-mapping analysis
+
+The Genome-wide Bayesian Mixture Model (GBMM) implemented in GCTB (e.g., SBayesRC) can perform genome-wide fine-mapping analysis. These methods require summary-level data from genome-wide association studies (GWAS) and linkage disequilibrium (LD) data from a reference sample. Our manuscript is currently under review and available at here (link to manuscript). 
+
+We outline below on how to perform the genome-wide fine-mapping analysis and calculate the credible set using GCTB.
+
+#### Run genome-wide fine-mapping analysis
+
+```
+gctb --sbayes RC --ldm-eigen ldm --gwas-summary test.ma --annot annot.txt --n-dist-auto --write-mcmc-bin --out test --thread 4
+```
+
+**\--sbayes** specifies the method to perform genome-wide fine-mapping analysis, e.g., RC.
+
+**\--ldm-eigen** specifies a folder containing the eigen-decomposition LD reference data for each block. 
+
+**\--gwas-summary** reads summary-level data from GWAS.
+
+**\--annot** reads the annotation file.
+
+**\--n-dist-auto** allows SBayesRC or SBayesR to automatically choose the number of mixture components.
+
+**\--write-mcmc-bin** outputs the MCMC samples in binary format, required output to compute credible sets.
+
+**\--out** saves the genome-wide fine-mapping results for each SNP in .snpRes file and estimates of genetic architecture in .parRes file.
+
+**\--thread** specifies the number of threads to use. 
+
+Detailed instructions on generating the eigen-decomposition-based LD reference, on format of GWAS summary data and annotation file can be found at [Download](https://cnsgenomics.com/software/gctb/#Download). 
+
+#### Calculate credible sets
+
+```
+gctb --cs –-ld-file ldfile –-pip 0.9 –-mcmc-samples test --out test 
+```
+
+**\--cs** turns on the flag to calculate credible sets.
+
+**\--pip** specifies the threshold for the coverage of the credible set. 
+
+**\--mcmc-samples** reads the MCMC samples output from the genome-wide fine-mapping analysis (see instructions above).  
+
+**\--out** saves the full local credible set results in .lcs and summary of local credible set result in .lcsRes. Saves the full global credible set results in .gcs and summary of global credible set result in .gcsRes.
+
+**\--ld-file** reads the LD file containing pairwise LD \\$r^2\\$ > 0.5 between SNPs.  
+
+The required LD file with pairwise LD \\$r^2\\$ > 0.5 in each LD block can be computed using GCTB and eigen-decomposition LD reference with command line below,
+
+```
+gctb –-get-ld --ld-eigen ldm –-rsq 0.5 --out test --thread 4
+```
+
+**\--get-ld** turns on the flag to compute pairwise LD file using eigen-decomposition based LD reference files.
+
+**\--ldm-eigen** specifies a folder containing the eigen-decomposition LD reference data for each block. 
+
+**\--rsq** specifies the \\$r^2\\$ threshold used to output the pairwise LD result. 
+
+**\--out** saves the LD file with pairwise LD \\$r^2\\$ > 0.5.
 

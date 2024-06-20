@@ -4,7 +4,7 @@
 
 GCTB is a software tool that comprises a family of Bayesian linear mixed models for complex trait analyses using genome-wide SNPs. It was developed to simultaneously estimate the joint effects of all SNPs and the genetic architecture parameters for a complex trait, including SNP-based heritability, polygenicity and the joint distribution of effect sizes and minor allele frequencies. 
 
-Version 2.0 of the GCTB software includes summary-data-based versions of the individual-level data Bayesian linear mixed models previsouly implemented.
+Version 2.0 or above of the GCTB software includes summary-data-based versions of the individual-level data Bayesian linear mixed models previsouly implemented.
 
 ### Credits 
 
@@ -23,7 +23,7 @@ Version 2.0 of the software was developed by Jian Zeng with contributions from L
 
 ### Questions and Help Requests 
 
-If you have any bug reports or questions, please send an email to Jian Zeng (<j.zeng@uq.edu.au>), Luke Lloyd-Jones (<luke.lloydjones@uqconnect.edu.au>) or Jian Yang (<jian.yang@uq.edu.au>).
+If you have any bug reports or questions, please send an email to Jian Zeng (<j.zeng@uq.edu.au>).
 
 ### Citation 
 
@@ -31,7 +31,7 @@ Zeng et al. (2018) Signatures of negative selection in the genetic architecture 
 [*Nature Genetics*, doi: 10.1038/s41588-018-0101-4.](https://www.nature.com/articles/s41588-018-0101-4)
 
 #### SBayesRC
-Zheng et al. (2022) Leveraging functional genomic annotations and genome coverage to improve polygenic prediction of complex traits within and between ancestries. [*bioRxiv* 2022.10.12.510418; doi: https://doi.org/10.1101/2022.10.12.510418](https://doi.org/10.1101/2022.10.12.510418)
+Zheng et al. (2024) Leveraging functional genomic annotations and genome coverage to improve polygenic prediction of complex traits within and between ancestries. [*Nature Genetics*, doi: 10.1038/s41588-024-01704-y.](https://www.nature.com/articles/s41588-024-01704-y)
 
 #### SBayesR
 Lloyd-Jones, Zeng et al. (2019) Improved polygenic prediction by Bayesian multiple regression on summary statistics. [*Nature Communications*, doi: 10.1038/s41467-019-12653-0.](https://www.nature.com/articles/s41467-019-12653-0)
