@@ -548,55 +548,140 @@ No merging is needed after completing all blocks.
 
 The Genome-wide Bayesian Mixture Model (GBMM) implemented in GCTB (e.g., SBayesRC) can perform genome-wide fine-mapping analysis. These methods require summary-level data from genome-wide association studies (GWAS) and linkage disequilibrium (LD) data from a reference sample. Our manuscript is currently under review and available at here (link to manuscript). 
 
-We outline below on how to perform the genome-wide fine-mapping analysis and calculate the credible set using GCTB.
+We outline below on how to perform the genome-wide fine-mapping (GWFM) analysis and calculate the credible set using GCTB.
 
 #### Run genome-wide fine-mapping analysis
 
 ```
-gctb --sbayes RC --ldm-eigen ldm --gwas-summary test.ma --annot annot.txt --n-dist-auto --write-mcmc-bin --out test --thread 4
+gctb --gwfm RC --ldm-eigen ldm --gwas-summary test.ma --annot annot.txt --gene-map gene_map.txt --thread 32 --out test
 ```
 
-**\--sbayes** specifies the method to perform genome-wide fine-mapping analysis, e.g., RC.
+**\--gwfm** specifies the method to perform genome-wide fine-mapping analysis, e.g., RC.
 
-**\--ldm-eigen** specifies a folder containing the eigen-decomposition LD reference data for each block. 
+**\--ldm-eigen** specifies a folder containing the eigen-decomposition LD reference data for each block. We have computed these data for 13 million SNPs using a sample of European ancestry, which are available at [Download](https://cnsgenomics.com/software/gctb/#Download).
 
-**\--gwas-summary** reads summary-level data from GWAS.
-
-**\--annot** reads the annotation file.
-
-**\--n-dist-auto** allows SBayesRC or SBayesR to automatically choose the number of mixture components.
-
-**\--write-mcmc-bin** outputs the MCMC samples in binary format, required output to compute credible sets.
-
-**\--out** saves the genome-wide fine-mapping results for each SNP in .snpRes file and estimates of genetic architecture in .parRes file.
-
-**\--thread** specifies the number of threads to use. 
-
-Detailed instructions on generating the eigen-decomposition-based LD reference, on format of GWAS summary data and annotation file can be found at [Download](https://cnsgenomics.com/software/gctb/#Download). 
-
-#### Calculate credible sets
-
+**\--gwas-summary** reads summary-level data from GWAS. The file format is as follows:
 ```
-gctb --cs –-ld-file ldfile –-pip 0.9 –-mcmc-samples test --out test 
+SNP A1 A2 freq b se p N 
+rs1001 A G 0.8493 0.0024 0.0055 0.6653 129850 
+rs1002 C G 0.0306 0.0034 0.0115 0.7659 129799 
+rs1003 A C 0.5128 0.0045 0.0038 0.2319 129830
 ```
 
-**\--cs** turns on the flag to calculate credible sets.
+**\--annot** reads the annotation file. The file format is as follows, with columns being SNP ID, Intercept (a column of one), and annotation values. You can include an arbitary number of annotations. A set of 96 annotations for 13 million SNPs is available at [Download](https://cnsgenomics.com/software/gctb/#Download). 
+```
+SNP     Intercept   Anno1   Anno2   Anno3 
+rs1001  1           1       0       0.2
+rs1002  1           0       1       -1.5
+rs1003  1           1       1       0.7
+```
+
+
+**\--gene-map** specifies gene map file to annotate the nearest gene for the identified credible set, which is available at [Download](https://cnsgenomics.com/software/gctb/#Download). This flag is optional. The file format is as follows. The genome build can be selected using **\--genome-build** (hg19 or hg38). hg19 is used as default. 
+```
+Ensgid          GeneName        GeneType        Chrom_hg38      Start_hg38      End_hg38        Chrom_hg19      Start_hg19      End_hg19
+ENSG00000290825 DDX11L2         lncRNA          1               11869           14409           1               11869           14409
+ENSG00000186092 OR4F5           protein_coding  1               65419           71585           1               65419           71585
+```
+
+**\--thread** specifies the number of threads to use. The recommended number is 32 (or any value which is a multiple of 4) because by default 4 MCMC chains are used which can be run in parallel (8 cores per chain if 32 is used).
+
+**\--out** saves the genome-wide fine-mapping result files with the given prefix filename. The result files include (if test is fused as the filename): 
+
+`test.snpRes` shows SNP effect and PIP estimates.
+```
+Index  Name         Chrom   Position   A1   A2   A1Frq      A1Effect    SE         VarExplained   PEP          PIP            GelmanRubin_R
+1      rs12132974   1       801661     T    C    0.075000   -0.000026   0.000270   1.02e-08       0.010000     0.00662249     1.32981
+2      rs12134490   1       801680     C    A    0.075000   0.000010    0.000138   2.67e-09       0.001250     0.00811219     1.44818
+```
+where columns are SNP position index, SNP name, SNP chromosome, SNP position, the eﬀect (coded) allele, the other allele, frequency of the eﬀect allele, estimated posterior eﬀect size, SE for the estimated posterior effect size, posterior SNP-based heritability enrichment probability (PEP), posterior inclusion probability (PIP), and Gelman & Rubin’s R statistics for convergence assessment.
+
+`test.parRes` shows genetic architecture estimates. 
+
+`test.parSetRes` shows annotation-specific parameter estimates.
+
+`test.enrich` shows per-SNP heritability enrichment estimate in each annotation.
+
+`test.mcmcsamples` shows MCMC samples of SNP effects in binary format, which is used to compute credible sets’ posterior heritability enrichment probability (PEP).
+
+`test.skepticalSNPs` shows a list of SNPs whose joint effects are set to zero because their effects are likely blowing up due to poor data quality or large difference in LD between the GWAS and reference samples.
+
+`test.lcs` shows the identified local credible sets.
+```
+CS   Size  PIP        PGV        PGVenrich     PEP         NumUnconvgSNPs  SNP                  ENSGID_hg19       GeneName_hg19 
+1    1     1.000000   0.000379   437.109253    1.000000    0               rs2066827            ENSG00000111276   CDKN1B
+2    2     1.025764   0.000162   93.409187     0.956250    0               rs2641670,rs2646108  ENSG00000103196   CRISPLD2
+```
+where columns are credible set (CS) index, number of SNPs in the CS, cumulative PIP across SNPs in the CS, proportion of genetic variance explained by the CS, fold enrichment of genetic variance explained, posterior enrichment probability, number of SNPs with Gelman & Rubin’s R statistic > 1.2 (indicating likely non-convergence), SNPs in the CS, ensemble ID for the nearest gene to the CS, name of the nearest gene to the CS.
+
+`test.lcsRes` shows the summary statistics for the identified local credible sets. For example,
+```
+                                   PIP threshold:           0.9
+                                   PEP threshold:           0.7
+                   Number of 1-SNP credible sets:           313
+               Number of multi-SNP credible sets:          1724
+           Total number of SNPs in credible sets:          6389
+                       Average credible set size:           3.1
+       Estimated total number of causal variants:       42712.8
+                                 Estimated power:        0.0477
+  Estimated number of identified causal variants:        2039.3
+      Estimated proportion of variance explained:        0.3713
+```
+
+`test.gcs` shows the identified global credible sets. The first column shows the estimated percentage of causal variants included by the global credible set.
+```
+Alpha          SNP          PIP
+ 0.01    rs4670775            1
+ 0.01    rs2066827            1
+```
+
+`test.gcsRes` shows the summary statistics for the identified global credible sets.
+```
+Threshold     CS_size     Prop_hsq
+    0.01          457     0.129471
+    0.05         3945     0.323758
+     0.1        12160     0.458595
+     0.2        41186     0.614211
+     0.3        86449     0.708990
+     0.4       148123     0.776145
+     0.5       227297     0.830163
+     0.6       326394     0.875781
+     0.7       450175     0.914510
+     0.8       607494     0.947969
+     0.9       817326     0.976685
+       1      1153584     1.000000
+```
+
+#### (Re)calculate credible sets
+
+```
+gctb --cs --pwld-file ldm/rsq0.5.pwld --pip 0.9 --pep 0.7 --gene-map gene_map.txt --flank 5000 --genome-build hg19 --mcmc-samples test --out test 
+```
+By default, PIP threshold of 0.9 and PEP threshold of 0.7 are used to construct local credible sets (LCSs). The following command can be used to recompute LCSs with different threshold values.
+
+**\--cs** calculate local and global credible sets.
 
 **\--pip** specifies the threshold for the coverage of the credible set. 
 
-**\--mcmc-samples** reads the MCMC samples output from the genome-wide fine-mapping analysis (see instructions above).  
+**\--pep** specifies the threshold for PEP.
+
+**\--flank** specifies flanking window to define the nearest gene, with 5000 being the default value. 
+
+**\--genome-build** specifies genome build of the gene map file, e.g. hg19 or hg38. By default, hg19 is used.
+
+**\--mcmc-samples** reads the MCMC samples output from the genome-wide fine-mapping analysis.  
 
 **\--out** saves the full local credible set results in .lcs and summary of local credible set result in .lcsRes. Saves the full global credible set results in .gcs and summary of global credible set result in .gcsRes.
 
-**\--ld-file** reads the LD file containing pairwise LD \\$r^2\\$ > 0.5 between SNPs.  
+**\--pwld-file** reads the LD file containing pairwise LD \\$r^2\\$ > 0.5 between SNPs.  
 
-The required LD file with pairwise LD \\$r^2\\$ > 0.5 in each LD block can be computed using GCTB and eigen-decomposition LD reference with command line below,
+The required LD file with pairwise LD \\$r^2\\$ > 0.5 in each LD block is included in the `ldm` folder. This file can be obtained using GCTB and eigen-decomposition LD reference with command line below:
 
 ```
-gctb –-get-ld --ld-eigen ldm –-rsq 0.5 --out test --thread 4
+gctb --get-pwld --ldm-eigen ldm --rsq 0.5 --thread 8 --out rsq0.5
 ```
 
-**\--get-ld** turns on the flag to compute pairwise LD file using eigen-decomposition based LD reference files.
+**\--get-pwld** compute pairwise LD file using eigen-decomposition based LD reference files.
 
 **\--ldm-eigen** specifies a folder containing the eigen-decomposition LD reference data for each block. 
 

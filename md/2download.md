@@ -1,10 +1,10 @@
 
 ## Download {: .expand}
 ### Executable
-[gctb\_2.5.2\_Linux.zip](download/gctb_2.5.2_Linux.zip) (*Lastest version updated in 20 June 2024*)
+[gctb\_2.5.4\_Linux.zip](download/gctb_2.5.4_Linux.zip) (*Lastest version updated in 21 April 2025*)
 
 ### Source code
-[GCTB 2.5.2](download/gctb_2.5.2_scr.zip)
+[GCTB 2.5.4](download/gctb_2.5.4_scr.zip)
 
 ### Tutorial data
 [GCTB tutorial data](download/gctb_2.0_tutorial.zip)
@@ -14,9 +14,12 @@ The eigen-decomposition data are for SBayesRC and SBayesR with the low-rank mode
 
 * [1M HapMap3 SNPs](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/v2.0/LD/HapMap3/)
 * [7M Imputed SNPs](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/v2.0/LD/Imputed/)
+* [13M Imputed SNPs](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/GWFM/LD/Imputed13M/)
 
 ### Functional genomic annotations
-Download the [formatted data](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/v2.0/Annotation/annot_baseline2.2.zip) for per-SNP functional annotations derived from [S-LDSC BaselineLDv2.2](https://www.nature.com/articles/ng.3954). 
+Download the formatted data for per-SNP functional annotations derived from [S-LDSC BaselineLDv2.2](https://www.nature.com/articles/ng.3954). 
+* [7M SNP annotations](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/v2.0/Annotation/annot_baseline2.2.zip)
+* [13M SNP annotations](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/GWFM/Annotation/annot_baseline2.2_13M.zip)
 
 ### LD matrices
 The following LD matrices were computed based on 1.1 million common SNPs in a random sample of 50K unrelated individuals of European ancestry in UK Biobank dataset unless otherwise noted.
@@ -37,7 +40,12 @@ While the shrunk sparse matrices were used in our original SBayesR paper, [Prive
 ### Summary data and PGS weights
 The summary data for the 50 (including 28 approximately independent) UKB traits analysed in [Zheng et al. 2022](https://www.biorxiv.org/content/10.1101/2022.10.12.510418v1) can be downloaded here: [summary data](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/share/v1.0/summary/), and the corresponding PGS weights can be found here: [PGS weights](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/share/v1.0/PGS/). The PGS weights are joint effect estimates derived from ~7 million genome-wide SNPs, therefore it’s important to have matched SNP set between training and validation datasets. This is because if some important SNPs present in the training are missing in the validation, the genetic effects captured by these SNPs will be lost. To maximise the utility of the joint SNP weights, we recommend considering genotype imputation or rerunning SBayesRC with the matched set of SNPs. In addition, note that the PGS weights were estimated using samples of the European ancestry, so they will perform best when applying to individuals of the European ancestry.
 
+### Genome-wide fine-mapping (GWFM) analysis results
+Results of SNP PIPs, local credible sets, and globle credible sets for 509 traits can be downloaded here: [GWFM results](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/share/GWFM/)
+
 ### Older versions
+
+gctb_2.5.2: [[gctb\_2.5.2\_Linux.zip](download/gctb_2.5.2_Linux.zip)] [[source code](download/gctb_2.5.2_scr.zip)]
 
 gctb_2.5.1: [[Linux executable](download/gctb_2.5.1_Linux.zip)] [[source code](download/gctb_2.5.1_scr.zip)]
 
@@ -74,3 +82,5 @@ The MPI version implements a distributed computing strategy that scales the anal
 **7.** 29 April, 2024: version 2.5.1 adds functions for fine-mapping and to remove problematic SNPs during MCMC in SBayesRC.
 
 **8.** 20 June, 2024: version 2.5.2 fixed bugs regarding -nan SigmaSq results and adds LD-based approach for computing credible sets.
+
+**9.** 21 April, 2025: version 2.5.4 add --gwfm flag to perform genome-wide fine-mapping analysis.
