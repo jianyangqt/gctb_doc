@@ -18,8 +18,10 @@ The eigen-decomposition data are for SBayesRC and SBayesR with the low-rank mode
 
 ### Functional genomic annotations
 Download the formatted data for per-SNP functional annotations derived from [S-LDSC BaselineLDv2.2](https://www.nature.com/articles/ng.3954). 
-* [7M SNP annotations](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/v2.0/Annotation/annot_baseline2.2.zip)
-* [13M SNP annotations](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/GWFM/Annotation/annot_baseline2.2_13M.zip)
+* [7M SNP annotations](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/v2.0/Annotation/)
+* [13M SNP annotations](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/GWFM/Annotation/)
+
+Gene region annotations for genome build hg19 and hg38 are avaialble [here](download/gene_map_hg38_hg19.txt).
 
 ### LD matrices
 The following LD matrices were computed based on 1.1 million common SNPs in a random sample of 50K unrelated individuals of European ancestry in UK Biobank dataset unless otherwise noted.

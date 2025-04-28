@@ -17,6 +17,8 @@ Part of the code are adopted from [*GCTA*](http://cnsgenomics.com/software/gcta)
 
 [Jian Zeng](http://researchers.uq.edu.au/researcher/14033), [Zhili Zheng](http://researchers.uq.edu.au/researcher/19885), and [Shouye Liu](https://scholar.google.com/citations?hl=en&user=ETCPafMAAAAJ) contributed to the SBayesRC module.
 
+[Jian Zeng](http://researchers.uq.edu.au/researcher/14033) and [Yang Wu](https://scholar.google.com/citations?hl=en&user=Xu-FkbkAAAAJ) contributed to the GWFM module.
+
 Version 2.0 of the software was developed by Jian Zeng with contributions from Luke Lloyd-Jones, Zhili Zheng, and Shouye Liu.
 
 

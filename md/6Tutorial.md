@@ -558,7 +558,7 @@ gctb --gwfm RC --ldm-eigen ldm --gwas-summary test.ma --annot annot.txt --gene-m
 
 **\--gwfm** specifies the method to perform genome-wide fine-mapping analysis, e.g., RC.
 
-**\--ldm-eigen** specifies a folder containing the eigen-decomposition LD reference data for each block. We have computed these data for 13 million SNPs using a sample of European ancestry, which are available at [Download](https://cnsgenomics.com/software/gctb/#Download).
+**\--ldm-eigen** specifies a folder containing the eigen-decomposition LD reference data for each block. We have computed these data for 13 million SNPs using a sample of European ancestry, which are available at [Download](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/GWFM/LD/Imputed13M/).
 
 **\--gwas-summary** reads summary-level data from GWAS. The file format is as follows:
 ```
@@ -568,7 +568,7 @@ rs1002 C G 0.0306 0.0034 0.0115 0.7659 129799
 rs1003 A C 0.5128 0.0045 0.0038 0.2319 129830
 ```
 
-**\--annot** reads the annotation file. The file format is as follows, with columns being SNP ID, Intercept (a column of one), and annotation values. You can include an arbitary number of annotations. A set of 96 annotations for 13 million SNPs is available at [Download](https://cnsgenomics.com/software/gctb/#Download). 
+**\--annot** reads the annotation file. The file format is as follows, with columns being SNP ID, Intercept (a column of one), and annotation values. You can include an arbitary number of annotations. A set of 96 annotations for 13 million SNPs is available at [here](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/GWFM/Annotation/). 
 ```
 SNP     Intercept   Anno1   Anno2   Anno3 
 rs1001  1           1       0       0.2
@@ -577,7 +577,7 @@ rs1003  1           1       1       0.7
 ```
 
 
-**\--gene-map** specifies gene map file to annotate the nearest gene for the identified credible set, which is available at [Download](https://cnsgenomics.com/software/gctb/#Download). This flag is optional. The file format is as follows. The genome build can be selected using **\--genome-build** (hg19 or hg38). hg19 is used as default. 
+**\--gene-map** specifies gene map file to annotate the nearest gene for the identified credible set, which is available at [here](download/gene_map_hg38_hg19.txt). This flag is optional. The file format is as follows. The genome build can be selected using **\--genome-build** (hg19 or hg38). hg19 is used as default. 
 ```
 Ensgid          GeneName        GeneType        Chrom_hg38      Start_hg38      End_hg38        Chrom_hg19      Start_hg19      End_hg19
 ENSG00000290825 DDX11L2         lncRNA          1               11869           14409           1               11869           14409
