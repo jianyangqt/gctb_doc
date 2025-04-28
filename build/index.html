@@ -61,6 +61,7 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <p>Part of the code are adopted from <a href="http://cnsgenomics.com/software/gcta"><em>GCTA</em></a> and <a href="https://static-content.springer.com/esm/art%3A10.1186%2F1471-2105-12-186/MediaObjects/12859_2010_4655_MOESM1_ESM.PDF"><em>GenSel</em></a>. </p>
 <p><a href="https://scholar.google.com.au/citations?user=WQ0UXOcAAAAJ&amp;hl=en&amp;oi=ao">Luke Lloyd-Jones</a> contributed to the BayesR module with supports from <a href="http://researchers.uq.edu.au/researcher/14033">Jian Zeng</a> and <a href="https://en.wikipedia.org/wiki/Michael_Goddard">Mike Goddard</a>.</p>
 <p><a href="http://researchers.uq.edu.au/researcher/14033">Jian Zeng</a>, <a href="http://researchers.uq.edu.au/researcher/19885">Zhili Zheng</a>, and <a href="https://scholar.google.com/citations?hl=en&amp;user=ETCPafMAAAAJ">Shouye Liu</a> contributed to the SBayesRC module.</p>
+<p><a href="http://researchers.uq.edu.au/researcher/14033">Jian Zeng</a> and <a href="https://scholar.google.com/citations?hl=en&amp;user=Xu-FkbkAAAAJ">Yang Wu</a> contributed to the GWFM module.</p>
 <p>Version 2.0 of the software was developed by Jian Zeng with contributions from Luke Lloyd-Jones, Zhili Zheng, and Shouye Liu.</p>
 <hr><h3 id="questionsandhelprequests">Questions and Help Requests</h3>
 <p>If you have any bug reports or questions, please send an email to Jian Zeng (<a href="mailto:j.zeng@uq.edu.au">j.zeng@uq.edu.au</a>).</p>
@@ -92,9 +93,10 @@ the software with supports from <a href="https://scholar.google.com.au/citations
 <hr><h3 id="functionalgenomicannotations">Functional genomic annotations</h3>
 <p>Download the formatted data for per-SNP functional annotations derived from <a href="https://www.nature.com/articles/ng.3954">S-LDSC BaselineLDv2.2</a>. </p>
 <ul>
-<li><a href="https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/v2.0/Annotation/annot_baseline2.2.zip">7M SNP annotations</a></li>
-<li><a href="https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/GWFM/Annotation/annot_baseline2.2_13M.zip">13M SNP annotations</a></li>
+<li><a href="https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/v2.0/Annotation/">7M SNP annotations</a></li>
+<li><a href="https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/GWFM/Annotation/">13M SNP annotations</a></li>
 </ul>
+<p>Gene region annotations for genome build hg19 and hg38 are avaialble <a href="download/gene_map_hg38_hg19.txt">here</a>.</p>
 <hr><h3 id="ldmatrices">LD matrices</h3>
 <p>The following LD matrices were computed based on 1.1 million common SNPs in a random sample of 50K unrelated individuals of European ancestry in UK Biobank dataset unless otherwise noted.</p>
 <ul>
@@ -701,20 +703,20 @@ rs1003  1           1       1       0.7
 <pre><code>gctb --gwfm RC --ldm-eigen ldm --gwas-summary test.ma --annot annot.txt --gene-map gene_map.txt --thread 32 --out test
 </code></pre>
 <p><strong><span class="kwd">--gwfm</span></strong> specifies the method to perform genome-wide fine-mapping analysis, e.g., RC.</p>
-<p><strong><span class="kwd">--ldm-eigen</span></strong> specifies a folder containing the eigen-decomposition LD reference data for each block. We have computed these data for 13 million SNPs using a sample of European ancestry, which are available at <a href="https://cnsgenomics.com/software/gctb/#Download">Download</a>.</p>
+<p><strong><span class="kwd">--ldm-eigen</span></strong> specifies a folder containing the eigen-decomposition LD reference data for each block. We have computed these data for 13 million SNPs using a sample of European ancestry, which are available at <a href="https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/GWFM/LD/Imputed13M/">here</a>.</p>
 <p><strong><span class="kwd">--gwas-summary</span></strong> reads summary-level data from GWAS. The file format is as follows:</p>
 <pre><code>SNP A1 A2 freq b se p N 
 rs1001 A G 0.8493 0.0024 0.0055 0.6653 129850 
 rs1002 C G 0.0306 0.0034 0.0115 0.7659 129799 
 rs1003 A C 0.5128 0.0045 0.0038 0.2319 129830
 </code></pre>
-<p><strong><span class="kwd">--annot</span></strong> reads the annotation file. The file format is as follows, with columns being SNP ID, Intercept (a column of one), and annotation values. You can include an arbitary number of annotations. A set of 96 annotations for 13 million SNPs is available at <a href="https://cnsgenomics.com/software/gctb/#Download">Download</a>. </p>
+<p><strong><span class="kwd">--annot</span></strong> reads the annotation file. The file format is as follows, with columns being SNP ID, Intercept (a column of one), and annotation values. You can include an arbitary number of annotations. A set of 96 annotations for 13 million SNPs is available at <a href="https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/GWFM/Annotation/">here</a>. </p>
 <pre><code>SNP     Intercept   Anno1   Anno2   Anno3 
 rs1001  1           1       0       0.2
 rs1002  1           0       1       -1.5
 rs1003  1           1       1       0.7
 </code></pre>
-<p><strong><span class="kwd">--gene-map</span></strong> specifies gene map file to annotate the nearest gene for the identified credible set, which is available at <a href="https://cnsgenomics.com/software/gctb/#Download">Download</a>. This flag is optional. The file format is as follows. The genome build can be selected using <strong><span class="kwd">--genome-build</span></strong> (hg19 or hg38). hg19 is used as default. </p>
+<p><strong><span class="kwd">--gene-map</span></strong> specifies gene map file to annotate the nearest gene for the identified credible set, which is available at <a href="download/gene_map_hg38_hg19.txt">here</a>. This flag is optional. The file format is as follows. The genome build can be selected using <strong><span class="kwd">--genome-build</span></strong> (hg19 or hg38). hg19 is used as default. </p>
 <pre><code>Ensgid          GeneName        GeneType        Chrom_hg38      Start_hg38      End_hg38        Chrom_hg19      Start_hg19      End_hg19
 ENSG00000290825 DDX11L2         lncRNA          1               11869           14409           1               11869           14409
 ENSG00000186092 OR4F5           protein_coding  1               65419           71585           1               65419           71585

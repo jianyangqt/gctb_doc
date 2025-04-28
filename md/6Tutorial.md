@@ -558,7 +558,7 @@ gctb --gwfm RC --ldm-eigen ldm --gwas-summary test.ma --annot annot.txt --gene-m
 
 **\--gwfm** specifies the method to perform genome-wide fine-mapping analysis, e.g., RC.
 
-**\--ldm-eigen** specifies a folder containing the eigen-decomposition LD reference data for each block. We have computed these data for 13 million SNPs using a sample of European ancestry, which are available at [Download](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/GWFM/LD/Imputed13M/).
+**\--ldm-eigen** specifies a folder containing the eigen-decomposition LD reference data for each block. We have computed these data for 13 million SNPs using a sample of European ancestry, which are available at [here](https://sbayes.pctgplots.cloud.edu.au/data/SBayesRC/resources/GWFM/LD/Imputed13M/).
 
 **\--gwas-summary** reads summary-level data from GWAS. The file format is as follows:
 ```
