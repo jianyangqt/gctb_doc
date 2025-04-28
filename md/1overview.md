@@ -30,6 +30,9 @@ If you have any bug reports or questions, please send an email to Jian Zeng (<j.
 Zeng et al. (2018) Signatures of negative selection in the genetic architecture of human complex traits. 
 [*Nature Genetics*, doi: 10.1038/s41588-018-0101-4.](https://www.nature.com/articles/s41588-018-0101-4)
 
+#### GWFM (genome-wide fine-mapping)
+Wu et al. (2025) Genome-wide fine-mapping improves identification of causal variants. [*medRxiv* 2024.07.18.24310667; doi:10.1101/2024.07.18.24310667]( https://doi.org/10.1101/2024.07.18.24310667)
+
 #### SBayesRC
 Zheng et al. (2024) Leveraging functional genomic annotations and genome coverage to improve polygenic prediction of complex traits within and between ancestries. [*Nature Genetics*, doi: 10.1038/s41588-024-01704-y.](https://www.nature.com/articles/s41588-024-01704-y)
 
